@@ -8,9 +8,9 @@ const port = process.env.PORT;
 const DB = process.env.DATABASE;
 
 mongoose.connect(DB)
-        .then(()=>console.log('DB connection successful'))
-        .catch((err)=>console.log('Error connecting to the database', err));
+        .then(()=> console.log('DB connection successful'))
+        .catch((err)=> console.log('Error connecting to the database', err));
 
-const server = app.listen(port, 'localhose', ()=>{
+const server = app.listen(port, 'localhost', ()=>{
     console.log(`Listening on port ${port}`);
 })
