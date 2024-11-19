@@ -15,20 +15,33 @@ const petitionSchema = mongoose.Schema({
         type: String,
         required: [true, 'Please provide a valid description']
     },
-    signatures:{
+    signatures: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: [true, 'If you want to vote, you must sign'],
+    }],
+    minSign: {
         type: Number,
-        min: undefined,
+        min: 1,
+        required: true,
+        default: 1, 
+    },
+    countSigns: {
+        type: Number,
+        min: 0,
+        default: 0,
     },
     response:{
         type: String,
-        
     },
     petitioner:{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
+        ref: 'User',
+        required: [true, 'A petition must have a petitioner']
     },
-
-});
+    },
+    { timestamps: true } 
+);
 
 const Petition = mongoose.model('Petition', petitionSchema);
 

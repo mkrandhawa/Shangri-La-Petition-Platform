@@ -23,8 +23,7 @@ const userSchema = mongoose.Schema({
     dob:{
         day: String,
         month: String,
-        year: toString,
-        required: [true, 'Please enter a valid DOB']
+        year: String
     },
     password:{
         type:String,
@@ -53,7 +52,15 @@ const userSchema = mongoose.Schema({
         required:true,
         enum: ['petitioner', 'admin'],
         default: 'petitioner'
-    }
+    },
+    createdPetitions: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Petition',
+    }],
+    signedPetitions: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Petition',
+    }],
 
 });
 
