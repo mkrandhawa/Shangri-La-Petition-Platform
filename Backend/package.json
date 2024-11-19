@@ -3,6 +3,7 @@
     "argon2": "^0.41.1",
     "dotenv": "^16.4.5",
     "express": "^4.21.1",
+    "jsonwebtoken": "^9.0.2",
     "mongodb": "^6.10.0",
     "mongoose": "^8.8.1",
     "nodemon": "^3.1.7",
@@ -12,7 +13,6 @@
   "version": "1.0.0",
   "description": "This project is for the SLPP project",
   "main": "server.js",
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon server.js"
