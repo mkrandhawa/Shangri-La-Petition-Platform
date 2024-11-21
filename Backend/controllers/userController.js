@@ -11,7 +11,7 @@ const generateJsonToken = (userId) => {
 };
 
 
-exports.register = async(req, res)=>{
+exports.register = async(req, res, next)=>{
 
     const username = req.body.email.split('@')[0];
 
@@ -55,3 +55,39 @@ exports.register = async(req, res)=>{
     })
 
 };
+
+//Login User
+
+exports.login = async(req, res, next)=>{
+    const {email, password, bioId} = req.body;
+    
+    if (!email || !password || !bioId){
+        return next(res.status(400).json({
+            status: 'Fail',
+            message: 'Please provide a valid email/password/bioId'
+        }));
+    }
+
+    const user = await User.findOne({email}).select('+password');
+
+    if(!user || !(await user.comparePasswords(user.password, password)) || !(await user.compareBioId(user.bioId, bioId))){
+        return next(res.status(401).json({
+            status: 'Fail',
+            message: 'Incorrect email/password/bioId'
+        }))
+    }
+
+    const token = generateJsonToken(user._id);
+
+    res.cookie('jsonToken', token, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV==='production',
+        maxAge: 30 * 24 * 60 * 60 * 1000, 
+    });
+
+    res.status(200).json({
+        status: 'Success',
+        message: 'You are logged in!'
+    });
+
+}
