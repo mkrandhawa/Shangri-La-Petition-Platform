@@ -77,10 +77,30 @@ userSchema.pre('save', async function(next){
         next();
 
     }catch(err){
-        console.log('Error hashing the password', err);
+        console.log('Error hashing the password', err.message);
 
     }
 })
+
+userSchema.methods.comparePasswords = async function(hashedPassword, userPassword){
+    try{
+
+        return  await argon2.verify(hashedPassword, userPassword);
+
+    }catch(err){
+        console.log('Error comparing the passwords', err.message)
+    }
+}
+
+userSchema.methods.compareBioId = async function (bioId, userBioId){
+    try{
+        
+        return await bioId===userBioId
+    
+    }catch(err){
+        console.log('Error matching the bioId', err.message);
+    }
+}
 
 const User = mongoose.model('User', userSchema);
 
