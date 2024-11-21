@@ -1,6 +1,7 @@
 const User = require('../models/userModel');
 const jwt = require('jsonwebtoken');
 
+//Generate JSON Taken
 
 const generateJsonToken = (userId) => {
 
@@ -10,6 +11,7 @@ const generateJsonToken = (userId) => {
 
 };
 
+//Register User
 
 exports.register = async(req, res, next)=>{
 
