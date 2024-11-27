@@ -82,6 +82,7 @@ userSchema.pre('save', async function(next){
     }
 })
 
+//Comparing the passwords
 userSchema.methods.comparePasswords = async function(hashedPassword, userPassword){
     try{
 
@@ -92,6 +93,7 @@ userSchema.methods.comparePasswords = async function(hashedPassword, userPasswor
     }
 }
 
+//Comparing the bioID 
 userSchema.methods.compareBioId = async function (bioId, userBioId){
     try{
         
