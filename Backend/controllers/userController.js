@@ -12,6 +12,35 @@ const generateJsonToken = (userId) => {
 
 };
 
+//Protect function
+
+exports.protect = async(req, res, next)=>{
+    let token;
+    try{
+
+        if( req.headers.authorization && req.headers.authorization.startsWith('Bearer')){
+            token = req.headers.authorization.split(' ')[1];
+        }else if (req.cookies?.jsonToken){
+            token = req.cookies.jsonToken;
+        }
+
+        if(!token){
+            next(res.status(401).json({
+                status: 'Fail',
+                message: 'You are not logged in'
+            }));
+        }
+
+        const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
+        req.user = {id: decodedToken.id};
+
+        next();
+        
+    }catch(err){
+        console.log('Error with the authorization', err.message);
+    }
+}
+
 //Register User
 
 exports.register = async(req, res, next)=>{
