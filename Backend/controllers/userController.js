@@ -12,7 +12,6 @@ const generateJsonToken = (userId) => {
 
 };
 
-console.log(data)
 //Register User
 
 exports.register = async(req, res, next)=>{
@@ -23,8 +22,6 @@ exports.register = async(req, res, next)=>{
 
     const isBioId = await User.find({bioId});
     
-
-
     if(!isBioId.length==0){
         res.status(400).json({
             status: 'Fail',
