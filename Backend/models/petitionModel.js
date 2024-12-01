@@ -4,8 +4,7 @@ const petitionSchema = mongoose.Schema({
     status:{
         type: String,
         enum:['open', 'closed'],
-        default: 'open',
-        required: true
+        default: 'open'
     },
     title:{
         type: String,
@@ -18,7 +17,6 @@ const petitionSchema = mongoose.Schema({
     signatures: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
-        required: [true, 'If you want to vote, you must sign'],
     }],
     minSign: {
         type: Number,
