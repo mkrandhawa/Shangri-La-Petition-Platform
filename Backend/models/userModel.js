@@ -45,13 +45,14 @@ const userSchema = mongoose.Schema({
     bioId:{
         type: String,
         required:[true, 'Please enter a valid Biometric ID'],
-        unique: true
+        unique: true,
+        select: false
     },
     role:{
         type: String,
         required:true,
-        enum: ['petitioner', 'admin'],
-        default: 'petitioner'
+        enum: ['user', 'petitioner', 'admin'],
+        default: 'user'
     },
     createdPetitions: [{
         type: mongoose.Schema.Types.ObjectId,
