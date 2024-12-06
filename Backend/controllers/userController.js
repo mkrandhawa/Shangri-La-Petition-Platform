@@ -116,7 +116,7 @@ exports.login = async(req, res, next)=>{
         }));
     }
 
-    const user = await User.findOne({email}).select('+password');
+    const user = await User.findOne({email}).select('+password').select('+bioId');
 
     if(!user || !(await user.comparePasswords(user.password, password)) || !(await user.compareBioId(user.bioId, bioId))){
         return next(res.status(401).json({
