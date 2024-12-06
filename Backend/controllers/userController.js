@@ -2,7 +2,7 @@ const User = require('../models/userModel');
 const jwt = require('jsonwebtoken');
 const data = require('../public/data/bioId');
 
-//Generate JSON Taken
+// Generate JSON Taken
 
 const generateJsonToken = (userId) => {
 
@@ -12,7 +12,7 @@ const generateJsonToken = (userId) => {
 
 };
 
-//Protect function
+// Protect function
 
 exports.protect = async(req, res, next)=>{
     let token;
@@ -41,7 +41,7 @@ exports.protect = async(req, res, next)=>{
     }
 }
 
-//Register User
+// Register User --> '/api/user/signup'
 
 exports.register = async(req, res, next)=>{
 
@@ -95,8 +95,7 @@ exports.register = async(req, res, next)=>{
             email: user.email,
             username: user.username,
             fullName: user.fullName,
-            role: user.role,
-            bioId: user.bioId
+            role: user.role
 
         }
 
@@ -104,7 +103,7 @@ exports.register = async(req, res, next)=>{
 
 };
 
-//Login User
+// Login User --> '/api/user/login'
 
 exports.login = async(req, res, next)=>{
     const {email, password, bioId} = req.body;
@@ -140,7 +139,7 @@ exports.login = async(req, res, next)=>{
 
 }
 
-//Logout User
+// Logout User --> '/api/user/logout'
 
 exports.logout = async(req, res, next)=>{
 

@@ -118,3 +118,47 @@ exports.signPetition = async(req, res, next)=>{
 
 
 }
+
+
+// Set Threshold --> '/api/user/commitee/threshold
+
+exports.setThreshold = async(req, res, next)=>{
+
+    const userId = req.user.id;
+
+    const petitionId = req.params.petitionId;
+
+    const minSign = req.body.minSign;
+
+
+    if(!userId || !petitionId){
+        next(res.status(400).json({
+            status: 'Fail',
+            message: 'Wrong petition ID/ Not logged in'
+        }));
+    }
+
+    const user = await User.findById(userId);
+
+    if(user.role === 'admin'){
+
+        const updateSigns = await Petition.updateOne(
+            {_id: petitionId},
+            {minSign: minSign}, {new: true});
+
+        // The message will not printed as the code is 204 
+        res.status(204).json({
+            staus: 'Success',
+            message: 'Updated minimum sign required',
+            data: updateSigns
+            
+        });
+    }else{
+        
+        next(res.status(401).json({
+            status: 'Fail',
+            message: 'You do not have the permission to sign'
+        }));
+    }
+
+}
