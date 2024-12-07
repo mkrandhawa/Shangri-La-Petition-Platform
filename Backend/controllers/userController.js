@@ -87,7 +87,7 @@ exports.register = async(req, res, next)=>{
         secure: process.env.NODE_ENV==='production',
         maxAge: 30 * 24 * 60 * 60 * 1000, 
 
-    })
+    });
 
     res.status(201).json({
         status: 'success',
@@ -102,6 +102,58 @@ exports.register = async(req, res, next)=>{
     })
 
 };
+
+// Register Admin --> '/api/user/auth/signUp/admin
+exports.registerAdmin = async(req, res, next)=>{
+
+    const secretKey = req.body.secret;
+
+    const admins = await User.exists({role: 'admin'});
+
+
+    if (secretKey!= process.env.ADMIN_SECRET || admins){
+
+        next(res.status(500).json({
+            status: 'Fail',
+            message: 'You do not have the permission'
+        }));
+
+        return;
+    }
+
+    const {email, password, confirmPassword} = req.body;
+
+
+    const user = await User.create({
+        email,
+        username: 'admin',
+        fullName: 'Admin',
+        password,
+        confirmPassword,
+        role: 'admin',
+        bioId: process.env.BIOID
+    });
+
+
+
+    const token = generateJsonToken(user._id);
+
+    res.cookie('jsonToke', token, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV==='production',
+        maxAge: 30 * 24 * 60 * 60 * 1000
+    });
+
+    res.status(200).json({
+        status: 'Success',
+        message: 'Registered as admin!',
+        data:{ 
+            email: user.email,
+            username: user.username
+        }
+    });
+
+}
 
 // Login User --> '/api/user/login'
 
