@@ -41,7 +41,7 @@ exports.protect = async(req, res, next)=>{
     }
 }
 
-// Register User --> '/api/user/signup'
+// Register User --> /api/user/signup
 
 exports.register = async(req, res, next)=>{
 
@@ -103,7 +103,8 @@ exports.register = async(req, res, next)=>{
 
 };
 
-// Register Admin --> '/api/user/auth/signUp/admin
+// Register Admin --> /api/user/auth/signUp/admin
+
 exports.registerAdmin = async(req, res, next)=>{
 
     const secretKey = req.body.secret;
@@ -155,7 +156,7 @@ exports.registerAdmin = async(req, res, next)=>{
 
 }
 
-// Login User --> '/api/user/login'
+// Login User --> /api/user/login
 
 exports.login = async(req, res, next)=>{
     const {email, password, bioId} = req.body;
@@ -191,7 +192,7 @@ exports.login = async(req, res, next)=>{
 
 }
 
-// Logout User --> '/api/user/logout'
+// Logout User --> /api/user/logout
 
 exports.logout = async(req, res, next)=>{
 
@@ -206,3 +207,4 @@ exports.logout = async(req, res, next)=>{
         message: 'You have been logged out'
     })
 }
+
