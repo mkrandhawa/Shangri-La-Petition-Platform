@@ -22,7 +22,6 @@ exports.addPetition = async(req, res, next)=>{
     const {status, title, text} = req.body;
 
     const user = req.user.id;
-    console.log(user);
 
     if(!user){
         next(res.staus(401).json({
@@ -80,9 +79,11 @@ exports.signPetition = async(req, res, next)=>{
 
     const petitionSigned = user.signedPetitions.includes(petitionId);
 
+    const youCreatedPetition = user.createdPetitions.includes(petitionId);
+
     // If the petition has not been signed before and logged user has role 'user' --> Continue Signing
 
-    if(!petitionSigned && petition && user.role === 'user'){
+    if(!petitionSigned && !youCreatedPetition && petition && user.role === 'petitioner'){
 
         //Update the references to the petition document
 
@@ -112,13 +113,11 @@ exports.signPetition = async(req, res, next)=>{
     }else{
         next(res.status(400).json({
             status: 'Fail',
-            message: 'You cannot sign the same petition twice'
+            message: 'You cannot sign the same petition twice/You cannot sign your own petition'
         }))
     }
 
-
 }
-
 
 // Set Threshold --> '/api/user/commitee/threshold
 
@@ -162,3 +161,4 @@ exports.setThreshold = async(req, res, next)=>{
     }
 
 }
+

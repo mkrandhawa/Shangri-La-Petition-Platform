@@ -51,8 +51,8 @@ const userSchema = mongoose.Schema({
     role:{
         type: String,
         required:true,
-        enum: ['user', 'petitioner', 'admin'],
-        default: 'user'
+        enum: ['petitioner', 'admin'],
+        default: 'petitioner'
     },
     createdPetitions: [{
         type: mongoose.Schema.Types.ObjectId,
