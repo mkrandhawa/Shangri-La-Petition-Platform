@@ -8,8 +8,8 @@ const app = express();
 app.use(express.json());
 
 app.use(cookieParser());
-
+    
 app.use('/api/user', userRoutes);
-app.use('/api/petitions', petitionRoutes);
+app.use('/api/slpp/petitions', petitionRoutes);
 
 module.exports = app;
