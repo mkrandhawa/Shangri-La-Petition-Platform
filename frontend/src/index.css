@@ -1,3 +1,5 @@
+
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -10,4 +12,86 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+/* Header Styles */
+
+header{
+  position: fixed;
+  width: 100%;
+  height: 100px;
+  display: grid; 
+  align-items: center;
+  grid-template-columns: 1fr 1fr;
+  padding: 10px;
+  padding-top: 0px;
+  box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, 0.3);
+}
+
+.logoName{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.logo{
+  background-image: url('../public/images/logo.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 80px;
+  height: 80px;
+  cursor: pointer;
+  margin-right: 2rem;
+
+}
+
+.companyName{
+  font-size: 1.7rem;
+  font-family: 'Playfair Display';
+
+}
+
+.navigation ul{
+  display: flex;
+  justify-content: center;
+  list-style-type: none; 
+  padding: 20px;  
+  font-family: 'Montserrat';
+
+}
+
+.navigation ul li {
+  color: rgb(0, 0, 0);
+  font-size: 1.7rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 4px;
+  margin-right: 20px;
+  padding: 4px;
+  margin-right: 20px;
+  border-bottom: 1px solid transparent;
+  justify-self: center;
+}
+
+/* Footer Styles */
+
+footer{
+  width: 100%;
+  height: 100px;
+  background-color: rgb(18, 18, 18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.myFooter{
+  font-family: 'Montserrat';
+  color: white;
+  font-size: 1.4rem;
+}
+
+h1{
+
+  height: 500px;
 }
