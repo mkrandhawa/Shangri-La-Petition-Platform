@@ -5,7 +5,6 @@ export default function Header (){
 
     return(
         <header>
-
             <div className='logoName'>
                 {/* Logo */}
                 <div className='logo'>
@@ -28,14 +27,12 @@ export default function Header (){
                         Open Petitions
                     </li>
 
-                    <li>
+                    <li className='login'>
                         Log in
                     </li>
 
                 </ul>
             </div>
-
-
         </header>
     )
 }

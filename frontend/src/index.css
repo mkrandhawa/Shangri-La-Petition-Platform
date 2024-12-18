@@ -18,14 +18,21 @@ code {
 
 header{
   position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
   width: 100%;
-  height: 100px;
-  display: grid; 
+  height: 80px;
+  display: flex;
   align-items: center;
-  grid-template-columns: 1fr 1fr;
+  justify-content: center;
+  gap: 20rem;
   padding: 10px;
   padding-top: 0px;
-  box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, 0.3);
+  border-bottom: 1px solid lightgrey;
+  background-color: rgb(249, 251, 249);
+  /* box-shadow: 2px 2px 2px 5px rgb(0,0,0,0.3); */
+
 }
 
 .logoName{
@@ -39,8 +46,8 @@ header{
   background-image: url('../public/images/logo.png');
   background-size: cover;
   background-repeat: no-repeat;
-  width: 80px;
-  height: 80px;
+  width: 40px;
+  height: 40px;
   cursor: pointer;
   margin-right: 2rem;
 
@@ -54,41 +61,95 @@ header{
 
 .navigation ul{
   display: flex;
+  align-items: center;
   justify-content: center;
   list-style-type: none; 
-  padding: 20px;  
   font-family: 'Montserrat';
+  margin: 0px;
 
 }
 
 .navigation ul li {
   color: rgb(0, 0, 0);
-  font-size: 1.7rem;
+  font-size: 1.5rem;
   cursor: pointer;
   transition: all 0.3s ease;
   padding: 4px;
   margin-right: 20px;
-  padding: 4px;
-  margin-right: 20px;
   border-bottom: 1px solid transparent;
-  justify-self: center;
+  align-self: center;
 }
+
+
+/* Home Page Styles */
+
+.homePage{
+  position: relative;
+  overflow-y: hidden;
+  padding-top: 80px;
+  height: 768px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: url('../public//images/homePageBackground.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index: 1;
+
+}
+
+/* Adding blur filter */
+.homePage::before{
+  content: ""; 
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(5px); 
+  z-index: -1; 
+}
+
+.welcome{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.mainName{
+  padding: 20px;
+  font-family: 'Playfair Display';
+  font-size: 5rem;
+}
+
+.nameSlogan{
+  font-size: 1.7rem;
+  font-style: italic;
+}
+
+
+
+
+
 
 /* Footer Styles */
 
 footer{
   width: 100%;
-  height: 100px;
-  background-color: rgb(18, 18, 18);
+  height: 80px;
+  background-color: rgb(203 215 220);
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .myFooter{
-  font-family: 'Montserrat';
-  color: white;
-  font-size: 1.4rem;
+  color: rgb(0, 0, 0);
+  font-size: 14px;
 }
 
 h1{

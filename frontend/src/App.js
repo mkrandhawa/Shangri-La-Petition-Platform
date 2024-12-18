@@ -1,15 +1,12 @@
 import React from 'react';
-import Header from './navigation/header';
-import Footer from './navigation/footer';
-
+import { HomePage } from './home/homePage';
 
 export default function App() {
   return (
    <>
-      <Header />
-      <h1>Hello!</h1>
-      <h1>I am trying okay</h1>
-      <Footer />
+
+    <HomePage />
+      
    </>
   )
 }
