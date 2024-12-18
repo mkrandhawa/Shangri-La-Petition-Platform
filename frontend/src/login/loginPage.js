@@ -1,15 +1,15 @@
 import React from "react";
 import Header from "../navigation/header";
-import Home from "./home";
+import LoginForm from "./loginForm";
 import Footer from "../navigation/footer";
 
-export default function HomePage(){
+export default function LoginPage (){
 
     return(
         <>
-            <Header/>
-            <Home/>
-            <Footer/>
+            <Header />
+            <LoginForm />
+            <Footer />
         </>
     )
 }

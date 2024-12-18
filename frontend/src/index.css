@@ -1,4 +1,5 @@
 
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
 body {
   margin: 0;
@@ -56,7 +57,7 @@ header{
 .companyName{
   font-size: 1.7rem;
   font-family: 'Playfair Display';
-
+  cursor: pointer;
 }
 
 .navigation ul{
@@ -78,6 +79,18 @@ header{
   margin-right: 20px;
   border-bottom: 1px solid transparent;
   align-self: center;
+}
+
+.navigation ul li:hover{
+  
+  border-bottom: 1px solid rgb(0, 0, 0);
+
+}
+
+.link{
+  list-style-type: none;
+  list-style: none;
+  text-decoration: none;
 }
 
 
@@ -131,6 +144,128 @@ header{
   font-style: italic;
 }
 
+
+/* Login Form Styles */
+
+.loginPage{
+  position: relative;
+  overflow: hidden;
+  padding-top: 100px;
+  height: 748px;
+  display: flex;  
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: rgb(249, 251, 249);
+  
+}
+
+.login{
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  flex-direction: column;
+  border: 1px solid lightgrey;
+  border-radius: 10px;
+  padding: 20px;
+  width: 500px;
+  height: 500px;
+  box-shadow: 5px 10px 10px 5px rgb(0, 0, 0, 0.3);
+  background: rgba(255, 255, 255, 0.3); 
+  backdrop-filter: blur(10px);
+}
+
+.formTitle{
+  font-family: 'Roboto', sans-serif;
+  font-size: 2rem;
+  margin-bottom: 40px;
+  margin-top: 30px;
+
+}
+
+.loginForm, .loginFormContainer{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.inputs{
+  padding: 10px;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  grid-template-columns: 1fr 1fr;
+}
+
+.label{
+  padding: 10px;
+  font-family: 'Roboto', sans-serif;
+  text-align: right;
+  font-size: 1.2rem;
+
+}
+
+.email, .password{
+  height: 50px;
+  width: 400px;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid grey;
+  border-radius: 10px;
+  background-color: rgb(249, 251, 249);
+}
+
+
+.email::placeholder, .password::placeholder{
+  padding: 5px;
+  font-family: roboto;
+  font-size: 12px;
+}
+
+.loginButton{
+  margin-top: 4rem;
+  margin-bottom: 4rem;
+  padding: 10px;
+  height: 50px;
+  width: 200px;
+  font-family: 'Montserrat';
+  font-size: 18px;
+  border-radius: 10px;
+  border: 1px solid black;
+  color: black;
+  background: #b4d6e7;
+  cursor: pointer;
+
+}
+
+.loginButton:hover{
+  transform: scale(1.03);
+  border: none;
+  border-bottom:2px solid black;
+}
+
+.register{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+
+.registerNow{
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+}
+
+.signUp{
+  background-color: none;
+  border: none;
+  background: none;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
 
 
 
