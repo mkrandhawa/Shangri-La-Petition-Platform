@@ -216,7 +216,6 @@ header{
   background-color: rgb(249, 251, 249);
 }
 
-
 .email::placeholder, .password::placeholder{
   padding: 5px;
   font-family: roboto;
@@ -265,6 +264,13 @@ header{
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
+}
+
+.errorMessage{
+  color: red;
+  font-style: 'Roboto';
+  font-size: 16px;
+  text-align: center;
 }
 
 

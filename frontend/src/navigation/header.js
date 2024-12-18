@@ -15,7 +15,7 @@ export default function Header (){
         <header>
             <div className='logoName'>
                 {/* Logo */}
-                <div className='logo'>
+                <div className='logo' onClick={handleClick}>
                 </div>
                 {/* Company Name */}
                 <div className='shangri' onClick={handleClick}>

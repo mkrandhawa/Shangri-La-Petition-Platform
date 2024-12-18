@@ -42,11 +42,11 @@ export default function LoginForm(){
                 navigate('/'); // DO that OKAYYYYYYY
             }
             } catch (err) {
-            alert("Failed to create user: " + err.message);
+                const errorElement = document.getElementsByClassName('errorMessage')[0];
+                errorElement.textContent = err.message;
+            // alert("Failed to create user: " + err.message);
         }
     })();
-
-
 
   }
 
@@ -89,6 +89,7 @@ export default function LoginForm(){
                                 onChange={handleChange}
                             />
                         </div>
+                        <span className="errorMessage"></span>
                         <button className="loginButton" type="submit"> 
                             Log In
                         </button>     
