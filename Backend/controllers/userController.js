@@ -159,21 +159,21 @@ exports.registerAdmin = async(req, res, next)=>{
 // Login User --> /api/user/login
 
 exports.login = async(req, res, next)=>{
-    const {email, password, bioId} = req.body;
+    const {email, password} = req.body;
     
-    if (!email || !password || !bioId){
+    if (!email || !password){
         return next(res.status(400).json({
             status: 'Fail',
-            message: 'Please provide a valid email/password/bioId'
+            message: 'Please provide a valid email/password'
         }));
     }
 
-    const user = await User.findOne({email}).select('+password').select('+bioId');
+    const user = await User.findOne({email}).select('+password');
 
-    if(!user || !(await user.comparePasswords(user.password, password)) || !(await user.compareBioId(user.bioId, bioId))){
+    if(!user || !(await user.comparePasswords(user.password, password))){
         return next(res.status(401).json({
             status: 'Fail',
-            message: 'Incorrect email/password/bioId'
+            message: 'Incorrect email/password'
         }))
     }
 

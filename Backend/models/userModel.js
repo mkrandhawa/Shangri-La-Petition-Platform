@@ -94,16 +94,7 @@ userSchema.methods.comparePasswords = async function(hashedPassword, userPasswor
     }
 }
 
-//Comparing the bioID 
-userSchema.methods.compareBioId = async function (bioId, userBioId){
-    try{
-        
-        return await bioId===userBioId
-    
-    }catch(err){
-        console.log('Error matching the bioId', err.message);
-    }
-}
+
 
 const User = mongoose.model('User', userSchema);
 
