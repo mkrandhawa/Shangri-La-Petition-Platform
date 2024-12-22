@@ -178,7 +178,7 @@ exports.setThreshold = async(req, res, next)=>{
 
     if(user.role === 'admin'){
 
-        const updateSigns = await Petition.updateMany({minSign: minSign}, {new: true});
+        const updateSigns = await Petition.updateMany({minSign, new: true});
 
         // The message will not printed as the code is 204 
         res.status(204).json({
@@ -237,50 +237,3 @@ exports.respondPetition = async(req, res, next)=>{
     });
 
 }
-
-// // Open Petitions --> /api/slpp/petitions?status=open
-
-// exports.queryOpenPetitions = async(req, res, next)=>{
-
-//     const userId = req.user.id;
-
-//     const query = req.query.status;
-//     let petitions;
-
-//     if( !userId){
-
-//         res.status(401).json({
-//             status: 'Fail',
-//             message: 'You have to login first!'
-//         });
-//     }
-
-//     // If the user query is about open petitions
-
-//     if(query === 'open'){
-
-//         petitions = await Petition.find({status: query});
-
-//         // If there are no open petitions -> Send message
-//         if(!petitions){
-
-//             res.status(200).json({
-//                 status: 'Success',
-//                 message: 'There are no open petitions'
-//             });
-//         }
-    
-//         // If there are open petitions --> Send data
-//         res.status(200).json({
-//             status: 'Success',
-//             message: 'Open petitions found successfully',
-//             data: petitions
-//         });
-
-//     }else{
-//         res.status(400).json({
-//             status: 'Fail',
-//             message: 'No such query available!'
-//         });
-//     }
-// };
