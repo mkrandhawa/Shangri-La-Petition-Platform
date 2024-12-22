@@ -12,7 +12,7 @@ router.post('/auth/login', userController.login);
 
 router.post('/auth/logout', userController.logout);
 
-router.patch('/commitee/:petitionId/threshold', userController.protect, petitionController.setThreshold);
+router.patch('/commitee/threshold', userController.protect, petitionController.setThreshold);
 
 router.patch('/admin/:petitionId/respond', userController.protect, petitionController.respondPetition);
 

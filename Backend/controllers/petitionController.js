@@ -4,15 +4,55 @@ const User = require('../models/userModel');
 
 // Get All Petitions --> /api/slpp/petitions
 
-exports.getAllPetitions = async(req, res, next)=>{
+exports.getAllPetitions = async (req, res, next) => {
+    try {
+        const userId = req.user.id;
 
-    const petitions =  await Petition.find();
+        // Ensure the user is logged in
+        if (!userId) {
+            return res.status(401).json({
+                status: 'Fail',
+                message: 'You have to login first!',
+            });
+        }
 
-    res.status(200).json({
-        staus: 'Success',
-        data: petitions
-    })
-}
+        // Check for the `status` query parameter
+        const { status } = req.query;
+
+        // Build query dynamically
+        const query = {};
+        if (status) {
+            query.status = status; // Add `status` filter if provided
+        }
+
+        // Fetch petitions based on the query
+        const petitions = await Petition.find(query);
+
+        // Check if no petitions are found
+        if (petitions.length === 0) {
+            return res.status(200).json({
+                status: 'Success',
+                message: status
+                    ? `No petitions found with status: ${status}.`
+                    : 'No petitions found.',
+                data: [],
+            });
+        }
+
+        // Return the petitions
+        return res.status(200).json({
+            status: 'Success',
+            message: status
+                ? `Petitions with status ${status} retrieved successfully.`
+                : 'All petitions retrieved successfully.',
+            data: petitions,
+        });
+    } catch (err) {
+        // Handle unexpected errors
+        next(err);
+    }
+};
+
 
 // Add Petition --> /api/slpp/petitions/addPetition
 
@@ -23,20 +63,20 @@ exports.addPetition = async(req, res, next)=>{
     const user = req.user.id;
 
     if(!user){
-        next(res.staus(401).json({
+        res.staus(401).json({
             status: 'Fail',
             message: 'You must be logged in!'
-        }))
+        });
     }
 
     const petitioner = await User.findById(user);
 
 
     if (!petitioner.role === 'petitioner'){
-        next( res.status(401).json({
+        res.status(401).json({
             status: "Fail",
             message: 'You do not have the permisison to create a petition'
-        }));
+        });
     }
 
     const petition = await Petition.create({
@@ -66,10 +106,10 @@ exports.signPetition = async(req, res, next)=>{
 
     if(!userId || !petitionId){
 
-        next(res.status(400).json({
+        res.status(400).json({
             status: 'Fail',
             message: 'Please login/provide valid petition ID'
-        }));
+        });
     }
 
     const petition = await Petition.findById(petitionId);
@@ -110,13 +150,13 @@ exports.signPetition = async(req, res, next)=>{
         });
     
     }else{
-        next(res.status(400).json({
+        res.status(400).json({
             status: 'Fail',
             message: 'You cannot sign the same petition twice/You cannot sign your own petition'
-        }))
+        });
     }
 
-}
+};
 
 // Set Threshold --> /api/user/commitee/threshold
 
@@ -124,25 +164,21 @@ exports.setThreshold = async(req, res, next)=>{
 
     const userId = req.user.id;
 
-    const petitionId = req.params.petitionId;
-
     const minSign = req.body.minSign;
 
 
-    if(!userId || !petitionId){
-        next(res.status(400).json({
+    if(!userId ){
+        res.status(400).json({
             status: 'Fail',
-            message: 'Wrong petition ID/ Not logged in'
-        }));
+            message: 'Not logged in'
+        });
     }
 
     const user = await User.findById(userId);
 
     if(user.role === 'admin'){
 
-        const updateSigns = await Petition.updateOne(
-            {_id: petitionId},
-            {minSign: minSign}, {new: true});
+        const updateSigns = await Petition.updateMany({minSign: minSign}, {new: true});
 
         // The message will not printed as the code is 204 
         res.status(204).json({
@@ -153,13 +189,13 @@ exports.setThreshold = async(req, res, next)=>{
         });
     }else{
         
-        next(res.status(401).json({
+        res.status(401).json({
             status: 'Fail',
-            message: 'You do not have the permission to sign'
-        }));
+            message: 'You do not have the permission to update threshold sign'
+        });
     }
 
-}
+};
 
 // Respond Petition --> /api/user/admin/:petitionId/respond
 
@@ -202,39 +238,49 @@ exports.respondPetition = async(req, res, next)=>{
 
 }
 
-// Open Petitions --> /api/slpp/petitions?status=open
+// // Open Petitions --> /api/slpp/petitions?status=open
 
-exports.queryOpenPetitions = async(req, res, next)=>{
+// exports.queryOpenPetitions = async(req, res, next)=>{
 
-    const query = req.query.status;
-    let petitions;
+//     const userId = req.user.id;
 
-    // If the user query is about open petitions
+//     const query = req.query.status;
+//     let petitions;
 
-    if(query === 'open'){
+//     if( !userId){
 
-        petitions = await Petition.find({status: query});
+//         res.status(401).json({
+//             status: 'Fail',
+//             message: 'You have to login first!'
+//         });
+//     }
 
-        // If there are no open petitions -> Send message
-        if(!petitions){
+//     // If the user query is about open petitions
 
-            res.status(200).json({
-                status: 'Success',
-                message: 'There are no open petitions'
-            });
-        }
+//     if(query === 'open'){
+
+//         petitions = await Petition.find({status: query});
+
+//         // If there are no open petitions -> Send message
+//         if(!petitions){
+
+//             res.status(200).json({
+//                 status: 'Success',
+//                 message: 'There are no open petitions'
+//             });
+//         }
     
-        // If there are open petitions --> Send data
-        res.status(200).json({
-            status: 'Success',
-            message: 'Open petitions found successfully',
-            data: petitions
-        });
+//         // If there are open petitions --> Send data
+//         res.status(200).json({
+//             status: 'Success',
+//             message: 'Open petitions found successfully',
+//             data: petitions
+//         });
 
-    }else{
-        next(res.staus(400).json({
-            status: 'Fail',
-            message: 'No such query available!'
-        }));
-    }
-}
+//     }else{
+//         res.status(400).json({
+//             status: 'Fail',
+//             message: 'No such query available!'
+//         });
+//     }
+// };

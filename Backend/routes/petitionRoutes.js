@@ -4,10 +4,8 @@ const userController = require('../controllers/userController');
 
 const router = express.Router();
 
-router.get('/:status?', petitionController.queryOpenPetitions);
+router.get('/', userController.protect, petitionController.getAllPetitions);
     
-router.get('/', petitionController.getAllPetitions);
-
 router.post('/addPetition', userController.protect, petitionController.addPetition);
 
 router.patch('/:petitionId/sign', userController.protect, petitionController.signPetition);
