@@ -274,7 +274,116 @@ header{
 }
 
 
+/* Register Styles */
 
+.signUp{
+  height: auto;
+
+}
+
+.signUpForm{
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  flex-direction: column;
+  border-radius: 10px;
+  padding: 20px;
+  width: 500px;
+  height: auto;
+ 
+}
+
+.signUpFormContainer{
+  margin-top: -40px;
+
+}
+
+.regInputs{
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.regInputsFullName, .regInputsEmail{
+  padding: 10px;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  grid-template-columns: 1fr;
+}
+
+.fullName,.emailRegister, .passwordRegister, .confirmPassword, .bioID{
+  height: 40px;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid grey;
+  border-radius: 10px;
+  background-color: rgb(249, 251, 249);
+
+}
+
+.fullName, .emailRegister{
+  width: 450px;
+
+}
+
+.emailRegister::placeholder, .passwordRegister::placeholder, .confirmPassword::placeholder{
+  padding: 5px;
+  font-family: roboto;
+  font-size: 12px;
+
+}
+
+.dobBioId, .passwordConfirmPassword{
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  
+}
+
+.dob, .bioID{
+  height: 40px;
+  width: 200px;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid grey;
+  border-radius: 10px;
+  background-color: rgb(249, 251, 249);
+
+}
+
+.passwordRegister, .confirmPassword{
+  width: 200px;
+
+}
+
+.emailRegister:focus, .passwordRegister:focus, .confirmPassword:focus, .bioID:focus, .dob:focus, .fullName:focus{
+  border-bottom: 2px solid rgb(108, 184, 232);
+}
+
+.regLabel{
+  padding: 10px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.1rem;
+}
+
+.signUpButton{
+  margin-bottom: 10px;
+
+}
+
+.confirmPasswordError{
+  width: 200px;
+  height: 40px;
+  outline: none;
+  border-radius: 10px;
+  background-color: rgb(244, 168, 168);
+  border: 1px solid red;
+}
 
 
 /* Footer Styles */

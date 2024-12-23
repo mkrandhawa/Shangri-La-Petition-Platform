@@ -32,7 +32,7 @@ export default function LoginForm(){
 
     console.log('I have been triggered');
 
-    // Async/Await to get handle the post data
+    // Async/Await to handle the post data
     (async () => {
         try {
             const response = await postData(url, user);
@@ -48,6 +48,13 @@ export default function LoginForm(){
         }
     })();
 
+  }
+
+//   Handle when the user wants to signUp
+
+  const handleSignUp =()=>{
+
+    navigate('/signUp');
   }
 
   useEffect(()=>{
@@ -97,7 +104,7 @@ export default function LoginForm(){
                         {/* Forgot password container */}
                         <div className="register">
                             <span className="registerNow">New here?</span>
-                            <button className="signUp">
+                            <button className="signUp" onClick={handleSignUp}>
                                 Sign Up!
                             </button>
                         </div>

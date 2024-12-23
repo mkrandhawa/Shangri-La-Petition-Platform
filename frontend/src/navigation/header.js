@@ -33,9 +33,9 @@ export default function Header (){
                         </li>
                     </Link>
 
-                    <Link to={'/'}  className='link'>
+                    <Link to={'/petitions'}  className='link'>
                         <li>
-                            Open Petitions
+                            Petitions
                         </li>
                     </Link>
 
