@@ -21,9 +21,8 @@ const userSchema = mongoose.Schema({
         minlength: 2
     },
     dob:{
-        day: String,
-        month: String,
-        year: String
+        type: Date,
+        required: [true, 'Please provide a valid DOB']
     },
     password:{
         type:String,

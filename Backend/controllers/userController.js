@@ -47,20 +47,20 @@ exports.register = async(req, res, next)=>{
 
     const username = req.body.email.split('@')[0];
 
-    const {email, fullName, password, confirmPassword, bioId, role } = req.body;
+    const {email, fullName, dob, password, confirmPassword, bioId, role } = req.body;
 
     const isBioId = await User.find({bioId});
     
     if(!isBioId.length==0){
         res.status(400).json({
             status: 'Fail',
-            message: 'This is not your Bio ID!'
+            message: 'Invalid BioID!'
         });
         return;
     }else if ( !data.includes(bioId)){
         res.status(400).json({
             status: 'Fail',
-            message: 'Invalid Bio ID! Check and try again'
+            message: 'This is not your Bio ID!'
         });
         return;
     }
@@ -70,11 +70,7 @@ exports.register = async(req, res, next)=>{
         username,
         fullName,
         password,
-        dob:{
-            day: req.body.dob.day,
-            month: req.body.dob.month,
-            year: req.body.dob.year
-        },
+        dob,
         confirmPassword,
         bioId,
         role
