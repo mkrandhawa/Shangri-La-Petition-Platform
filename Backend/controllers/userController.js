@@ -49,7 +49,7 @@ exports.register = async(req, res, next)=>{
 
     const {email, fullName, dob, password, confirmPassword, bioId, role } = req.body;
 
-    const isBioId = await User.find({bioId});
+    const isBioId = await User.find({bioId});    
     
     if(!isBioId.length==0){
         res.status(400).json({
@@ -60,7 +60,13 @@ exports.register = async(req, res, next)=>{
     }else if ( !data.includes(bioId)){
         res.status(400).json({
             status: 'Fail',
-            message: 'This is not your Bio ID!'
+            message: 'This BioID does not exists!'
+        });
+        return;
+    }else if (password !== confirmPassword){
+        res.status(400).json({
+            status: 'Fail',
+            message: 'Passwords do not match'
         });
         return;
     }
