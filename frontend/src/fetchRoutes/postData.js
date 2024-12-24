@@ -3,6 +3,7 @@ export const postData = async function postData(url, user) {
         const response = await fetch(url, {
           method: "POST",
           mode: "cors",
+          credentials: "include",
           headers: {
             "Content-Type": "application/json",
           },

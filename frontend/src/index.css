@@ -93,6 +93,14 @@ header{
   text-decoration: none;
 }
 
+.userName{
+  max-width: 80px; /* Adjust the width as needed */
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+
+}
+
 
 /* Home Page Styles */
 
@@ -178,8 +186,6 @@ header{
 .formTitle{
   font-family: 'Roboto', sans-serif;
   font-size: 2rem;
-  margin-bottom: 40px;
-  margin-top: 30px;
 
 }
 
@@ -195,36 +201,40 @@ header{
   display: grid;
   justify-content: center;
   align-items: center;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
 }
 
 .label{
   padding: 10px;
   font-family: 'Roboto', sans-serif;
-  text-align: right;
+  text-align: left;
   font-size: 1.2rem;
 
 }
 
 .email, .password{
-  height: 50px;
+  height: 40px;
   width: 400px;
   outline: none;
   border: none;
   border-bottom: 1px solid grey;
   border-radius: 10px;
   background-color: rgb(249, 251, 249);
+  padding-left: 10px;
 }
 
 .email::placeholder, .password::placeholder{
-  padding: 5px;
   font-family: roboto;
   font-size: 12px;
 }
 
+.email:focus, .password:focus{
+  padding-left: 10px;
+}
+
 .loginButton{
-  margin-top: 4rem;
-  margin-bottom: 4rem;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
   padding: 10px;
   height: 50px;
   width: 200px;
@@ -273,12 +283,40 @@ header{
   text-align: center;
 }
 
+.cookie{
+  font-size: 8px;
+}
+
 
 /* Register Styles */
 
-.signUp{
+.signUpContainer{
   height: auto;
 
+}
+
+.signUpLogoContainer{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  gap: 20px;
+
+}
+
+.signUpLogo{
+  height: 50px;
+  width: 50px;
+  background-image: url('../public/images/logo.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+
+}
+
+.signUpName{
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.3rem;
 }
 
 .signUpForm{
@@ -321,6 +359,7 @@ header{
   border-bottom: 1px solid grey;
   border-radius: 10px;
   background-color: rgb(249, 251, 249);
+  padding-left: 10px;
 
 }
 
@@ -329,8 +368,7 @@ header{
 
 }
 
-.emailRegister::placeholder, .passwordRegister::placeholder, .confirmPassword::placeholder{
-  padding: 5px;
+.fullName::placeholder, .email::placeholder, .passwordRegister::placeholder, .confirmPassword::placeholder{
   font-family: roboto;
   font-size: 12px;
 
@@ -356,13 +394,19 @@ header{
 
 }
 
+.dob{
+  padding-left: 10px
+
+}
+
 .passwordRegister, .confirmPassword{
   width: 200px;
 
 }
 
 .emailRegister:focus, .passwordRegister:focus, .confirmPassword:focus, .bioID:focus, .dob:focus, .fullName:focus{
-  border-bottom: 2px solid rgb(108, 184, 232);
+  border-bottom: 1px solid rgb(108, 184, 232);
+
 }
 
 .regLabel{
@@ -373,17 +417,29 @@ header{
 
 .signUpButton{
   margin-bottom: 10px;
+  width: 100%;
 
 }
 
-.confirmPasswordError{
-  width: 200px;
-  height: 40px;
-  outline: none;
-  border-radius: 10px;
-  background-color: rgb(244, 168, 168);
-  border: 1px solid red;
+.error{
+  background-color: rgb(244, 198, 198);
 }
+
+.loginNow, .logIn{
+  margin-top: 10px;
+  font-weight: 400;
+}
+
+.logIn{
+  font-weight: 600;
+}
+
+
+
+
+
+
+
 
 
 /* Footer Styles */

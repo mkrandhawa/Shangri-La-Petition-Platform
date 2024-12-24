@@ -1,19 +1,29 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState, useContext} from "react";
+import {useNavigate} from 'react-router-dom';
 import Input from "../props/inputProp";
+import { postData } from "../fetchRoutes/postData";
+import { UserContext } from "../context/userContext";
+
 
 
 export default function SignUpForm(){
+
+    const url = 'http://localhost:8000/api/user/auth/signup';
 
     const [user, setUser]= useState({
         fullName:'',
         email:'',
         dob:'',
-        bioID:'',
+        bioId:'',
         password:'',
         confirmPassword:''
     });
 
-    const [samePassword, setSamePassword] = useState(false);
+    const {setUserDetail, setIsLogged} = useContext(UserContext);
+
+    const navigate = useNavigate();
+
+    const [samePassword, setSamePassword] = useState(true);
 
 
     // Handle changes in the form
@@ -25,17 +35,49 @@ export default function SignUpForm(){
         setUser({...user, [name]:value});
     }
 
+    // Hanle Log In
+
+    const handleLogIn = () =>{
+        navigate('/login');
+    }
+
+    // Handle Form Submit 
+
+    const handleSubmit = async (event) =>{
+
+        event.preventDefault();
+
+        try{
+
+            const response = await postData(url, user);
+
+            if(response.status === 'success'){
+                navigate('/');
+                await setUserDetail({
+                    fullName: user.fullName,
+                    email: user.email
+                });
+                setIsLogged(true);
+            }
+
+        }catch(err){
+            const errorElement = document.getElementsByClassName('errorMessage')[0];
+            errorElement.textContent = err.message;
+        }
+    }
+
 
 
     // Check if the passwords are the same or less than 8 characters
     useEffect(()=>{
 
-        console.log(user);
-
         let password = user.password;
         let confirmPassword = user.confirmPassword;
 
-        if (confirmPassword !== password || password.length < 8 || confirmPassword.length < 8){
+        if(password.length === 0 && confirmPassword.length === 0){
+            setSamePassword(true);
+        }
+        else if (confirmPassword !== password || password.length < 8 || confirmPassword.length < 8){
             setSamePassword(false);
         }else{
             setSamePassword(true);
@@ -47,14 +89,22 @@ export default function SignUpForm(){
         <>
             <main className="homePage registerPage">
                 
-                <div className="signUp login">
-                    {/* Form title */}
-                    <div className="formTitle">Sign Up</div>
+                <div className="signUpContainer login">
+
+                    {/* Company Logo  */}
+
+                    <div className="signUpLogoContainer">
+                        <span className="signUpLogo"></span>
+                        {/* Form Title */}
+                        <div className="formTitle"> Sign Up </div>
+                     </div>
+
+                    
                     
                     {/* Signup form container */}
                     <div className="signUpFormContainer">
 
-                        <form className="signUpForm">
+                        <form className="signUpForm" onSubmit={handleSubmit}>
 
                             {/* Full Name and Email container */}
 
@@ -70,6 +120,7 @@ export default function SignUpForm(){
                                         autoCapitalize='off'
                                         autoCorrect='off'
                                         required
+                                        value={user.fullName}
                                         onChange={handleChange}
 
                                     />
@@ -87,6 +138,7 @@ export default function SignUpForm(){
                                         autoCapitalize="off"
                                         autoCorrect="off"
                                         required
+                                        value={user.email}
                                         onChange={handleChange}
 
                                     />
@@ -109,6 +161,7 @@ export default function SignUpForm(){
                                         autoCapitalize='off'
                                         autoCorrect='off'
                                         required
+                                        value={user.dob}
                                         onChange={handleChange}
 
 
@@ -123,11 +176,12 @@ export default function SignUpForm(){
                                     <Input
                                         className="bioID"
                                         type='text'
-                                        name='bioID'
+                                        name='bioId'
                                         placeholder='EXAMPLE159'
                                         autoCapitalize='off'
                                         autoCorrect='off'
                                         required
+                                        value={user.bioId}
                                         onChange={handleChange}
 
 
@@ -144,13 +198,14 @@ export default function SignUpForm(){
                                    
                                     <label className="regLabel">Password</label>
                                     <Input
-                                        className={samePassword ? "passwordRegister" : "confirmPasswordError"}
+                                        className={samePassword ? "passwordRegister" : "passwordRegister error"}
                                         type='password'
                                         name='password'
                                         placeholder='********'
                                         autoCapitalize='off'
                                         autoCorrect='off'
                                         required
+                                        value={user.password}
                                         onChange={handleChange}
 
 
@@ -162,13 +217,14 @@ export default function SignUpForm(){
                                    
                                     <label className="regLabel">Confirm Password</label>
                                     <Input
-                                        className={samePassword ? "confirmPassword" : "confirmPasswordError"}
+                                        className={samePassword ? "confirmPassword" : "confirmPassword error"}
                                         type='password'
                                         name='confirmPassword'
                                         placeholder='********'
                                         autoCapitalize='off'
                                         autoCorrect='off'
                                         required
+                                        value={user.confirmPassword}
                                         onChange={handleChange}
 
 
@@ -178,10 +234,23 @@ export default function SignUpForm(){
                             </div>
 
                             <span className="errorMessage"></span>
+
                             {/* Submit button */}
                             <button className="loginButton signUpButton" type="submit">
                                 Sign Up
                             </button>
+
+                            <div className="cookieMessage">
+                                <span className="cookie">By registering, you agree to our use of cookies to keep you signed in and enhance your experience.</span>
+                            </div>
+
+                            {/* Alredy Registered */}
+                            <div className="register">
+                                <span className="registerNow loginNow">Already Registered? </span>
+                                <button className="signUp logIn" onClick={handleLogIn}>
+                                    Log In!
+                                </button>
+                            </div>
                             
 
                             
