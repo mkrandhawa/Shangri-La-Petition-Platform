@@ -1,5 +1,6 @@
 import React, {useEffect, useState, useContext} from "react";
 import {useNavigate} from 'react-router-dom';
+import QrReader from 'react-qr-scanner';
 import Input from "../props/inputProp";
 import { postData } from "../fetchRoutes/postData";
 import { UserContext } from "../context/userContext";
@@ -24,6 +25,17 @@ export default function SignUpForm(){
     const navigate = useNavigate();
 
     const [samePassword, setSamePassword] = useState(true);
+
+    const [scanning, setScanning] = useState(false); 
+    
+    const handleScan = (data) => { 
+        if (data) { 
+            setUser({ ...user, bioId: data.text }); 
+            setScanning(false); 
+        } 
+    } 
+    
+    const handleError = (err) => { console.error(err); }
 
 
     // Handle changes in the form
@@ -66,7 +78,10 @@ export default function SignUpForm(){
         }
     }
 
-
+    //Handle Scanner for Biometric ID
+    const handleScanner = () => { 
+        setScanning(true);
+    }
 
     // Check if the passwords are the same or less than 8 characters
     useEffect(()=>{
@@ -163,8 +178,6 @@ export default function SignUpForm(){
                                         required
                                         value={user.dob}
                                         onChange={handleChange}
-
-
                                     />
                                 </div>
                                 
@@ -173,20 +186,44 @@ export default function SignUpForm(){
 
                                 <div className="regInputs">
                                     <label className="regLabel">BioID</label>
-                                    <Input
-                                        className="bioID"
-                                        type='text'
-                                        name='bioId'
-                                        placeholder='EXAMPLE159'
-                                        autoCapitalize='off'
-                                        autoCorrect='off'
-                                        required
-                                        value={user.bioId}
-                                        onChange={handleChange}
 
+                                    <div className="inputAndIcon">
+                                        <Input
+                                            className="bioID"
+                                            type='text'
+                                            name='bioId'
+                                            placeholder='EXAMPLE159'
+                                            autoCapitalize='off'
+                                            autoCorrect='off'
+                                            required
+                                            value={user.bioId}
+                                            onChange={handleChange}
+                                        />
+                                        <span className="cameraIcon" onClick={handleScanner}></span>
+                                    </div>
 
-                                    />
-
+                                    {/* Display QR reader when scanning */}
+                                    { 
+                                        scanning && ( 
+                                            <div className="modal"> 
+                                                <div className="modalContent"> 
+                                                    <button 
+                                                        className="closeButton" 
+                                                        onClick={() => setScanning(false)}
+                                                    >
+                                                        X
+                                                    </button>
+                                                    
+                                                    <QrReader 
+                                                        delay={300} 
+                                                        onError={handleError} 
+                                                        onScan={handleScan} 
+                                                        style={{ width: '100%' }} 
+                                                    /> 
+                                                </div> 
+                                            </div>
+                                        )
+                                    }
                                 </div>
 
                             </div>

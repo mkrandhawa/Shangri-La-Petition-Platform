@@ -25,7 +25,7 @@ export default function AuthCheck() {
         };
 
         checkAuth();
-    }, []); // Empty dependency array ensures this runs only once
+    }, [setUserDetail, setIsLogged]);
 
     return null;  // This component doesn't need to render anything
 }
