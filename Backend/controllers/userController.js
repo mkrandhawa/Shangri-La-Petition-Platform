@@ -189,7 +189,12 @@ exports.login = async(req, res, next)=>{
 
     res.status(200).json({
         status: 'Success',
-        message: 'You are logged in!'
+        message: 'You are logged in!',
+        data:{
+            email: user.email,
+            username: user.username,
+            fullName: user.fullName,
+        }
     });
 
 }
@@ -209,4 +214,43 @@ exports.logout = async(req, res, next)=>{
         message: 'You have been logged out'
     })
 }
+
+// User Logged In --> /api/user/isLoggedIn
+exports.isLoggedIn = async (req, res, next) => {
+    //If there is no cookie there is no logged in user
+    
+    if (req.cookies.jsonToken) {
+      try {
+        //1)verifies the token
+        const decoded = jwt.verify(
+          req.cookies.jsonToken,
+          process.env.JWT_SECRET
+        );
+
+  
+        //2) Check if the user still exists
+        const freshUser = await User.findById(decoded.id);
+        if (!freshUser) {
+          return next();
+        }
+
+        //THERE IS A LOGGED IN USER
+        res.locals.user = freshUser;
+        res.status(200).json({
+            status:'success',
+            message: 'The user is logged',
+            jsonToken: req.cookies.jsonToken,
+            data:{
+                freshUser
+            }
+        })
+        return next();
+      } catch (err) {
+        console.log(err);
+        return next();
+      }
+    }
+    next();
+  };
+
 

@@ -4,6 +4,8 @@ const petitionController = require('../controllers/petitionController');
 
 const router = express.Router();
 
+router.get('/auth/isLoggedIn', userController.isLoggedIn);
+
 router.post('/auth/signup', userController.register);
 
 router.post('/auth/admin/signUp', userController.registerAdmin);
