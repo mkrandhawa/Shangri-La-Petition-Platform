@@ -1,12 +1,12 @@
 export const getData = async function getData(url) {
     try {
         const response = await fetch(url, {
-            mode: "cors",
-            credentials: "include",
+            method: "GET",
             referrerPolicy: "no-referrer",
             headers: {
                 "Content-Type": "application/json",
             },
+            credentials: "include",
         });
 
         if (!response.ok) {

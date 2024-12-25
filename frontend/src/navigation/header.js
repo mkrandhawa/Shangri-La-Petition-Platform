@@ -41,13 +41,13 @@ export default function Header (){
                             </li>
                         </Link>
 
-                        <Link to={'/petitions'}  className='link'>
+                        <Link to={'/dashboard'}  className='link'>
                             <li>
-                                Petitions
+                                Dashboard
                             </li>
                         </Link>
 
-                        <Link to={'/login'}  className='link'>
+                        <Link to={'/'}  className='link'>
                             <li className='userName'>
                                 {userDetail.fullName}
                             </li>

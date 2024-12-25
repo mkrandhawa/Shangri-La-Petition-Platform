@@ -94,14 +94,127 @@ header{
 }
 
 .userName{
-  max-width: 80px; /* Adjust the width as needed */
+  max-width: 100px;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
 
 }
 
+/* Side Navigation Styles */
 
+.sideNavigation{
+  position: fixed;
+  left: 60px;
+  z-index: 1000;
+  width: 300px;
+  height:650px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  flex-direction: column;
+  background-color:  rgb(216 226 229);
+  transition: all 0.3s ease;
+  border-radius: 10px;
+}
+
+.logoNameSideNav{
+  margin-top: 10px;
+
+}
+.sideNavLogo{
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+
+}
+
+.sideNavName{
+  font-size: 1.4rem;
+}
+
+.navigationContent{
+  margin-top: 60px;
+}
+
+.navigationContent ul{
+  display: flex;
+  height: 400px;
+  padding: 0px;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  font-size: 1.3rem;
+  font-family: 'Roboto';
+  gap: 40px;
+  list-style: none;
+  list-style-type: none;
+
+}
+
+.navigationContent ul li {
+  color: black
+}
+
+.listStyle{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  
+}
+
+.userDashboard:hover{
+  border-radius: 10px;
+  box-shadow: 2px 10px 10px 2px rgb(0,0,0,0.2);
+}
+
+.icon{
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+  color: black;
+
+}
+
+.userIcon{
+  background-image: url('../public/images/userIcon.svg');
+
+}
+
+.userName{
+  font-size: 1.5rem;
+  font-weight: 400;
+  font-family: 'Montserrat', sans-serif;
+  cursor: pointer;
+  border-bottom: 1px solid transparent;
+  justify-self: baseline;
+}
+
+.userName:hover{
+  border-bottom: 1px solid black;
+
+}
+
+.petitionsIcon{
+  background-image: url('../public/images/petitionsIcon.svg');
+
+}
+
+.myPetitionIcon{
+  background-image: url('../public/images/myPetitionsIcon.svg');
+
+}
+
+.addIcon{
+  background-image: url('../public/images/addIcon.svg');
+
+}
 /* Home Page Styles */
 
 .homePage{
@@ -488,6 +601,24 @@ header{
   font-size: 1.5em;
   cursor: pointer;
   font-weight: bold;
+}
+
+
+
+/* Dashboard Page */
+.dashboardPage{
+  position: relative;
+  overflow-y: hidden;
+  padding-top: 80px;
+  height: 768px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: url('../public//images/homePageBackground.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index: 1;
 }
 
 

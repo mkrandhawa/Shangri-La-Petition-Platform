@@ -9,7 +9,7 @@ import { UserContext } from "../context/userContext";
 
 export default function SignUpForm(){
 
-    const url = 'http://localhost:8000/api/user/auth/signup';
+    const url = process.env.REACT_APP_SIGNUP_URL;
 
     const [user, setUser]= useState({
         fullName:'',
@@ -215,7 +215,7 @@ export default function SignUpForm(){
                                                     </button>
                                                     
                                                     <QrReader 
-                                                        delay={300} 
+                                                        delay={200} 
                                                         onError={handleError} 
                                                         onScan={handleScan} 
                                                         style={{ width: '100%' }} 

@@ -5,6 +5,7 @@ import HomePage  from './home/homePage';
 import LoginPage from './login/loginPage';
 import SignUpPage from './signUp/signUpPage';
 import AuthCheck from './fetchRoutes/authorization';
+import UserDashboardPage from './userDashboard/dashboardPage';
 
 
 
@@ -22,6 +23,9 @@ export default function App() {
 
             {/* Home Route */}
             <Route exact path='/' element={<HomePage />} />
+
+            {/* Petitions Route */}
+            <Route exact path='/dashboard' element={<UserDashboardPage />} />
 
             {/* Login Route */}
             <Route exact path='/login' element={<LoginPage />} />

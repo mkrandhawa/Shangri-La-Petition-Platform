@@ -9,7 +9,7 @@ export default function LoginForm(){
 
     const navigate = useNavigate();
 
-    const url = 'http://localhost:8000/api/user/auth/login'
+    const url = process.env.REACT_APP_LOGIN_URL;
 
     const {setUserDetail, setIsLogged} = useContext(UserContext);
 
