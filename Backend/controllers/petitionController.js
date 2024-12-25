@@ -6,6 +6,7 @@ const User = require('../models/userModel');
 
 exports.getAllPetitions = async (req, res, next) => {
     try {
+
         const userId = req.user.id;
 
         // Ensure the user is logged in
@@ -26,7 +27,7 @@ exports.getAllPetitions = async (req, res, next) => {
         }
 
         // Fetch petitions based on the query
-        const petitions = await Petition.find(query);
+        const petitions = await Petition.find(query).populate('petitioner', 'fullName -_id');
 
         // Check if no petitions are found
         if (petitions.length === 0) {
@@ -120,7 +121,7 @@ exports.signPetition = async(req, res, next)=>{
 
     const youCreatedPetition = user.createdPetitions.includes(petitionId);
 
-    // If the petition has not been signed before and logged user has role 'user' --> Continue Signing
+    // If the petition has not been signed before and logged user has role 'petitioner' --> Continue Signing
 
     if(!petitionSigned && !youCreatedPetition && petition && user.role === 'petitioner' && petition.status != 'closed'){
 

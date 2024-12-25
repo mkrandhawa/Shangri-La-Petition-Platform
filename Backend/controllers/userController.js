@@ -16,16 +16,19 @@ const generateJsonToken = (userId) => {
 
 exports.protect = async(req, res, next)=>{
     let token;
+    
     try{
+        
 
         if( req.headers.authorization && req.headers.authorization.startsWith('Bearer')){
             token = req.headers.authorization.split(' ')[1];
+
         }else if (req.cookies?.jsonToken){
             token = req.cookies.jsonToken;
         }
-
+        
         if(!token){
-            next(res.status(401).json({
+            return (res.status(401).json({
                 status: 'Fail',
                 message: 'You are not logged in'
             }));
@@ -41,6 +44,7 @@ exports.protect = async(req, res, next)=>{
     }
 }
 
+
 // Register User --> /api/user/signup
 
 exports.register = async(req, res, next)=>{
@@ -51,10 +55,19 @@ exports.register = async(req, res, next)=>{
 
     const isBioId = await User.find({bioId});    
     
+    const isEmail = await User.find({email});
+
+    if(isEmail.length!=0){
+
+        return res.status(400).json({
+            status: 'Fail',
+            message: 'This is not your email!'
+        });
+    }
     if(!isBioId.length==0){
         res.status(400).json({
             status: 'Fail',
-            message: 'Invalid BioID!'
+            message: 'This BioID does not belong to you!'
         });
         return;
     }else if ( !data.includes(bioId)){
@@ -88,6 +101,7 @@ exports.register = async(req, res, next)=>{
         httpOnly: true,
         secure: process.env.NODE_ENV==='production',
         maxAge: 30 * 24 * 60 * 60 * 1000, 
+        sameSite: 'None'
 
     });
 
@@ -144,7 +158,8 @@ exports.registerAdmin = async(req, res, next)=>{
     res.cookie('jsonToke', token, {
         httpOnly: true,
         secure: process.env.NODE_ENV==='production',
-        maxAge: 30 * 24 * 60 * 60 * 1000
+        maxAge: 30 * 24 * 60 * 60 * 1000,
+        sameSite: 'None'
     });
 
     res.status(200).json({
@@ -185,6 +200,7 @@ exports.login = async(req, res, next)=>{
         httpOnly: true,
         secure: process.env.NODE_ENV==='production',
         maxAge: 30 * 24 * 60 * 60 * 1000, 
+        sameSite: 'None'
     });
 
     res.status(200).json({
@@ -206,7 +222,8 @@ exports.logout = async(req, res, next)=>{
     res.cookie('jsonToken', '',{
         httpOnly: true,
         secure: process.env.NODE_ENV==='production',
-        expiresIn: new Date(0)
+        expiresIn: new Date(0),
+        sameSite: 'None'
     });
 
     res.status(200).json({
