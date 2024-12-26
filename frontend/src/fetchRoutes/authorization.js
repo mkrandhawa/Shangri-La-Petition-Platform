@@ -5,7 +5,7 @@ import { getData } from "../fetchRoutes/getData";
 export default function AuthCheck() {
     const url = process.env.REACT_APP_AUTHORIZE_URL;
     
-    const { userDetail, setUserDetail, setIsLogged } = useContext(UserContext);
+    const {setUserDetail, setIsLogged } = useContext(UserContext);
 
     useEffect(() => {
         const checkAuth = async () => {
@@ -13,10 +13,16 @@ export default function AuthCheck() {
                 const response = await getData(url);
                     
                 if (response.status === 'success') {
-                    await setUserDetail({
+
+                    await setUserDetail(prevState => ({
+                        ...prevState,
                         fullName: response.data.freshUser.fullName,
                         email: response.data.freshUser.email,
-                    });
+                        dob: response.data.freshUser.dob,
+                        createdPetitions: response.data.freshUser.createdPetitions,
+                        signedPetitions: response.data.freshUser.signedPetitions,
+                    }));
+                    
                     
                     setIsLogged(true);
                    
@@ -27,6 +33,7 @@ export default function AuthCheck() {
         };
 
         checkAuth();
+
     }, []);
 
     return null;  // This component doesn't need to render anything

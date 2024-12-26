@@ -24,8 +24,14 @@ export default function App() {
             {/* Home Route */}
             <Route exact path='/' element={<HomePage />} />
 
-            {/* Petitions Route */}
+            {/* Dashborad Routes */}
             <Route exact path='/dashboard' element={<UserDashboardPage />} />
+
+            <Route exact path='/petitions' element={<UserDashboardPage />} />
+
+            <Route exact path='/addPetition' element={<UserDashboardPage />} />
+
+            <Route exact path='/myPetitions' element={<UserDashboardPage />} />
 
             {/* Login Route */}
             <Route exact path='/login' element={<LoginPage />} />

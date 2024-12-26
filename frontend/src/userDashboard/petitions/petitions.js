@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {getData} from '../fetchRoutes/getData';
+import {getData} from '../../fetchRoutes/getData';
 
 export default function Petition() {
 
@@ -12,7 +12,6 @@ export default function Petition() {
         const fetchPetitions = async () => {
             try {
                 const response = await getData(url);
-                console.log(response)
 
                 if(response.status === 'Success'){
                     setPetitions(p=> response.data);

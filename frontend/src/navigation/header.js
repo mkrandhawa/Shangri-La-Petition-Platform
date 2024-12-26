@@ -1,18 +1,44 @@
 import React, {useContext} from 'react';
 import {Link, useNavigate} from 'react-router-dom';
 import { UserContext } from "../context/userContext";
+import  {postData} from "../fetchRoutes/postData";
 
 
 export default function Header (){
 
+
+    const url = process.env.REACT_APP_LOGOUT_URL;
+
     const navigate = useNavigate();
 
-    const {userDetail, isLogged} = useContext(UserContext);
+    const {userDetail, isLogged, setIsLogged} = useContext(UserContext);
 
     const handleClick = () =>{
 
         navigate('/');
     }
+
+    const handleLogout = async()=>{
+
+            try{
+
+                const response = await postData(url, userDetail);
+
+                if(response.status==='Success'){
+                    alert(response.message);
+
+                    setTimeout(() => { setIsLogged(false); }, 900);
+                    
+
+                    
+                }
+
+            }catch (err) {
+                console.error('Error checking auth:', err);
+            }
+
+    }
+    
 
 
 
@@ -48,8 +74,8 @@ export default function Header (){
                         </Link>
 
                         <Link to={'/'}  className='link'>
-                            <li className='userName'>
-                                {userDetail.fullName}
+                            <li className='userName' onClick={handleLogout}>
+                                Logout
                             </li>
                         </Link>
 
@@ -59,6 +85,12 @@ export default function Header (){
                 // If it is not logged in
                 <div className="navigation">
                     <ul>
+                         <Link to={'/'} className='link'>
+                            <li>
+                                Home
+                            </li>
+                        </Link>
+
                         <Link to={'/login'}  className='link'>
                             <li>
                                 Log in

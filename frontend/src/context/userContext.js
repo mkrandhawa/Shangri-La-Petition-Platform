@@ -9,6 +9,7 @@ export default function UserProvider(props){
     const [userDetail, setUserDetail] = useState({
         fullName:'',
         email:'',
+        dob:'',
         createdPetitions:[],
         signedPetitions:[],
     });
