@@ -139,9 +139,10 @@ exports.signPetition = async(req, res, next)=>{
 
         await Petition.updateOne(
             {_id: petitionId}, 
-            {$inc:{
-                countSigns: 1
-            }}
+            {
+                $inc:{countSigns: 1},
+                $push:{signatures: userId}
+            },
         );
 
         res.status(200).json({

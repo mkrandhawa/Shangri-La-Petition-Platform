@@ -246,7 +246,7 @@ exports.isLoggedIn = async (req, res, next) => {
 
   
         //2) Check if the user still exists
-        const freshUser = await User.findById(decoded.id);
+        const freshUser = await User.findById(decoded.id).populate('createdPetitions');
         if (!freshUser) {
           return next();
         }
