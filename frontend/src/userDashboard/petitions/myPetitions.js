@@ -28,32 +28,50 @@ export default function MyPetitions(){
                     // Create a card for each petition
                     myPetitions.map((petition, index)=>(
 
-                        <div className="myPetitionsCard" key={index}>
-                            
+                        <div className={petition.status === 'closed' ? "myPetitionsCard closed": "myPetitionsCard" }key={index}>
+
                             <div className="petitionImageContainer">
                                 <span className="petitionImage"></span>
                             </div>
 
-                            <div className="petionDetails">
-                                <span className="petitionTitle">
-                                    {petition.title}
-                                </span>
+                            <div className="petitionDetails">
+                                {/* Title */}
+                                <div className="details">
+                                    <span className="petitionTitle">
+                                        {petition.title}
+                                    </span>
+                                </div>
 
-                                <span className="petitionDescription">
-                                    {petition.text}
-                                </span>
+                                {/* Description */}
+                                <div className="details">
+                                    <span className="petitionDescription">
+                                        {petition.text}
+                                    </span>
+                                </div>
 
-                                <span className="petitionStatus">
-                                    {petition.status}
-                                </span>
+                                {/* Status */}
+                                <div className="details">
+                                    <span className="myPetitonTitle">Status: </span>
+                                    <span className="petitionStatus">
+                                        {petition.status}
+                                    </span>
+                                </div>
 
-                                <span className="petitionCreation"> Created on:  
-                                    {formatDate(petition.createdAt)}
-                                </span>
+                                {/* Created */}
+                                <div className="details">
+                                    <span className="myPetitonTitle">Created On: </span>
+                                    <span className="petitionCreation">  
+                                        {formatDate(petition.createdAt)}
+                                    </span>
+                                </div>
 
-                                <span className="signs"> Signs:
-                                    {petition.countSigns}/{petition.minSign}
-                                </span>
+                                {/* Progress */}
+                                <div className="details">
+                                    <span className="myPetitonTitle">Signs: </span>
+                                    <span className="signs">
+                                        {petition.countSigns}/{petition.minSign}
+                                    </span>
+                                </div>
 
                                 
                             </div>

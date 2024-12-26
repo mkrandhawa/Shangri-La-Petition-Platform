@@ -8,6 +8,10 @@ export default function UserDetails() {
 
     const [age, setAge] = useState();
 
+    const [openPetitions, setOpenPetitions] = useState(0);
+
+    const [closedPetitions, setClosedPetitions] = useState(0);
+
     const calculateAge = () => {
 
         const dob = new Date(userDetail.dob);
@@ -17,13 +21,28 @@ export default function UserDetails() {
         setAge(age);
     }   
 
+    const countPetitions = () => {
+        const open = userDetail.createdPetitions.filter(petition => petition.status === 'open').length;
+        const closed = userDetail.createdPetitions.filter(petition => petition.status === 'closed').length;
+    
+        setOpenPetitions(open);
+        setClosedPetitions(closed); 
+    };
+    
+
     useEffect(() => {
 
         if (userDetail?.dob) {
             calculateAge();
-          }
+          
+        }
 
-    });
+        if(userDetail.createdPetitions.length>0){
+
+            countPetitions();
+        }
+
+    }, [userDetail]);
 
     return (
         <>
@@ -71,15 +90,33 @@ export default function UserDetails() {
                 {/* Petition Details */}
                 <div className="myPetitionDetailCard">
 
-                    <div className="myPetitionContainer">
-                        <span className="mytitle">Created</span>
-                        <span className="number">{userDetail.createdPetitions.length}</span>
+                    <div className="containerLeft">
+
+                        <div className="myPetitionContainer">
+                            <span className="mytitle">Created</span>
+                            <span className="number">{userDetail.createdPetitions.length}</span>
+                        </div>
+
+                        <div className="myPetitionContainer">
+                            <span className="mytitle">Signed</span>
+                            <span className="number">{userDetail.signedPetitions.length}</span>
+                        </div>
                     </div>
 
-                    <div className="myPetitionContainer">
-                        <span className="mytitle">Signed</span>
-                        <span className="number">{userDetail.signedPetitions.length}</span>
+                    <div className="containerRight">
+
+                        <div className="myPetitionContainer">
+                            <span className="mytitle">Open</span>
+                            <span className="number">{openPetitions}</span>
+                        </div>
+
+                        <div className="myPetitionContainer">
+                            <span className="mytitle">Closed</span>
+                            <span className="number">{closedPetitions}</span>
+                        </div>
                     </div>
+
+
                 </div>
             </div>
         </>

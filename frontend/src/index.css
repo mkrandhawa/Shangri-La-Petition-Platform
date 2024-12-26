@@ -758,6 +758,15 @@ header{
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: row;
+  gap: 30px;
+
+}
+
+.containerLeft, .containerRight{
+  display: flex;
+  align-items: center;
+  justify-content: center;
   flex-direction: column;
   gap: 30px;
 
@@ -851,8 +860,53 @@ header{
   border-radius: 10px;
   height: 300px;
   width: 300px;
+
 }
 
+.petitionDetails{
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  height: 75%;
+  font-family: 'Playfair', sans-serif;
+  font-size: 14px;
+
+}
+
+.details{
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  height: 100%;
+
+}
+
+.petitionTitle{
+  font-size: 2rem;
+  justify-self: flex-start;
+  font-family: 'Playfair Display';
+
+}
+
+.myPetitonTitle{
+  font-family: 'Montserrat';
+  font-size: 19px;
+  
+}
+
+.petitionDescription, .petitionStatus, .petitionCreation, .signs{
+  font-size: 18px;
+  font-family:'Roboto';
+
+}
+
+.closed{
+  background-color: rgb(244, 219, 219);
+}
 
 
 
