@@ -151,10 +151,16 @@ exports.signPetition = async(req, res, next)=>{
             data: updated
         });
     
+    }else if(youCreatedPetition){
+        res.status(400).json({
+            status: 'Fail',
+            message: 'You cannot sign your own petition!'
+        });
+
     }else{
         res.status(400).json({
             status: 'Fail',
-            message: 'You cannot sign the same petition twice/You cannot sign your own petition'
+            message: 'You cannot sign the same petition twice.'
         });
     }
 
