@@ -1,13 +1,14 @@
-export const getData = async function getData(url) {
+export const patchData = async function patchData(url) {
     try {
         const response = await fetch(url, {
-            method: "GET",
-            referrerPolicy: "no-referrer",
+            method: "PATCH",
+            mode: "cors",
+            credentials: "include",
             headers: {
                 "Content-Type": "application/json",
-                'Cache-Control': 'no-cache',
             },
-            credentials: "include",
+            redirect: "follow",
+            referrerPolicy: "no-referrer",
         });
 
         if (!response.ok) {
@@ -15,10 +16,8 @@ export const getData = async function getData(url) {
             throw new Error(errorData.message || 'Something went wrong');
         }
 
-        const data = await response.json();
-        return data;
+        return response.json();
     } catch (error) {
-        console.error('Error:', error);
-        throw error;
+        throw error; // Re-throw for higher-level handling
     }
 };

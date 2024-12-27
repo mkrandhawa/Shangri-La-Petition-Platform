@@ -231,6 +231,58 @@ header{
   background-image: url('../public/images/addIcon.svg');
 
 }
+
+
+/* Petitions Submenu (initially hidden) */
+
+.navigationContent{
+  position: relative;
+}
+.navigationContent .submenu {
+  position: absolute;
+  display: none;
+  top: 40%;
+  left: 0;
+  height: 100px;
+  background:  rgb(216 226 229);
+  border: 1px solid #9c9898;
+  box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.1); 
+  z-index: 100; 
+  padding: 10px 0; 
+  width: 150px;
+}
+
+/* Submenu items */
+.submenu-item {
+  display: block;
+  padding: 8px 15px;
+  font-size: 0.9rem;
+  color: #555;
+  text-decoration: none;
+  transition: background 0.3s ease, color 0.3s ease;
+  white-space: nowrap; /* Prevent text wrapping */
+}
+
+/* Hover effect for submenu items */
+.submenu-item:hover {
+  background: #f0f0f0;
+  color: #000;
+}
+
+/* Active submenu item */
+.submenu-item.active {
+  font-weight: bold;
+  color: #2196f3;
+}
+
+/* Display submenu on hover */
+.navigationContent:hover .submenu {
+  display: block; /* Show submenu when hovering over parent */
+}
+
+
+
+
 /* Home Page Styles */
 
 .homePage{
@@ -752,7 +804,7 @@ header{
 }
 
 
-/* Pettiion Details Style */
+/* My Petition Details (User) Style */
 
 .myPetitionDetailCard{
   display: flex;
@@ -760,7 +812,6 @@ header{
   justify-content: center;
   flex-direction: row;
   gap: 30px;
-
 }
 
 .containerLeft, .containerRight{
@@ -769,50 +820,23 @@ header{
   justify-content: center;
   flex-direction: column;
   gap: 30px;
-
 }
 
 .myPetitionContainer{
-  height: 250px;
-  width: 250px;
+  height: 200px;
+  width: 200px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  background-color: rgb(249, 251, 249);
-  border-radius: 50%;
-  gap: 50px;
-  border: 10px solid green;
-  animation: borderLoading 3s linear;
-
+  gap: 20px;
 }
-
-@keyframes borderLoading { 
-  0% { 
-    border-color: transparent; 
-  } 
-  25%{
-    border-color: rgb(0, 122, 0); 
-  }
-  50% { 
-    border-color: rgb(0, 124, 0); 
-  } 
-  100% { 
-    border-color: rgb(0, 128, 0); 
-  } 
-}
-
 
 .mytitle{
   font-family: 'Playfair', sans-serif;
-  font-size: 2rem;
-
-}
-
-.number{
-  font-family: 'Montserrat', sans-serif;
-  font-size: 2rem;
-
+  font-size: 1.2rem;
+  margin-top: 10px;
+  text-align: center;
 }
 
 /* My Petitions Styles */
@@ -820,14 +844,14 @@ header{
 .myPetitionPage{
   display: flex;
   align-items: center;
-  justify-content: center;
   width: 100%;
   height: 98%;
   gap: 20px;
+  flex-wrap: nowrap;
   flex-direction: column;
-  flex-wrap: wrap;
-  overflow: visible;
-  overflow-x: scroll;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 10px;
 
 }
 
@@ -840,7 +864,6 @@ header{
   width: 100%;
   border-radius: 10px;
  
-
 }
 
 .petitionImageContainer{
@@ -908,7 +931,300 @@ header{
   background-color: rgb(244, 219, 219);
 }
 
+.signs{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  width: 200px;
+}
 
+.progressBarContainer {
+  width: 100%;
+  height: 10px; 
+  background-color: #e0e0e0; 
+  border-radius: 5px;
+  overflow: hidden; 
+}
+
+.progressBarFill {
+  height: 100%;
+  background-color: #4caf50; 
+  border-radius: 5px; 
+  transition: width 0.3s ease; 
+}
+
+.dateIcon, .statusIcon, .closeIcon{
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 30px;
+  height: 30px;
+}
+
+.dateIcon{
+  background-image: url('../public/images/calendar.svg');
+
+}
+
+.statusIcon{
+  background-image: url('../public/images/statusIcon.svg');
+}
+
+.closeIcon{
+  background-image: url('../public/images/closeIcon.svg');
+}
+
+
+
+
+/* User Selection */
+.choose-petition-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 94%;
+  background: linear-gradient(135deg, #eceff1, #ffffff);
+  font-family: 'Arial', sans-serif;
+  padding: 20px;
+}
+
+/* Title styling */
+.choose-petition-title {
+  font-size: 2rem;
+  color: #2c3e50;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Petition options container */
+.petition-options {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* Button styling */
+.petition-button {
+  padding: 10px 20px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #ffffff;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.petition-button.open {
+  background: #4caf50;
+}
+
+.petition-button.closed {
+  background: #f44336;
+}
+
+.petition-button.all {
+  background: #2196f3;
+}
+
+.petition-button:hover {
+  transform: scale(1.1);
+  opacity: 0.9;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* All Petitions */
+
+.petitionsPage {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  width: 100%;  
+  height: 100%;
+  background-color: #f5f5f5;
+
+}
+
+.onePetition{
+  position: relative;
+  width: 100%;  
+  height: 100%;
+  overflow: hidden;
+  background-color: #f5f5f5;
+
+}
+
+.petitionsContainer {
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+
+}
+
+.onePetitionsCard {
+  flex: 0 0 auto;
+  margin-right: 16px;
+
+}
+
+.onePetitionsCard {
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: end;
+  height: 700px;
+  width: 100%;
+  box-shadow: 1px 10px 10px 5px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  background-image: url('../public/images/petitionDefault.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  overflow: hidden;
+}
+
+.allPetitionsDetails {
+  position: relative;
+  z-index: 2;
+  width: 40%;
+  height: 100%;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.3); 
+  backdrop-filter: blur(5px);
+  border-radius: 10px 0 0 10px;
+  color: #333; 
+  text-align: left;
+
+}
+
+.petitionsDetails{
+  margin-top: 50px;
+}
+
+.allPetitionsDetails .details {
+  margin-bottom: 16px;
+}
+
+.allPetitionsDetails .petitionTitle {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.allPetitionsDetails .petitionDescription {
+  font-size: 1.1rem;
+}
+
+.allPetitionsDetails .petitionStatus,
+.allPetitionsDetails .petitionCreation {
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+}
+
+.progressBarContainer {
+  background: #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  height: 8px;
+  width: 100%;
+  margin-top: 8px;
+}
+
+.progressBarFill {
+  background: #4caf50;
+  height: 100%;
+  transition: width 0.3s ease;
+}
+
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2rem;
+  cursor: pointer;
+  z-index: 1000;
+  color: #333;
+  background: rgba(255, 255, 255, 0.6);
+  padding: 10px;
+  border-radius: 50%;
+}
+
+.isClosed{
+  color: red;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.leftArrow {
+  left: 10px;
+}
+
+.rightArrow {
+  right: 10px;
+}
+
+.signPetitionButton {
+  align-self: flex-end;
+  padding: 10px 20px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: -20px;
+  margin-bottom: 10px;
+  width: 400px;
+  height: 50px;
+  font-size: 1rem;
+  font-family: 'Roboto';
+}
+
+.signPetitionButton:hover {
+  background-color: #45a049;
+  transform: scale(1.01);
+}
+
+.signButton{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap:0px;
+}
+
+.signMessage{
+  color: red;
+  font-style: italic;
+  font-size: 14px;
+}
 
 
 

@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import SideNavigation from "../navigation/sideNavigation";
 import UserDetails from "./user/userDetails";
 import MyPetitions from "./petitions/myPetitions";
+import Petition from "./petitions/petitions";
 
 
 export default function Dashboard() {
@@ -13,7 +14,7 @@ export default function Dashboard() {
 
     return (
         <>
-            <main className="dashboardPage">
+            <main className="homePage dashboardPage">
                 {/* Container for the side navigation */}
                 <div className="sideNavigation">
                     <SideNavigation />
@@ -23,7 +24,9 @@ export default function Dashboard() {
                 <div className="dashboardContent">
 
                     {pathname==='/dashboard' && <UserDetails />}
-                    {pathname==='/petitions' && <h1>Petitions</h1>}
+                    {pathname==='/petitions' && <Petition />}
+                    {/* {pathname==='/petitions?status=open'&& <OpenPetition />}
+                    {pathname==='/petitions?status=closed'&& <ClosedPetition />} */}
                     {pathname==='/addPetition' && <h1>Add petitions</h1>}
                     {pathname==='/myPetitions' && <MyPetitions />}
 

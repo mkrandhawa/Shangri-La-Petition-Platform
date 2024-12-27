@@ -1,5 +1,8 @@
 import React, {useContext, useEffect, useState} from "react";
 import { UserContext } from "../../context/userContext";
+import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
+import 'react-circular-progressbar/dist/styles.css';
+
 
 
 export default function UserDetails() {
@@ -44,6 +47,7 @@ export default function UserDetails() {
 
     }, [userDetail]);
 
+    
     return (
         <>
             <div className="userDetailsCard">
@@ -88,36 +92,73 @@ export default function UserDetails() {
                 </div>
 
                 {/* Petition Details */}
+
                 <div className="myPetitionDetailCard">
 
                     <div className="containerLeft">
 
                         <div className="myPetitionContainer">
+                            <CircularProgressbar
+                                value={userDetail.createdPetitions.length}
+                                maxValue={userDetail.createdPetitions.length}
+                                text={`${userDetail.createdPetitions.length}`}
+                                styles={buildStyles({
+                                    textColor: '#006400',
+                                    pathColor: 'green',
+                                    trailColor: '#f4f4f4'
+                                })}
+                            />
                             <span className="mytitle">Created</span>
-                            <span className="number">{userDetail.createdPetitions.length}</span>
                         </div>
 
                         <div className="myPetitionContainer">
+                            <CircularProgressbar
+                                value={userDetail.signedPetitions.length}
+                                maxValue={userDetail.createdPetitions.length}
+                                text={`${userDetail.signedPetitions.length}`}
+                                styles={buildStyles({
+                                    textColor: '#006400',
+                                    pathColor: 'green',
+                                    trailColor: '#f4f4f4'
+                                })}
+                            />
                             <span className="mytitle">Signed</span>
-                            <span className="number">{userDetail.signedPetitions.length}</span>
                         </div>
                     </div>
 
                     <div className="containerRight">
 
                         <div className="myPetitionContainer">
+                            <CircularProgressbar
+                                value={openPetitions}
+                                maxValue={userDetail.createdPetitions.length}
+                                text={`${openPetitions}`}
+                                styles={buildStyles({
+                                    textColor: '#006400',
+                                    pathColor: 'green',
+                                    trailColor: '#f4f4f4'
+                                })}
+                            />
                             <span className="mytitle">Open</span>
-                            <span className="number">{openPetitions}</span>
                         </div>
 
                         <div className="myPetitionContainer">
+                            <CircularProgressbar
+                                value={closedPetitions}
+                                maxValue={userDetail.createdPetitions.length}
+                                text={`${closedPetitions}`}
+                                styles={buildStyles({
+                                    textColor: '#006400',
+                                    pathColor: 'green',
+                                    trailColor: '#f4f4f4'
+                                })}
+                            />
                             <span className="mytitle">Closed</span>
-                            <span className="number">{closedPetitions}</span>
                         </div>
                     </div>
 
-
                 </div>
+
             </div>
         </>
     )

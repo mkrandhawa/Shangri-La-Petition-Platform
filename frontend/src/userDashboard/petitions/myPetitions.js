@@ -1,5 +1,6 @@
 import React, {useContext} from "react";
 import { UserContext } from "../../context/userContext";
+import PetitionCard from '../../props/myPetitionCardProp';
 
 
 
@@ -16,12 +17,10 @@ export default function MyPetitions(){
         return `${day} ${month}`;
     }
     
-
-    console.log(myPetitions)
-
     return(
         <>
             <div className="myPetitionPage">
+                
                 {myPetitions.length === 0 ? 'You have not created any petition': (
 
 
@@ -30,52 +29,17 @@ export default function MyPetitions(){
 
                         <div className={petition.status === 'closed' ? "myPetitionsCard closed": "myPetitionsCard" }key={index}>
 
-                            <div className="petitionImageContainer">
-                                <span className="petitionImage"></span>
-                            </div>
-
-                            <div className="petitionDetails">
-                                {/* Title */}
-                                <div className="details">
-                                    <span className="petitionTitle">
-                                        {petition.title}
-                                    </span>
-                                </div>
-
-                                {/* Description */}
-                                <div className="details">
-                                    <span className="petitionDescription">
-                                        {petition.text}
-                                    </span>
-                                </div>
-
-                                {/* Status */}
-                                <div className="details">
-                                    <span className="myPetitonTitle">Status: </span>
-                                    <span className="petitionStatus">
-                                        {petition.status}
-                                    </span>
-                                </div>
-
-                                {/* Created */}
-                                <div className="details">
-                                    <span className="myPetitonTitle">Created On: </span>
-                                    <span className="petitionCreation">  
-                                        {formatDate(petition.createdAt)}
-                                    </span>
-                                </div>
-
-                                {/* Progress */}
-                                <div className="details">
-                                    <span className="myPetitonTitle">Signs: </span>
-                                    <span className="signs">
-                                        {petition.countSigns}/{petition.minSign}
-                                    </span>
-                                </div>
-
-                                
-                            </div>
-                                    
+                            <PetitionCard
+                                key={index}
+                                // image={petition.image || }
+                                title={petition.title}
+                                description={petition.text}
+                                status={petition.status}
+                                createdAt={petition.createdAt}
+                                countSigns={petition.countSigns}
+                                minSign={petition.minSign}
+                                formatDate={formatDate} 
+                            />
                             
                         </div>
 

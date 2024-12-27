@@ -14,8 +14,12 @@ export default function UserProvider(props){
         signedPetitions:[],
     });
 
+    const [totPetition, setTotPetition] = useState(0);
+
+    
+
     return(
-        <UserContext.Provider value={{userDetail, setUserDetail, isLogged, setIsLogged}}>
+        <UserContext.Provider value={{userDetail, setUserDetail, isLogged, setIsLogged, totPetition, setTotPetition}}>
             {props.children}
         </UserContext.Provider>
     )

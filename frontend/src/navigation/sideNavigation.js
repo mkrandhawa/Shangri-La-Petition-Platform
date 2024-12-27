@@ -13,6 +13,8 @@ export default function SideNavigation (){
 
     const [activeLink, setActiveLink] = useState('');
 
+    const [showSubmenu, setShowSubmenu] = useState(false);
+
     const handleClick = () =>{
 
         navigate('/');
@@ -20,11 +22,16 @@ export default function SideNavigation (){
 
     const handleLinkClick = (linkName) => {
         setActiveLink(linkName);
+        if (linkName === 'petitions') {
+            setShowSubmenu(!showSubmenu); // Toggle submenu visibility
+        } else {
+            setShowSubmenu(false); // Hide submenu if another link is clicked
+        }
         localStorage.setItem('activeLink', linkName);
     };
 
     useEffect(() => {
-        const savedActiveLink = localStorage.getItem('activeLink') || location.pathname.substring(1); // Default to current route
+        const savedActiveLink = location.pathname.substring(1); 
         setActiveLink(savedActiveLink);
     }, [location.pathname]);
 
@@ -65,12 +72,32 @@ export default function SideNavigation (){
                     <div className={`listStyle petitionsDashboard ${activeLink && activeLink !== 'petitions' ? 'blurred' : ''}`}>
                         <span className="icon petitionsIcon"></span>
                         <Link 
-                            to={'/petitions'} 
                             className={`link ${activeLink === 'petitions' ? 'active' : ''}`}
                             onClick={() => handleLinkClick('petitions')}
                         >
                             <li className="linkName">Petitions</li>
                         </Link>
+
+                        {/* Submenu */}
+                        {showSubmenu && (
+                            <ul className="submenu">
+                                <li>
+                                    <Link to="/petitions?status=open" className="submenu-item">
+                                        Open 
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link to="/petitions?status=closed" className="submenu-item">
+                                        Closed 
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link to="/petitions" className="submenu-item">
+                                        All
+                                    </Link>
+                                </li>
+                            </ul>
+                        )}
                     </div>
 
                     {/* Add Petitions */}
