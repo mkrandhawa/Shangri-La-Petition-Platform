@@ -48,7 +48,7 @@ export default function AddPetitionForm(){
         // Validation rules for each field
         const rules = {
             title: { minLength: 3, maxLength: 100 },
-            text: { minLength: 10, maxLength: 500 },
+            text: { minLength: 500, maxLength: 5000 },
         };
     
         // Check if the field has validation rules
@@ -95,8 +95,6 @@ export default function AddPetitionForm(){
 
         let formData = new FormData();
 
-        console.log(addMyPetition.title);
-        console.log(addMyPetition.text)
         formData.append("title", addMyPetition.title);
         formData.append("text", addMyPetition.text);
 
@@ -196,8 +194,8 @@ export default function AddPetitionForm(){
                                             autoCapitalize="off"
                                             autoCorrect="off"
                                             required
-                                            maxLength={500}
-                                            minLength={10}
+                                            maxLength={5000}
+                                            minLength={500}
                                             value={addMyPetition.text}
                                             onChange={handleChange}
                                         

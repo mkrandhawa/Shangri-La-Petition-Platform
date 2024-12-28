@@ -170,25 +170,30 @@ export default function Petition() {
                                             <span className={`myPetitonTitle ${petition.status === 'open' ? 'statusIcon' : 'closeIcon'}`}></span>
                                             <span className={petition.status==='closed' ? "petitonStatus isClosed":"petitionStatus"}>{petition.status === 'open' ? 'Open' : 'Closed'}</span>
                                         </div>
-                                        <div className="details">
-                                            <span className="myPetitonTitle dateIcon"></span>
-                                            <span className="petitionCreation">
-                                                {formatDate(petition.createdAt)}
-                                            </span>
-                                        </div>
-                                        <div className="details">
-                                            <span className="myPetitonTitle">Progress: </span>
-                                            <span className="signs">
-                                                <div className="progressBarContainer">
-                                                    <div
-                                                        className="progressBarFill"
-                                                        style={{
-                                                            width: `${(petition.countSigns / petition.minSign) * 100}%`,
-                                                        }}
-                                                    ></div>
+
+                                        {petition.status==='open' &&
+                                            <>
+                                                <div className="details">
+                                                    <span className="myPetitonTitle dateIcon"></span>
+                                                    <span className="petitionCreation">
+                                                        {formatDate(petition.createdAt)}
+                                                    </span>
                                                 </div>
-                                            </span>
-                                        </div>
+                                                <div className="details">
+                                                    <span className="myPetitonTitle">Progress: </span>
+                                                    <span className="signs">
+                                                        <div className="progressBarContainer">
+                                                            <div
+                                                                className="progressBarFill"
+                                                                style={{
+                                                                    width: `${(petition.countSigns / petition.minSign) * 100}%`,
+                                                                }}
+                                                            ></div>
+                                                        </div>
+                                                    </span>
+                                                </div>
+                                            </>
+                                        }
 
                                         {/* Sign Button */}
                                         {petition.status==='open' && 
@@ -201,6 +206,21 @@ export default function Petition() {
                                                     <span className={  successMessage.length>1 ? 'successMessage': 'signMessage'}>
                                                         {successMessage.length > 1 ? successMessage : message}
                                                     </span>
+                                                </div>   
+                                            </>
+                                        }
+
+
+                                        {/* Response */}
+                                        {petition.status==='closed' && 
+                                            <>
+                                                <div className='details signButton'>
+                                                    <div className="details">
+                                                        <span className="myPetitonTitle">Response: </span>
+                                                        <span className="response">
+                                                            {petition.response}
+                                                        </span>
+                                                    </div>
                                                 </div>   
                                             </>
                                         }

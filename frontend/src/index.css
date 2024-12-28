@@ -671,6 +671,24 @@ header{
   font-weight: bold;
 }
 
+.errorMessageContainer{
+  height: 10px;
+  
+}
+
+.signUpButton:disabled{
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.signUpButton:disabled:hover{
+  transform: scale(1);
+  border:none;
+}
+
+.myEmail{
+  width: 50px;
+}
 /* Dashboard Page */
 .dashboardPage{
   position: relative;
@@ -723,7 +741,7 @@ header{
   background-color: rgb(249, 251, 249);
   border-radius: 10px;
   height: 500px;
-  max-width: 300px;
+  width: 300px;
   gap: 20px;
   box-shadow: 1px 10px 10px 5px rgb(0,0,0,0.2);
 }
@@ -740,6 +758,7 @@ header{
 .image{
   width: 200px;
   height: 200px;
+  background-image: url('../public/images/default.svg');
   background-size: cover;
   background-repeat: no-repeat;
 }
@@ -751,7 +770,14 @@ header{
   flex-direction: column;
   gap: 20px;
   margin-top: 20px;
+  width: 100%;
 
+}
+
+.response{
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.1rem;
+  font-style: italic;
 }
 
 .title{
@@ -761,10 +787,27 @@ header{
 
 }
 
+.myEmailsDetails{
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  gap:4px;
+
+}
 .myName, .myEmail, .myAge{
   font-family: 'Montserrat';
   font-size: 1.2rem;
   font-weight: 400;
+
+}
+
+.myEmail{
+  width: 80%;                
+  white-space: nowrap;       
+  overflow: hidden;           
+  text-overflow: ellipsis;  
+
 }
 
 .roleContainer{
@@ -840,7 +883,7 @@ header{
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  height: 400px;
+  height: 450px;
   box-shadow: 1px 10px 10px 5px rgb(0,0,0,0.2);
   width: 100%;
   border-radius: 10px;
@@ -892,6 +935,7 @@ header{
   font-size: 2rem;
   justify-self: flex-start;
   font-family: 'Playfair Display';
+  width: 380px;
 
 }
 
@@ -953,9 +997,6 @@ header{
 .closeIcon{
   background-image: url('../public/images/closeIcon.svg');
 }
-
-
-
 
 /* User Selection */
 .choose-petition-container {
@@ -1050,6 +1091,18 @@ header{
 
 }
 
+.petitionDescription{
+  overflow: visible;
+  overflow-x: scroll;
+  height: 200px;
+  width: 400px;
+}
+
+.myDescription{
+  width: 80%;
+  
+}
+
 .onePetitionsCard {
   display: flex;
   position: relative;
@@ -1074,7 +1127,7 @@ header{
   flex-direction: column;
   justify-content: center;
   background: rgba(255, 255, 255, 0.3); 
-  backdrop-filter: blur(5px);
+  backdrop-filter: blur(10px);
   border-radius: 10px 0 0 10px;
   color: #333; 
   text-align: left;
@@ -1219,9 +1272,13 @@ header{
   border: 1px solid #ddd;
   border-radius: 8px;
   height: 300px;
-  margin-top: 4rem;
+  margin-top: 3.5rem;
   width: 300px;
 
+}
+
+.addPetitionFormContainer{
+  width: 100%;
 }
 
 .addTitle, .addDescription{
@@ -1237,7 +1294,6 @@ header{
   justify-content: flex-start;
   flex-direction: column;
   gap: 0.2rem; 
-  width: 100%; 
   margin-bottom: 0.5rem;
   font-family: 'Roboto', sans-serif;
   font-size: 14px;
@@ -1261,6 +1317,7 @@ header{
   justify-content: space-between;
   flex-direction: row;
   gap: 30px;
+  width: 80%;
 
 }
 
@@ -1346,6 +1403,112 @@ header{
 .uploadPicture{
   cursor: pointer;
 }
+
+/* Admin Styles */
+.replyIcon{
+  background-image: url('../public//images/replyIcon.svg');
+
+}
+
+.thresholdIcon{
+  background-image: url('../public/images/thresholdIcon.svg');
+  
+}
+
+.replyPetitionDescription{
+  height: 100px;
+  width: 430px;
+
+}
+
+.replyForm{
+  display: flex;
+  align-items: baseline;
+  justify-content: flex-start;
+  flex-direction: column;
+  width: 100%;
+  height: 400px;
+  margin-left: -2rem;
+
+}
+
+.replyInput{
+  padding: 0px;
+
+}
+
+.addReplyButton{
+  width: 50%;
+  align-self: center;
+  margin-top: 1rem;
+  margin-bottom: 5rem;
+  margin-left: 7.2rem;
+
+}
+
+.replyLabel{
+  margin-left: -2px;
+  font-size: 1.2rem;
+  font-family: 'Roboto';
+
+}
+
+.message{
+  height: 20px;
+
+}
+
+
+.addThresholdLength{
+  width: 370px;
+
+}
+
+
+.addPetitionTitle{
+  margin-top: 2rem;
+
+} 
+
+
+.addThresholdPage{
+  padding-top: 0px;
+
+}
+
+.myThresholdPage{
+  padding: 0px;
+  border-radius: 10px;
+  height: 100%;
+  
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /* Footer Styles */

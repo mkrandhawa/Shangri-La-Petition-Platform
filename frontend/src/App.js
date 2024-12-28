@@ -5,8 +5,8 @@ import HomePage  from './home/homePage';
 import LoginPage from './login/loginPage';
 import SignUpPage from './signUp/signUpPage';
 import AuthCheck from './fetchRoutes/authorization';
-import UserDashboardPage from './userDashboard/dashboardPage';
-
+import UserDashboardPage from './dashboard/dashboardPage';
+import AdminDashboardPage from './dashboard/adminDashboardPage';
 
 
 export default function App() {
@@ -32,6 +32,17 @@ export default function App() {
             <Route exact path='/addPetition' element={<UserDashboardPage />} />
 
             <Route exact path='/myPetitions' element={<UserDashboardPage />} />
+
+            {/* Admin Dashboard Routes */}
+
+            <Route exact path='/adminDashboard' element={<AdminDashboardPage />} />
+
+            <Route exact path='/petitions' element={<AdminDashboardPage />} />
+
+            <Route exact path='/reply' element={<AdminDashboardPage />} />
+
+            <Route exact path='/setThreshold' element={<AdminDashboardPage />} />
+
 
             {/* Login Route */}
             <Route exact path='/login' element={<LoginPage />} />

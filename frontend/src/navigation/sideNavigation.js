@@ -54,8 +54,12 @@ export default function SideNavigation (){
             {/* Main Navigation */} 
             <div className="navigationContent">
                 <ul>
+                    {userDetail.role === 'petitioner' ? (
 
-                    <div className={`listStyle userDashboard ${activeLink && activeLink !== 'dashboard' ? 'blurred' : ''}`}>
+                        // Petitioner Side Navigation
+                    <>
+                        
+                        <div className={`listStyle userDashboard ${activeLink && activeLink !== 'dashboard' ? 'blurred' : ''}`}>
                         <span className="icon userIcon"></span>
                         <Link 
                             to={'/dashboard'}  
@@ -66,68 +70,155 @@ export default function SideNavigation (){
                                 {userDetail.fullName}
                             </li>
                         </Link>
-                    </div>
+                        </div>
 
-                    {/* Petitions */}
-                    <div className={`listStyle petitionsDashboard ${activeLink && activeLink !== 'petitions' ? 'blurred' : ''}`}>
-                        <span className="icon petitionsIcon"></span>
-                        <Link 
-                            className={`link ${activeLink === 'petitions' ? 'active' : ''}`}
-                            onClick={() => handleLinkClick('petitions')}
-                        >
-                            <li className="linkName">Petitions</li>
-                        </Link>
+                        {/* Petitions  */}
+                        <div className={`listStyle petitionsDashboard ${activeLink && activeLink !== 'petitions' ? 'blurred' : ''}`}>
+                            <span className="icon petitionsIcon"></span>
+                            <Link 
+                                className={`link ${activeLink === 'petitions' ? 'active' : ''}`}
+                                onClick={() => handleLinkClick('petitions')}
+                            >
+                                <li className="linkName">Petitions</li>
+                            </Link>
 
-                        {/* Submenu */}
-                        {showSubmenu && (
-                            <ul className="submenu">
-                                <li>
-                                    <Link to="/petitions?status=open" className="submenu-item">
-                                        Open 
-                                    </Link>
+                            {/* Submenu */}
+                            {showSubmenu && (
+                                <ul className="submenu">
+                                    <li>
+                                        <Link to="/petitions?status=open" className="submenu-item">
+                                            Open 
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <Link to="/petitions?status=closed" className="submenu-item">
+                                            Closed 
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <Link to="/petitions" className="submenu-item">
+                                            All
+                                        </Link>
+                                    </li>
+                                </ul>
+                            )}
+                        </div>
+
+                        {/* Add Petitions */}
+                        <div className={`listStyle addPetitions ${activeLink && activeLink !== 'addPetition' ? 'blurred' : ''}`}>
+                            <span className="icon addIcon"></span>
+                            <Link 
+                                to={'/addPetition'}  
+                                className={`link ${activeLink === 'addPetition' ? 'active' : ''}`}
+                                onClick={() => handleLinkClick('addPetition')}
+                            >
+                                <li className="linkName">Add Petitions</li>
+                            </Link>
+                        </div>
+
+                        {/* My Petitions */}
+                        <div className={`listStyle myPetitions ${activeLink && activeLink !== 'myPetitions' ? 'blurred' : ''}`}>
+                            <span className="icon myPetitionIcon"></span>
+                            <Link 
+                                to={'/myPetitions'}  
+                                className={`link ${activeLink === 'myPetitions' ? 'active' : ''}`}
+                                onClick={() => handleLinkClick('myPetitions')}
+                            >
+                                <li className="linkName">My Petitions</li>
+                            </Link>
+                        </div>
+                    </>
+                    ):(
+
+
+                        // Admin Side Menu
+                    <>
+                        {/* ADMIN DASHBOARD */}
+                        <div className={`listStyle userDashboard dashboard${activeLink && activeLink !== 'adminDashboard' ? 'blurred' : ''}`}>
+
+                            <span className="icon userIcon"></span>
+                            <Link 
+                                to={'/adminDashboard'}  
+                                className={`link ${activeLink === 'adminDashboard' ? 'active' : ''}`}
+                                onClick={() => handleLinkClick('adminDashboard')}
+                            >
+                                <li className="userName">
+                                    {userDetail.fullName}
                                 </li>
-                                <li>
-                                    <Link to="/petitions?status=closed" className="submenu-item">
-                                        Closed 
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link to="/petitions" className="submenu-item">
-                                        All
-                                    </Link>
-                                </li>
-                            </ul>
-                        )}
-                    </div>
+                            </Link>
 
-                    {/* Add Petitions */}
-                    <div className={`listStyle addPetitions ${activeLink && activeLink !== 'addPetition' ? 'blurred' : ''}`}>
-                        <span className="icon addIcon"></span>
-                        <Link 
-                            to={'/addPetition'}  
-                            className={`link ${activeLink === 'addPetition' ? 'active' : ''}`}
-                            onClick={() => handleLinkClick('addPetition')}
-                        >
-                            <li className="linkName">Add Petitions</li>
-                        </Link>
-                    </div>
+                        </div>
 
-                    {/* My Petitions */}
-                    <div className={`listStyle myPetitions ${activeLink && activeLink !== 'myPetitions' ? 'blurred' : ''}`}>
-                        <span className="icon myPetitionIcon"></span>
-                        <Link 
-                            to={'/myPetitions'}  
-                            className={`link ${activeLink === 'myPetitions' ? 'active' : ''}`}
-                            onClick={() => handleLinkClick('myPetitions')}
-                        >
-                            <li className="linkName">My Petitions</li>
-                        </Link>
-                    </div>
+            
+                        {/* Petitions  */}
+                        <div className={`listStyle petitionsDashboard ${activeLink && activeLink !== 'petitions' ? 'blurred' : ''}`}>
+                            <span className="icon petitionsIcon"></span>
+                            <Link 
+                                className={`link ${activeLink === 'petitions' ? 'active' : ''}`}
+                                onClick={() => handleLinkClick('petitions')}
+                            >
+                                <li className="linkName">Petitions</li>
+                            </Link>
+
+                            {/* Submenu */}
+                            {showSubmenu && (
+                                <ul className="submenu">
+                                    <li>
+                                        <Link to="/petitions?status=open" className="submenu-item">
+                                            Open 
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <Link to="/petitions?status=closed" className="submenu-item">
+                                            Closed 
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <Link to="/petitions" className="submenu-item">
+                                            All
+                                        </Link>
+                                    </li>
+                                </ul>
+                            )}
+                        </div>
+
+
+
+                        {/* REACH THRESHOLD  */}
+                        <div className={`listStyle replyLink ${activeLink && activeLink !== 'reply' ? 'blurred' : ''}`}>
+                                <span className="icon replyIcon"></span>
+                                <Link 
+                                    to={'/reply'}
+                                    className={`link ${activeLink === 'reply' ? 'active' : ''}`}
+                                    onClick={() => handleLinkClick('reply')}
+                                >
+                                    <li className="linkName">Reply</li>
+                                </Link>
+                        </div>
+
+
+
+                        {/* SET THRESHOLD  */}
+                        <div className={`listStyle addThreshold ${activeLink && activeLink !== 'setThreshold' ? 'blurred' : ''}`}>
+                                <span className="icon thresholdIcon"></span>
+                                <Link 
+                                    to={'/setThreshold'}
+                                    className={`link ${activeLink === 'setThreshold' ? 'active' : ''}`}
+                                    onClick={() => handleLinkClick('setThreshold')}
+                                >
+                                    <li className="linkName">Add Threshold</li>
+                                </Link>
+                        </div>
+        
+                        
+                    </>
+                    )
+                    }
+                    
+
                 </ul>
             </div>
             
-        
-           
         </section>
     )
 }

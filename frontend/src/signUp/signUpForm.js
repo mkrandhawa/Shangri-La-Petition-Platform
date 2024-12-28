@@ -29,6 +29,8 @@ export default function SignUpForm(){
     const [scanning, setScanning] = useState(false); 
 
     const [message, setMessage] = useState('');
+
+    const [disable, setDisable] = useState(false);
     
     const handleScan = (data) => { 
         if (data) { 
@@ -76,8 +78,7 @@ export default function SignUpForm(){
 
         }catch(err){
             setMessage(err.message);
-            // const errorElement = document.getElementsByClassName('errorMessage')[0];
-            // errorElement.textContent = err.message;
+            
         }
     }
 
@@ -94,14 +95,35 @@ export default function SignUpForm(){
 
         if(password.length === 0 && confirmPassword.length === 0){
             setSamePassword(true);
-        }
-        else if (confirmPassword !== password || password.length < 8 || confirmPassword.length < 8){
+        }else if (confirmPassword !== password || password.length < 8 || confirmPassword.length < 8){
             setSamePassword(false);
+            setDisable(true);
+
         }else{
             setSamePassword(true);
+            setDisable(false);
         }
 
-    }, [user]);
+    }, [user.password, user.confirmPassword]);
+
+
+    useEffect(()=>{
+
+        let age = 0;
+
+        const dob = new Date(user.dob);
+        const today = new Date();
+        age = today.getUTCFullYear() - dob.getUTCFullYear();
+
+        if(age < 18 ){
+            setMessage('You must be 18 to register');
+            setDisable(true);
+        }else{
+            setMessage('');
+            setDisable(false);
+        }
+
+    }, [user.dob]);
 
     return(
         <>
@@ -273,10 +295,13 @@ export default function SignUpForm(){
                             
                             </div>
 
-                            <span className="errorMessage">{message}</span>
+                            <div className="errorMessageContainer">
+                                <span className="errorMessage">{message}</span>
+                            </div>
+                            
 
                             {/* Submit button */}
-                            <button className="loginButton signUpButton" type="submit">
+                            <button className="loginButton signUpButton" type="submit"  disabled={disable}>
                                 Sign Up
                             </button>
 

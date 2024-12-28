@@ -67,7 +67,6 @@ export default function UserDetails() {
 
                     <div className="userImage">
                         <span className="image"
-                            style={{ backgroundImage: `url(http://localhost:8000/${userDetail.image.replace('public', '')})` }}
                         ></span>
                     </div>
 
@@ -94,7 +93,7 @@ export default function UserDetails() {
 
                     {/* My Role */}
                     <div className="roleContainer"> 
-                        <span className="role"> {userDetail.role}</span>
+                        <span className="role"> Petitioner</span>
                     </div>
 
                 </div>
@@ -107,9 +106,9 @@ export default function UserDetails() {
 
                         <div className="myPetitionContainer">
                             <CircularProgressbar
-                                value={userDetail.createdPetitions?.length}
+                                value={userDetail.createdPetitions && userDetail.createdPetitions.length !== 'undefined' ? userDetail.createdPetitions.length : 0}
                                 maxValue={userDetail.createdPetitions?.length}
-                                text={`${userDetail.createdPetitions?.length}`}
+                                text={`${userDetail.createdPetitions && userDetail.createdPetitions.length !== 'undefined' ? userDetail.createdPetitions.length : 0}`}
                                 styles={buildStyles({
                                     textColor: '#006400',
                                     pathColor: 'green',
@@ -121,9 +120,9 @@ export default function UserDetails() {
 
                         <div className="myPetitionContainer">
                             <CircularProgressbar
-                                value={userDetail?.signedPetitions?.length}
+                                value={userDetail.signedPetitions && userDetail.signedPetitions.length !== 'undefined' ? userDetail.signedPetitions.length : 0}
                                 maxValue={userDetail?.createdPetitions?.length}
-                                text={`${userDetail?.signedPetitions?.length}`}
+                                text={`${userDetail.signedPetitions && userDetail.signedPetitions.length !== 'undefined' ? userDetail.signedPetitions.length : 0}`}
                                 styles={buildStyles({
                                     textColor: '#006400',
                                     pathColor: 'green',

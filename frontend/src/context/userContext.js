@@ -18,15 +18,19 @@ export default function UserProvider(props){
 
     const [totPetition, setTotPetition] = useState(0);
 
-    const [loading, setLoading] = useState(true); // Add loading state
+    const [loading, setLoading] = useState(true);
 
 
     const updateUserDetail = (newDetail) => {
-        setUserDetail(prevState => (
-            { ...prevState, createdPetitions: [
-                ...prevState.createdPetitions, 
-                newDetail] 
-        })); };
+        setUserDetail(prevState => ({
+            ...prevState,
+            createdPetitions: [
+                ...(prevState.createdPetitions || []), // If createdPetitions is undefined, use an empty array
+                newDetail
+            ]
+        }));
+    };
+    
 
     
 

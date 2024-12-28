@@ -2,14 +2,15 @@ import React from "react";
 import { useLocation } from "react-router-dom";
 import SideNavigation from "../navigation/sideNavigation";
 import UserDetails from "./user/userDetails";
-import MyPetitions from "./petitions/myPetitions";
 import Petition from "./petitions/petitions";
-import AddPetition from "./addPetition/addPetition";
+import PetitionReply from "./admin/petitionsToReply";
+import AddThreshold from "./admin/addThreshold";
 
 
-export default function Dashboard() {
+export default function AdminDashboard() {
 
     const location = useLocation();
+
 
     const { pathname } = location;
 
@@ -17,19 +18,20 @@ export default function Dashboard() {
         <>
             <main className="homePage dashboardPage">
                 {/* Container for the side navigation */}
+
+                
                 <div className="sideNavigation">
                     <SideNavigation />
                 </div>
+                
             
                 {/* Container for the main content */}
                 <div className="dashboardContent">
 
-                    {pathname==='/dashboard' && <UserDetails />}
+                    {pathname==='/adminDashboard' && <UserDetails />}
                     {pathname==='/petitions' && <Petition />}
-                    {/* {pathname==='/petitions?status=open'&& <OpenPetition />}
-                    {pathname==='/petitions?status=closed'&& <ClosedPetition />} */}
-                    {pathname==='/addPetition' && <AddPetition />}
-                    {pathname==='/myPetitions' && <MyPetitions />}
+                    {pathname==='/reply' && <PetitionReply />}
+                    {pathname==='/setThreshold' && <AddThreshold />}
 
                 </div>
 
