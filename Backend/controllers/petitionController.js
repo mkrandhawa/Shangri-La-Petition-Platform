@@ -150,18 +150,6 @@ exports.addPetition = async (req, res, next) => {
     });
 };
 
-
-
-
-
-
-
-
-
-
-
-
-
 // Sign a Petition --> /api/slpp/petitions/:petitionId/sign
 
 exports.signPetition = async(req, res, next)=>{
@@ -253,13 +241,15 @@ exports.setThreshold = async(req, res, next)=>{
 
     if(user.role === 'admin'){
 
-        const updateSigns = await Petition.updateMany({minSign, new: true});
+        await Petition.updateMany(
+            { status: 'open' },  
+            { $set: { minSign: minSign } }  
+        );
+        
 
-        // The message will not printed as the code is 204 
-        res.status(204).json({
-            staus: 'Success',
-            message: 'Updated minimum sign required',
-            data: updateSigns
+        res.status(200).json({
+            status: 'Success',
+            message: 'Updated threshold value!',
             
         });
     }else{
@@ -274,7 +264,7 @@ exports.setThreshold = async(req, res, next)=>{
 
 // Respond Petition --> /api/user/admin/:petitionId/respond
 
-exports.respondPetition = async(req, res, next)=>{
+exports.respondPetition = async(req, res)=>{
 
     const userId = req.user.id;
 
@@ -286,7 +276,7 @@ exports.respondPetition = async(req, res, next)=>{
 
     const petition = await Petition.findById(petitionId);
 
-    if(user.role != 'admin'){
+    if(user.role === 'petitioner'){
 
         return res.status(401).json({
              status: 'Fail',
@@ -294,21 +284,73 @@ exports.respondPetition = async(req, res, next)=>{
         });
     }
 
+
     // signs total < threshold and there is a response ? Throw error
-    if(petition.countSigns < petition.minSign || petition.response){
+    if(petition.response){
         
         return res.status(400).json({
             staus: 'Fail',
-            message: 'Respose already added / Have not met the threshold!!'
+            message: 'Respose already added !!'
         });
     }
 
-    const updatedPetition = await petition.updateOne({$set: {response, status: 'closed'}}, {new: true});
+    await petition.updateOne({$set: {response, status: 'closed'}}, {new: true});
 
-    res.status(204).json({
+    res.status(200).json({
         status: 'Success',
-        message: 'Response added successfully',
-        data: updatedPetition
+        message: 'Response added successfully'    
     });
+
+}
+
+// Reached Threshold --> /api/slpp/peitions/reachedThreshold
+
+exports.reachedThreshold = async(req, res)=>{
+
+    try{
+
+        const userId = req.user.id;
+
+        const user = await User.findById(userId);
+
+
+        if(user.role === 'petitioner'){
+
+            return res.status(400).json({
+                status: 'Fails',
+                message: 'You do not have permissions to acced this route!'
+
+            });
+        }
+
+
+        //Get petitions that have same have the total sign matching with the minsign and have not been replied yet
+        const petitions = await Petition.find({
+            $expr: {
+              $eq: ["$minSign", "$countSigns"]
+            },
+            response: { $exists: false },
+            status: 'open'
+        });
+        
+
+        if(petitions.length===0){
+            
+            return res.status(200).json({
+                status: 'Success',
+                message:'The are no petitions that have reached the threshold'
+            });
+        }   
+
+        res.status(200).json({
+            status: 'Success',
+            message: 'There are some peititons for you to reply',
+            data: petitions
+        });
+
+    }catch(err){
+        console.log('Something went wrong while getting petitions that reached the threshold');
+        console.log(err.message);
+    }
 
 }

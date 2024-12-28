@@ -185,7 +185,7 @@ exports.login = async(req, res, next)=>{
         }));
     }
 
-    const user = await User.findOne({email}).select('+password');
+    const user = await User.findOne({email}).select('+password').populate('createdPetitions').populate('signedPetitions');
 
     if(!user || !(await user.comparePasswords(user.password, password))){
         return next(res.status(401).json({

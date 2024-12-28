@@ -5,6 +5,8 @@ const userController = require('../controllers/userController');
 const router = express.Router();
 
 router.get('/', userController.protect, petitionController.getAllPetitions);
+
+router.get('/reachedThreshold', userController.protect, petitionController.reachedThreshold);
     
 router.post('/addPetition', userController.protect, petitionController.addPetition);
 

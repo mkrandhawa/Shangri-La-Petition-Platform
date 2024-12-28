@@ -3,10 +3,6 @@ const validator = require('validator');
 const argon2 = require('argon2');
 
 const userSchema = mongoose.Schema({
-    image:{
-        type: String,
-        default: 'user/userIcon.svg'
-    },
     email:{
         type: String,
         required: [true, 'Please enter a valid email'],

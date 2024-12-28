@@ -26,7 +26,7 @@ const petitionSchema = mongoose.Schema({
         type: Number,
         min: 1,
         required: true,
-        default: 1, 
+        default: 20, 
     },
     countSigns: {
         type: Number,
