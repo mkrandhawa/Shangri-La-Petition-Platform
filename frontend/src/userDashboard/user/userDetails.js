@@ -7,7 +7,7 @@ import 'react-circular-progressbar/dist/styles.css';
 
 export default function UserDetails() {
 
-    const { userDetail } = useContext(UserContext);
+    const { userDetail, loading } = useContext(UserContext);
 
     const [age, setAge] = useState();
 
@@ -15,6 +15,8 @@ export default function UserDetails() {
 
     const [closedPetitions, setClosedPetitions] = useState(0);
 
+
+    //Calculate user Ager
     const calculateAge = () => {
 
         const dob = new Date(userDetail.dob);
@@ -24,14 +26,15 @@ export default function UserDetails() {
         setAge(age);
     }   
 
+    // Count total petitions
     const countPetitions = () => {
         const open = userDetail.createdPetitions.filter(petition => petition.status === 'open').length;
         const closed = userDetail.createdPetitions.filter(petition => petition.status === 'closed').length;
     
         setOpenPetitions(open);
         setClosedPetitions(closed); 
-    };
-    
+    }
+
 
     useEffect(() => {
 
@@ -40,23 +43,32 @@ export default function UserDetails() {
           
         }
 
-        if(userDetail.createdPetitions.length>0){
+        if(userDetail?.createdPetitions){
 
             countPetitions();
         }
 
     }, [userDetail]);
 
+
     
     return (
         <>
+            {loading ? (
+                // Show loading indicator
+                <div className="loading">
+                    <span>Loading user details...</span>
+                </div>
+            ) : (
             <div className="userDetailsCard">
 
                 {/* User Card Detail */}
                 <div className="userCard">
 
                     <div className="userImage">
-                        <span className="image"></span>
+                        <span className="image"
+                            style={{ backgroundImage: `url(http://localhost:8000/${userDetail.image.replace('public', '')})` }}
+                        ></span>
                     </div>
 
                     <div className="userDetails">
@@ -80,15 +92,11 @@ export default function UserDetails() {
                         </div>
                     </div>
 
-                    {/* Upload Picture */}
-                    <div className="uplaodContainer">
-                        <div className="uploadProfilePicture">
-                            <button className="uploadPicture" type="submit">
-                                Upload Profile Picture
-                            </button>
-                        </div>
-                        <span className="fileName"></span>
+                    {/* My Role */}
+                    <div className="roleContainer"> 
+                        <span className="role"> {userDetail.role}</span>
                     </div>
+
                 </div>
 
                 {/* Petition Details */}
@@ -99,9 +107,9 @@ export default function UserDetails() {
 
                         <div className="myPetitionContainer">
                             <CircularProgressbar
-                                value={userDetail.createdPetitions.length}
-                                maxValue={userDetail.createdPetitions.length}
-                                text={`${userDetail.createdPetitions.length}`}
+                                value={userDetail.createdPetitions?.length}
+                                maxValue={userDetail.createdPetitions?.length}
+                                text={`${userDetail.createdPetitions?.length}`}
                                 styles={buildStyles({
                                     textColor: '#006400',
                                     pathColor: 'green',
@@ -113,9 +121,9 @@ export default function UserDetails() {
 
                         <div className="myPetitionContainer">
                             <CircularProgressbar
-                                value={userDetail.signedPetitions.length}
-                                maxValue={userDetail.createdPetitions.length}
-                                text={`${userDetail.signedPetitions.length}`}
+                                value={userDetail?.signedPetitions?.length}
+                                maxValue={userDetail?.createdPetitions?.length}
+                                text={`${userDetail?.signedPetitions?.length}`}
                                 styles={buildStyles({
                                     textColor: '#006400',
                                     pathColor: 'green',
@@ -131,7 +139,7 @@ export default function UserDetails() {
                         <div className="myPetitionContainer">
                             <CircularProgressbar
                                 value={openPetitions}
-                                maxValue={userDetail.createdPetitions.length}
+                                maxValue={userDetail.createdPetitions?.length}
                                 text={`${openPetitions}`}
                                 styles={buildStyles({
                                     textColor: '#006400',
@@ -145,7 +153,7 @@ export default function UserDetails() {
                         <div className="myPetitionContainer">
                             <CircularProgressbar
                                 value={closedPetitions}
-                                maxValue={userDetail.createdPetitions.length}
+                                maxValue={userDetail.createdPetitions?.length}
                                 text={`${closedPetitions}`}
                                 styles={buildStyles({
                                     textColor: '#006400',
@@ -160,6 +168,7 @@ export default function UserDetails() {
                 </div>
 
             </div>
+            )}
         </>
     )
 }

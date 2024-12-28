@@ -4,6 +4,7 @@ import SideNavigation from "../navigation/sideNavigation";
 import UserDetails from "./user/userDetails";
 import MyPetitions from "./petitions/myPetitions";
 import Petition from "./petitions/petitions";
+import AddPetition from "./addPetition/addPetition";
 
 
 export default function Dashboard() {
@@ -27,7 +28,7 @@ export default function Dashboard() {
                     {pathname==='/petitions' && <Petition />}
                     {/* {pathname==='/petitions?status=open'&& <OpenPetition />}
                     {pathname==='/petitions?status=closed'&& <ClosedPetition />} */}
-                    {pathname==='/addPetition' && <h1>Add petitions</h1>}
+                    {pathname==='/addPetition' && <AddPetition />}
                     {pathname==='/myPetitions' && <MyPetitions />}
 
                 </div>

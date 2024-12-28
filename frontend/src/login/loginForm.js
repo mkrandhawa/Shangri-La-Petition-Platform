@@ -15,7 +15,9 @@ export default function LoginForm(){
 
     const [user, setUser]= useState({
         email:'',
-        password: ''
+        password: '',
+        signedPetitions: [],
+        createdPetitions:[]
     });
 
     //   Assigns the user values 
@@ -41,7 +43,9 @@ export default function LoginForm(){
                     navigate('/'); // DO that OKAYYYYYYY
                     await setUserDetail({
                         fullName: response.data.fullName,
-                        email: response.data.email
+                        email: response.data.email,
+                        signedPetitions: response.data.signedPetitions,
+                        createdPetitions: response.data.createdPetitions
                     });
                     setIsLogged(true);
 

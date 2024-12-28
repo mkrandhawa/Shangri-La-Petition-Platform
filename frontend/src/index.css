@@ -740,7 +740,6 @@ header{
 .image{
   width: 200px;
   height: 200px;
-  background-image: url('../public/images/userIcon.svg');
   background-size: cover;
   background-repeat: no-repeat;
 }
@@ -768,39 +767,21 @@ header{
   font-weight: 400;
 }
 
-.uploadProfilePicture{
-  padding: 10px;
-  height: 50px;
-  width: 200px;
-  margin-top: 40px;
-  font-family: 'Montserrat';
-  font-size: 18px;
-  cursor: pointer;
+.roleContainer{
+  margin-top: 5rem;
   display: flex;
   align-items: center;
   justify-content: center;
 
 }
 
-.uploadPicture{
-
-  background-color: #b4d6e7;
-  color: black;
-  border-radius: 10px;
-  height: 50px;
-  width: 100%;
-  border: 1px solid black;
+.role{
+  font-size: 1.4rem;
   font-family: 'Montserrat', sans-serif;
-  font-size: 16px;
-  font-weight: 500;
 
 }
-
-.uploadPicture:hover{
-  transform: scale(1.1);
-  border:none;
-  border-bottom: 1px solid rgb(108, 184, 232);
-
+.role::first-letter{
+  text-transform: capitalize;
 }
 
 
@@ -877,7 +858,6 @@ header{
 }
 
 .petitionImage{
-  background-image: url('../public/images/petitionDefault.png');
   background-repeat: no-repeat;
   background-size: cover;
   border-radius: 10px;
@@ -1034,29 +1014,6 @@ header{
   opacity: 0.9;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* All Petitions */
 
 .petitionsPage {
@@ -1102,7 +1059,6 @@ header{
   width: 100%;
   box-shadow: 1px 10px 10px 5px rgba(0, 0, 0, 0.2);
   border-radius: 10px;
-  background-image: url('../public/images/petitionDefault.png');
   background-size: cover;
   background-repeat: no-repeat;
   overflow: hidden;
@@ -1226,11 +1182,170 @@ header{
   font-size: 14px;
 }
 
+.successMessage{
+  color: darkgreen;
+  font-style: bold;
+  font-size: 16px;
 
+}
 
+/* Add Petition Styles */
 
+.addPetition{
+  width: 80%;
+  margin-top: -5rem;
 
+}
 
+.addPetitionPage{
+  width: 100%;
+
+}
+
+.petitionForm{
+  width: 90%;
+
+}
+
+.addPetition{
+  height: 100%;
+  width: 80%;
+}
+
+.form-section {
+  margin: 20px 0;
+  padding: 10px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  height: 300px;
+  margin-top: 4rem;
+  width: 300px;
+
+}
+
+.addTitle, .addDescription{
+  width: 400px;
+
+}
+
+.addDescription {
+  padding-top: 10px;
+  height: 200px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: column;
+  gap: 0.2rem; 
+  width: 100%; 
+  margin-bottom: 0.5rem;
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+
+}
+
+.addDescription::placeholder {
+  padding: 10px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translateY(0); 
+  padding-top: 0.5rem; 
+  font-size: 14px; 
+
+}
+
+.formWithImageUploader{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+  gap: 30px;
+
+}
+
+.imageInput{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+
+}
+
+.imageViewWindow {
+  width: 200px;
+  height: 200px;
+  border: 2px dashed #ccc; 
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f9f9f9;
+  overflow: hidden;
+
+}
+
+.image-preview img {
+  max-width: 100%; 
+  max-height: 100%;
+  border-radius: 5px;
+  object-fit: cover; 
+
+}
+
+.userUploadImage {
+  color: #999;
+  font-size: 14px;
+  text-align: center;
+
+}
+
+.image-upload-input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  background-color: #fff;
+  cursor: pointer;
+  align-self: center;
+
+}
+
+.image-upload-input:hover {
+  border-color: #888;
+
+}
+
+.upload-instructions {
+  font-size: 12px;
+  color: #666;
+
+}
+
+.uploadButton{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+}
+
+.addPetitionError{
+  margin-left: 10px;
+  font-size: 10px;
+
+}
+
+.uploadErroMessage{
+  color: red;
+  font-size: 10px;
+  
+}
+
+.uploadPicture{
+  cursor: pointer;
+}
 
 
 /* Footer Styles */

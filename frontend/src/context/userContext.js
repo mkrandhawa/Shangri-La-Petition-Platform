@@ -12,14 +12,26 @@ export default function UserProvider(props){
         dob:'',
         createdPetitions:[],
         signedPetitions:[],
+        role:'',
+        image:''
     });
 
     const [totPetition, setTotPetition] = useState(0);
 
+    const [loading, setLoading] = useState(true); // Add loading state
+
+
+    const updateUserDetail = (newDetail) => {
+        setUserDetail(prevState => (
+            { ...prevState, createdPetitions: [
+                ...prevState.createdPetitions, 
+                newDetail] 
+        })); };
+
     
 
     return(
-        <UserContext.Provider value={{userDetail, setUserDetail, isLogged, setIsLogged, totPetition, setTotPetition}}>
+        <UserContext.Provider value={{userDetail, setUserDetail, isLogged, setIsLogged, totPetition, setTotPetition, loading, setLoading, updateUserDetail}}>
             {props.children}
         </UserContext.Provider>
     )

@@ -31,7 +31,7 @@ export default function MyPetitions(){
 
                             <PetitionCard
                                 key={index}
-                                // image={petition.image || }
+                                image={petition.image}
                                 title={petition.title}
                                 description={petition.text}
                                 status={petition.status}

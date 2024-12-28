@@ -8,11 +8,21 @@ import { patchData } from '../../fetchRoutes/patchData';
 export default function Petition() {
 
     const [url, setUrl] = useState('');
+
     const [petitions, setPetitions] = useState([]);
+
     const { totPetition, setTotPetition } = useContext(UserContext);
+
     const [message, setMessage] = useState('');
+
+    const [successMessage, setSuccessMessage] = useState('');
+
+    const [loading, setLoading] = useState(true); 
+
     const containerRef = useRef(null);
+
     const [searchParams] = useSearchParams();
+
     const status = searchParams.get('status');
 
 
@@ -35,14 +45,34 @@ export default function Petition() {
         }
     };
 
+    // Sign Petitions with Progress Bar Update
     const handleClick = (id) =>{
         const patchUrl =  `${process.env.REACT_APP_PATCH_URL}${id}/sign`;
         const patchPetition = async()=>{
         try{
             const response = await patchData(patchUrl);
 
+            if(response.status==='Success'){
+
+                setPetitions((prevPetitions) =>
+                    prevPetitions.map((petition) =>
+                        petition._id === id? {
+                                  ...petition,
+                                  countSigns: petition.countSigns + 1,
+                              }
+                            : petition
+                    )
+                );
+
+                setSuccessMessage(response.message);
+                setTimeout(() => {
+                    setSuccessMessage("");  
+                }, 1000); 
+
+            }
+
             if (response.status==='Fail'){
-                 setMessage(response.message);
+                setMessage(response.message);
                 setTimeout(() => {
                     setMessage("");  
                 }, 1000); 
@@ -83,14 +113,16 @@ export default function Petition() {
     useEffect(() => {
         const fetchPetitions = async () => {
             if (!url) return;
+            setLoading(true);
             try {
-
                 const response = await getData(url);
                 if (response.status === 'Success') {
                     setPetitions(response.data);
                 }
             } catch (err) {
                 console.error('Error fetching petitions:', err);
+            } finally {
+                setLoading(false); // End loading
             }
         };
         fetchPetitions();
@@ -109,6 +141,11 @@ export default function Petition() {
    
     return (
         <>
+            {loading ? ( // Show spinner while loading
+                <div className="loading">
+                    <span>Loading...</span> {/* Replace with a spinner if needed */}
+                </div>
+            ):(
             <div className={petitions.length===1? 'onePetition':'petitionsPage'}>
                 {petitions.length === 0 ? 'There are no petitions at the moment' : (
                     <>
@@ -119,7 +156,8 @@ export default function Petition() {
                         <div className='petitionsContainer' ref={containerRef}>
                             {petitions.map((petition, index) => (
                               
-                                <div className="onePetitionsCard"key={index}>
+                                <div className="onePetitionsCard"key={index} 
+                                    style={{ backgroundImage: `url(http://localhost:8000/${petition.image.replace('public', '')})` }}>
                                     
                                     <div className="petitionDetails allPetitionsDetails">
                                         <div className="details petitionsDetails">
@@ -160,14 +198,12 @@ export default function Petition() {
                                                     <button className='signPetitionButton' onClick={()=>handleClick(petition._id)}>
                                                         Sign Petitions
                                                     </button>
-                                                    <span className='signMessage'>{setMessage ? message : ''}</span>
+                                                    <span className={  successMessage.length>1 ? 'successMessage': 'signMessage'}>
+                                                        {successMessage.length > 1 ? successMessage : message}
+                                                    </span>
                                                 </div>   
-                                                
-                                                
                                             </>
-
                                         }
-
                                     </div>
                                 </div>  
                             ))}
@@ -175,6 +211,7 @@ export default function Petition() {
                     </>
                 )}
             </div>
+            )}
         </>
     );
 }

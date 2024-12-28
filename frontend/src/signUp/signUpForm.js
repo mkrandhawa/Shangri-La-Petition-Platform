@@ -27,6 +27,8 @@ export default function SignUpForm(){
     const [samePassword, setSamePassword] = useState(true);
 
     const [scanning, setScanning] = useState(false); 
+
+    const [message, setMessage] = useState('');
     
     const handleScan = (data) => { 
         if (data) { 
@@ -73,8 +75,9 @@ export default function SignUpForm(){
             }
 
         }catch(err){
-            const errorElement = document.getElementsByClassName('errorMessage')[0];
-            errorElement.textContent = err.message;
+            setMessage(err.message);
+            // const errorElement = document.getElementsByClassName('errorMessage')[0];
+            // errorElement.textContent = err.message;
         }
     }
 
@@ -270,7 +273,7 @@ export default function SignUpForm(){
                             
                             </div>
 
-                            <span className="errorMessage"></span>
+                            <span className="errorMessage">{message}</span>
 
                             {/* Submit button */}
                             <button className="loginButton signUpButton" type="submit">

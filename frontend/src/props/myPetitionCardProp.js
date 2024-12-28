@@ -1,22 +1,17 @@
 import React from 'react';
 
-const PetitionCard = ({ 
-    image, 
-    title, 
-    description, 
-    status, 
-    createdAt, 
-    countSigns, 
-    minSign, 
-    formatDate 
-}) => {
+
+export default function PetitionCard(props){
+
+    const { image, title, description, status, createdAt, countSigns, minSign, formatDate } = props;
+    
     return (
         <>
 
             <div className="petitionImageContainer">
                 <span 
                     className="petitionImage" 
-                    // style={{ backgroundImage: `url(${image})` }}
+                    style={{ backgroundImage: `url(http://localhost:8000/${image.replace('public', '')})` }}
                 ></span>
             </div>
 
@@ -70,4 +65,3 @@ const PetitionCard = ({
     );
 };
 
-export default PetitionCard;

@@ -27,7 +27,7 @@ export default function Header (){
                 if(response.status==='Success'){
                     alert(response.message);
 
-                    setTimeout(() => { setIsLogged(false); }, 900);
+                    setTimeout(() => { setIsLogged(false); }, 500);
                     
 
                     
