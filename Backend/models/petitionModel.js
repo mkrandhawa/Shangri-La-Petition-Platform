@@ -1,6 +1,10 @@
 const mongoose = require('mongoose');
 
 const petitionSchema = mongoose.Schema({
+    image:{
+        type:String,
+        default: 'images/petition/default.png'
+    },
     status:{
         type: String,
         enum:['open', 'closed'],

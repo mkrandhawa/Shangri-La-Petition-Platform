@@ -1,5 +1,6 @@
 const Petition = require('../models/petitionModel');
 const User = require('../models/userModel');
+const multer = require('multer');
 
 
 // Get All Petitions --> /api/slpp/petitions
@@ -55,45 +56,111 @@ exports.getAllPetitions = async (req, res, next) => {
 };
 
 
+//Add Image Helper
+
+const multerStorage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, "public/images/petition");
+    },
+    filename: (req, file, cb) => {
+        const ext = file.mimetype.split("/")[1];
+        cb(null, `petition${req.user.id}-${Date.now()}.${ext}`); //petition-userID-timestamp.extension
+    },
+});
+
+// Filters the file/files that are being uploaded
+
+const filter = (req, file, cb) => {
+    if (file.mimetype == "image/png" || file.mimetype == "image/jpg" || file.mimetype == "image/jpeg") {
+        cb(null, true);
+    } else {
+        cb(null, false);
+        const err = new Error('Only .png, .jpg and .jpeg format allowed!')
+        err.name = 'ExtensionError'
+        return cb(err);
+    }
+
+};
+
+// Upload function to upload the images with the max limit to be 10
+
+const upload = multer({
+    storage: multerStorage,
+    limits: {fileSize: 5 * 1024 * 1024}, //5MB
+    fileFilter: filter,
+}).single('image');
+
+
 // Add Petition --> /api/slpp/petitions/addPetition
 
-exports.addPetition = async(req, res, next)=>{
+exports.addPetition = async (req, res, next) => {
+    // Handle file uploads
+    upload(req, res, async (err) => {
+        if (err) {
+            if (err.name === "MulterError") {
+                return res.status(400).json({
+                    status: "Fail",
+                    message: err.message || "File upload failed",
+                });
+            }
+            return next(err); // Pass other errors to global error handler
+        }
 
-    const {status, title, text} = req.body;
+        const { title, text } = req.body;
 
-    const user = req.user.id;
+        const user = req.user.id;
 
-    if(!user){
-        res.staus(401).json({
-            status: 'Fail',
-            message: 'You must be logged in!'
+        if (!user) {
+            return res.status(401).json({
+                status: 'Fail',
+                message: 'You must be logged in!'
+            });
+        }
+
+        const petitioner = await User.findById(user);
+
+        if (petitioner.role !== 'petitioner') {
+            return res.status(401).json({
+                status: "Fail",
+                message: 'You do not have the permission to create a petition'
+            });
+        }
+
+        // Prepare petition data
+        const petitionData = {
+            title,
+            text,
+            petitioner: user,
+        };
+
+        // Add image only if it exists
+        if (req.file) {
+            petitionData.image = req.file.path;
+        }
+
+        // Create petition
+        const petition = await Petition.create(petitionData);
+
+        await User.updateOne({ _id: user }, { $push: { createdPetitions: petition._id } });
+
+        res.status(201).json({
+            status: "Success",
+            data: petition
         });
-    }
-
-    const petitioner = await User.findById(user);
-
-
-    if (!petitioner.role === 'petitioner'){
-        res.status(401).json({
-            status: "Fail",
-            message: 'You do not have the permisison to create a petition'
-        });
-    }
-
-    const petition = await Petition.create({
-        status,
-        title,
-        text,
-        petitioner
     });
+};
 
-    await User.updateOne({_id:user}, {$push: {createdPetitions : petition._id}});
 
-    res.status(201).json({
-        status: "Success",
-        data: petition
-    });
-}
+
+
+
+
+
+
+
+
+
+
 
 // Sign a Petition --> /api/slpp/petitions/:petitionId/sign
 
@@ -146,7 +213,7 @@ exports.signPetition = async(req, res, next)=>{
         );
 
         res.status(200).json({
-            staus: 'Success',
+            status: 'Success',
             message: 'You have signed successfully',
             data: updated
         });

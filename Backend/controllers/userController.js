@@ -1,6 +1,7 @@
 const User = require('../models/userModel');
 const jwt = require('jsonwebtoken');
 const data = require('../public/data/bioId');
+const multer = require('multer');
 
 // Generate JSON Taken
 
@@ -43,7 +44,6 @@ exports.protect = async(req, res, next)=>{
         console.log('Error with the authorization', err.message);
     }
 }
-
 
 // Register User --> /api/user/signup
 
@@ -210,6 +210,8 @@ exports.login = async(req, res, next)=>{
             email: user.email,
             username: user.username,
             fullName: user.fullName,
+            signedPetitions: user.signedPetitions,
+            createdPetitions: user.createdPetitions
         }
     });
 
@@ -268,6 +270,6 @@ exports.isLoggedIn = async (req, res, next) => {
       }
     }
     next();
-  };
+}
 
 
