@@ -32,7 +32,6 @@ header{
   padding-top: 0px;
   border-bottom: 1px solid lightgrey;
   background-color: rgb(249, 251, 249);
-  /* box-shadow: 2px 2px 2px 5px rgb(0,0,0,0.3); */
 
 }
 
@@ -278,7 +277,23 @@ header{
 /* Display submenu on hover */
 .navigationContent:hover .submenu {
   display: block; /* Show submenu when hovering over parent */
+
 }
+
+.notificationCircle {
+  position: absolute;
+  right: -10px;  
+  width: 20px;  
+  height: 20px;
+  border-radius: 50%;
+  background-color: red;
+  color: white;
+  font-size: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 
 
 
@@ -1480,11 +1495,129 @@ header{
   padding: 0px;
   border-radius: 10px;
   height: 100%;
-  
+
+}
+
+.petitionsToReply{
+  width: 100%;
+
+}
+
+/* User Analysis Dashboard */
+
+.analysisDashboard{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  height: 90%;
+  box-shadow: 3px 5px 5px 5px rgb(0,0,0,0.2);
+  border-radius: 10px;
+
+}
+
+.analysis{
+  position: relative;
+  background-image: url('../public/images/analysis.webp');
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 10px;
+  z-index: 1;
+
 }
 
 
+.analysis::before{
+  content: ""; 
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(5px); 
+  z-index: -1; 
+}
 
+.analysisCard{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 670px;
+  box-shadow: 1px 3px 3px 3px rgb(0,0,0,0.2);
+  border-radius: 10px;
+
+}
+
+.subContainer{
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 95%;
+
+}
+
+.signatureChart{
+  flex-direction: column;
+  align-self: baseline;
+
+}
+
+.welcomeText{
+  font-family: 'Robot';
+  font-size: 4rem;
+
+}
+
+.welcomeSlogan{
+  font-size: 1rem;
+}
+.wordCloudSubcontainer{
+  height: 80%;
+  flex-direction: column;
+  align-self: center;
+  
+}
+
+.petition-status-chart{
+  width: 90%;
+  height: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+
+}
+
+.wordCloud{
+  height: 90%;
+  width: 100%;
+  margin-left: -2rem;
+  margin-top: 10px;
+
+
+}
+
+.wordCloudTitle{
+  font-size: 1.4rem;
+  font-weight: 600;
+  font-family: 'Roboto';
+
+}
+
+.signaturesTitle{
+  margin-top: 5rem;
+}
+
+.scatterPlot{
+  height: 85%;
+  width: 90%;
+
+}
 
 
 

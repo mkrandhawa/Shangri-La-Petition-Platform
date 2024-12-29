@@ -67,11 +67,20 @@ export default function Header (){
                             </li>
                         </Link>
 
-                        <Link to={'/dashboard'}  className='link'>
-                            <li>
-                                Dashboard
-                            </li>
-                        </Link>
+                        {userDetail.role === 'petitioner' ? (
+                            <Link to={'/dashboard'}  className='link'>
+                                <li>
+                                    Dashboard
+                                </li>
+                            </Link>
+                        ):(
+                            <Link to={'/adminDashboard'}  className='link'>
+                                <li>
+                                    Dashboard
+                                </li>
+                            </Link>
+                        )}
+                        
 
                         <Link to={'/'}  className='link'>
                             <li className='userName' onClick={handleLogout}>

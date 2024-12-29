@@ -11,7 +11,7 @@ export default function PetitionReply(){
 
     const navigate = useNavigate();
 
-    const {setTotPetition} = useContext(UserContext);
+    const {setTotPetitionToReply} = useContext(UserContext);
 
     const [petitions, setPetitions] = useState([]);
 
@@ -82,16 +82,12 @@ export default function PetitionReply(){
 
     }
 
-    // Reply Petition that hasve met the threshold
+    // Reply Petition that have met the threshold
     const handleSubmit = (event, id) =>{
 
         event.preventDefault();
 
         const patchUrl =  `${process.env.REACT_APP_REPLY_PETITION}${id}/respond`;
-
-        console.log(patchUrl);
-
-        console.log('I am in handle submit',reply);
 
         if(!reply){
 
@@ -102,8 +98,7 @@ export default function PetitionReply(){
         const patchPetition = async()=>{
             try{
                 const res = await patchDataForm(patchUrl, { response: reply.response });
-                console.log('I am res',res);
-                console.log('I am in handle submit',reply);
+
 
                 if(res.status==='Success'){
 
@@ -111,6 +106,7 @@ export default function PetitionReply(){
                     setTimeout(() => {
                         setSuccessMessage("");  
                     }, 1000); 
+                    setTotPetitionToReply((prev)=> prev-1);
 
                     navigate('/adminDashboard');
 
@@ -151,7 +147,7 @@ export default function PetitionReply(){
 
                     if(response.data){
                         setPetitions(response.data);
-                        setTotPetition(response.data.length);
+                        setTotPetitionToReply(response.data.length);
                     }
 
                 }
@@ -185,7 +181,7 @@ export default function PetitionReply(){
                         </div>
 
 
-                        <div className='petitionsContainer' ref={containerRef}>
+                        <div className='petitionsContainer petitionsToReply' ref={containerRef}>
                             {petitions.map((petition, index) => (
                               
                                 <div className="onePetitionsCard"key={index} 

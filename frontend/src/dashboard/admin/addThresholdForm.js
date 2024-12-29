@@ -125,11 +125,8 @@ export default function AddThresholdForm(){
 
                         <div className="cookieMessage">
                             <span className="cookie">By adding threshold, you agree to change the threshold of all the open petitions.</span>
-                            {/* <span className="erroMessage uploadErroMessage">{message}</span> */}
                         </div>
 
-                        
-                        
                     </form>
 
                 </div>

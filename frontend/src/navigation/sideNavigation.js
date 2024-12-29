@@ -9,7 +9,7 @@ export default function SideNavigation (){
     
     const location = useLocation();
 
-    const {userDetail} = useContext(UserContext);
+    const {userDetail, totPetitionToReply} = useContext(UserContext);
 
     const [activeLink, setActiveLink] = useState('');
 
@@ -186,14 +186,23 @@ export default function SideNavigation (){
 
                         {/* REACH THRESHOLD  */}
                         <div className={`listStyle replyLink ${activeLink && activeLink !== 'reply' ? 'blurred' : ''}`}>
-                                <span className="icon replyIcon"></span>
-                                <Link 
-                                    to={'/reply'}
-                                    className={`link ${activeLink === 'reply' ? 'active' : ''}`}
-                                    onClick={() => handleLinkClick('reply')}
-                                >
-                                    <li className="linkName">Reply</li>
-                                </Link>
+                            <span className="icon replyIcon"></span>
+                            <Link 
+                                to={'/reply'}
+                                className={`link ${activeLink === 'reply' ? 'active' : ''}`}
+                                onClick={() => handleLinkClick('reply')}
+                            >
+                                <li className="linkName">Reply</li>
+                            </Link>
+
+                            {/* Display the circle with totPetition count */}
+                            {totPetitionToReply > 0 && (
+                                <div className="notificationCircle">
+                                    <span>{totPetitionToReply}</span>
+                                </div>
+                            )}
+
+
                         </div>
 
 

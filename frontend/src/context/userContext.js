@@ -18,6 +18,9 @@ export default function UserProvider(props){
 
     const [totPetition, setTotPetition] = useState(0);
 
+    const [totPetitionToReply, setTotPetitionToReply] = useState(0);
+
+
     const [loading, setLoading] = useState(true);
 
 
@@ -35,7 +38,20 @@ export default function UserProvider(props){
     
 
     return(
-        <UserContext.Provider value={{userDetail, setUserDetail, isLogged, setIsLogged, totPetition, setTotPetition, loading, setLoading, updateUserDetail}}>
+        <UserContext.Provider value={{
+            userDetail, 
+            setUserDetail, 
+            isLogged, 
+            setIsLogged, 
+            totPetition, 
+            setTotPetition, 
+            loading, 
+            setLoading, 
+            updateUserDetail,
+            totPetitionToReply, 
+            setTotPetitionToReply
+            }}
+            >
             {props.children}
         </UserContext.Provider>
     )
