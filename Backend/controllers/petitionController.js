@@ -1,7 +1,54 @@
 const Petition = require('../models/petitionModel');
 const User = require('../models/userModel');
 const multer = require('multer');
+const nodemailer = require('nodemailer');
 
+
+
+// Nodemailer functions
+const createTransporter = async () => {
+    return nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            user: process.env.EMAIL_USER,
+            pass: process.env.EMAIL_PASSWORD
+        },
+    });
+};
+
+const petitionClosure = async (email, response) => {
+    const transporter = await createTransporter();
+    const mailOptions = {
+        from: process.env.EMAIL_USER,
+        to: email,
+        subject: 'Petition Closed',
+        html: `
+            <p>Hi!</p>
+
+            <p>
+                We wanted to inform you that your petition has been successfully closed. Thank you for your participation! 
+                We also want to let you know that a reply has been received regarding your petition. You can review the response below or by logging to your account.
+            </p>
+
+            <p  style="font-style: italic; padding: 10px 20px; text-decoration: none; border-radius: 5px;">
+                ${response}
+            </p>
+
+            <p>
+                If you did not initiate this action or have any concerns, please contact our support team for assistance.
+            </p>
+
+            <p>
+                Best wishes,<br><strong>The Petition Website Team</strong>
+            </p>
+            <br>
+
+               
+        `,
+    };    
+  
+    return transporter.sendMail(mailOptions);
+};
 
 // Get All Petitions --> /api/slpp/petitions
 
@@ -54,7 +101,6 @@ exports.getAllPetitions = async (req, res, next) => {
         next(err);
     }
 };
-
 
 //Add Image Helper
 
@@ -266,40 +312,54 @@ exports.setThreshold = async(req, res, next)=>{
 
 exports.respondPetition = async(req, res)=>{
 
-    const userId = req.user.id;
+    try{
 
-    const petitionId = req.params.petitionId;
+        const userId = req.user.id;
 
-    const response = req.body.response;
+        const petitionId = req.params.petitionId;
 
-    const user = await User.findById(userId);
+        const response = req.body.response;
 
-    const petition = await Petition.findById(petitionId);
+        const user = await User.findById(userId);
 
-    if(user.role === 'petitioner'){
+        const petition = await Petition.findById(petitionId);
 
-        return res.status(401).json({
-             status: 'Fail',
-             message: 'You do not have permissions to perform this task!'
-        });
-    }
+        if(user.role === 'petitioner'){
+
+            return res.status(401).json({
+                status: 'Fail',
+                message: 'You do not have permissions to perform this task!'
+            });
+        }
 
 
-    // signs total < threshold and there is a response ? Throw error
-    if(petition.response){
+        // signs total < threshold and there is a response ? Throw error
+        if(petition.response){
+            
+            return res.status(400).json({
+                staus: 'Fail',
+                message: 'Respose already added !!'
+            });
+        }
+
+        await petition.updateOne({$set: {response, status: 'closed'}}, {new: true});
+
+        const userPetition = await Petition.findById(petitionId).populate('petitioner', 'email');
+        const email = userPetition.petitioner.email;
+
+        const petitionLink = `http://localhost:3000/myPetitions`;
+
+        await petitionClosure(email, userPetition.response);
+
         
-        return res.status(400).json({
-            staus: 'Fail',
-            message: 'Respose already added !!'
+
+        res.status(200).json({
+            status: 'Success',
+            message: 'Response added successfully'    
         });
+    }catch(err){
+        console.log(err.message);
     }
-
-    await petition.updateOne({$set: {response, status: 'closed'}}, {new: true});
-
-    res.status(200).json({
-        status: 'Success',
-        message: 'Response added successfully'    
-    });
 
 }
 

@@ -211,7 +211,8 @@ exports.login = async(req, res, next)=>{
             username: user.username,
             fullName: user.fullName,
             signedPetitions: user.signedPetitions,
-            createdPetitions: user.createdPetitions
+            createdPetitions: user.createdPetitions,
+            role: user.role
         }
     });
 
