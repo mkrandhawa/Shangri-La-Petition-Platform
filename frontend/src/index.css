@@ -790,9 +790,15 @@ header{
 }
 
 .response{
-  font-family: 'Roboto', sans-serif;
-  font-size: 1.1rem;
   font-style: italic;
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  font-style: italic;
+  overflow: visible;
+  overflow-x: scroll;
+  max-height: 100px;
+  padding: 10px;
+  width: 70%
 }
 
 .title{
@@ -1109,7 +1115,7 @@ header{
 .petitionDescription{
   overflow: visible;
   overflow-x: scroll;
-  height: 200px;
+  max-height: 200px;
   width: 400px;
 }
 

@@ -26,8 +26,12 @@ export default function Header (){
 
                 if(response.status==='Success'){
                     alert(response.message);
+                    
 
-                    setTimeout(() => { setIsLogged(false); }, 500);
+                    setTimeout(() => { 
+                        setIsLogged(false); 
+                        
+                    }, 500);
                     
 
                     
@@ -67,19 +71,24 @@ export default function Header (){
                             </li>
                         </Link>
 
-                        {userDetail.role === 'petitioner' ? (
+                        {userDetail.role === 'petitioner' && 
                             <Link to={'/dashboard'}  className='link'>
                                 <li>
                                     Dashboard
                                 </li>
                             </Link>
-                        ):(
+                        
+                        }
+
+                        {userDetail.role === 'admin' && 
                             <Link to={'/adminDashboard'}  className='link'>
                                 <li>
                                     Dashboard
                                 </li>
                             </Link>
-                        )}
+                        
+                        }
+                            
                         
 
                         <Link to={'/'}  className='link'>

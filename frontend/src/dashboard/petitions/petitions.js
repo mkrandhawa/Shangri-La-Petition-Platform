@@ -11,7 +11,7 @@ export default function Petition() {
 
     const [petitions, setPetitions] = useState([]);
 
-    const { totPetition, setTotPetition } = useContext(UserContext);
+    const { userDetail, totPetition, setTotPetition } = useContext(UserContext);
 
     const [message, setMessage] = useState('');
 
@@ -196,7 +196,7 @@ export default function Petition() {
                                         }
 
                                         {/* Sign Button */}
-                                        {petition.status==='open' && 
+                                        {petition.status==='open' && userDetail.role === 'petitioner' && 
                                             <>
                                                 <div className='details signButton'>
                                                 

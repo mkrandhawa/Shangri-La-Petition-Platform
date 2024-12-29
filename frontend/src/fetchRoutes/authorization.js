@@ -4,7 +4,8 @@ import { getData } from "../fetchRoutes/getData";
 
 export default function AuthCheck() {
     const url = process.env.REACT_APP_AUTHORIZE_URL;
-    const { setUserDetail, setIsLogged, setLoading } = useContext(UserContext); 
+    const { setUserDetail, setIsLogged, setLoading, setTotPetitionToReply } = useContext(UserContext); 
+    const thresholdUrl = process.env.REACT_APP_REACHED_THRESHOLD;
 
     useEffect(() => {
         const checkAuth = async () => {
@@ -35,5 +36,26 @@ export default function AuthCheck() {
         checkAuth();
     }, [setUserDetail, setIsLogged, setLoading, url]);
 
-    return null; //
+
+    //Fetch petitions that reached the threshold
+    useEffect(() => {
+        const fetchPetitions = async () => {
+            if (!url) return;
+            try {
+                const response = await getData(thresholdUrl);
+                if (response.status === 'Success') {
+
+                    if(response.data){
+                        setTotPetitionToReply(response.data.length);
+                    }
+
+                }
+            } catch (err) {
+                console.error('Error fetching petitions:', err);
+            } 
+        };
+        fetchPetitions();
+    },[thresholdUrl, setTotPetitionToReply]);
+
+    return null; 
 }

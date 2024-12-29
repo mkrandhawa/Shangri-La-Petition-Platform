@@ -40,11 +40,12 @@ export default function LoginForm(){
                 const response = await postData(url, user);
                 // Password and email correct --> Send the user to the Open Petitions page
                 if(response.status ==='Success'){
-                    await setUserDetail({
+                    setUserDetail({
                         fullName: response.data.fullName,
                         email: response.data.email,
                         signedPetitions: response.data.signedPetitions,
-                        createdPetitions: response.data.createdPetitions
+                        createdPetitions: response.data.createdPetitions,
+                        role: response.data.role
                     });
                     
                     navigate('/');
