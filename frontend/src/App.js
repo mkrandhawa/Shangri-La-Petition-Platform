@@ -27,7 +27,7 @@ export default function App() {
             {/* Dashborad Routes */}
             <Route exact path='/dashboard' element={<UserDashboardPage />} />
 
-            <Route exact path='/petitions' element={<UserDashboardPage />} />
+            <Route exact path='/slpp/petitions' element={<UserDashboardPage />} />
 
             <Route exact path='/addPetition' element={<UserDashboardPage />} />
 
@@ -37,7 +37,7 @@ export default function App() {
 
             <Route exact path='/adminDashboard' element={<AdminDashboardPage />} />
 
-            <Route exact path='/petitions' element={<AdminDashboardPage />} />
+            <Route exact path='/slpp/petitions' element={<AdminDashboardPage />} />
 
             <Route exact path='/reply' element={<AdminDashboardPage />} />
 

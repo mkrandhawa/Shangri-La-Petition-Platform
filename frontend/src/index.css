@@ -100,6 +100,75 @@ header{
 
 }
 
+/* Mobile Navigation */
+.humburger{
+  width: 100px;
+  height: 80px;
+  font-size: 1.5rem;
+  background: none;
+  color: black;
+  align-self: center;
+  justify-self: end;
+  margin-left: 4rem;
+}
+
+.closedMenu{
+  width: 100px;
+  height: 80px;
+  font-size: 2rem;
+  background: none;
+  color: black;
+  align-self: center;
+  justify-self: end;
+  margin-left: 4rem;
+
+}
+
+.menu {
+  position: absolute;
+  top: 71px;
+  left: 19rem;
+  width: 30%;
+  height: 140px;
+  background-color: rgb(249, 251, 249);
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 10px 0;
+  box-shadow:2px 4px 6px rgba(0,0,0,0.3)
+  
+}
+
+.menu.open {
+  display: block;
+  
+}
+
+.menu ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.menu ul li {
+  padding: 10px 20px;
+  cursor: pointer;
+  text-align: center;
+  font-family: 'MontSerrat';
+}
+
+.menu ul li:hover {
+  background-color: #f0f0f0;
+}
+
+.link li{
+  color: black;
+}
+
+
+
 /* Side Navigation Styles */
 
 .sideNavigation{
@@ -216,6 +285,7 @@ header{
 .active {
   font-weight: bold;
 }
+
 .petitionsIcon{
   background-image: url('../public/images/petitionsIcon.svg');
 
@@ -237,6 +307,7 @@ header{
 .navigationContent{
   position: relative;
 }
+
 .navigationContent .submenu {
   position: absolute;
   display: none;
@@ -293,9 +364,6 @@ header{
   justify-content: center;
   align-items: center;
 }
-
-
-
 
 
 /* Home Page Styles */
@@ -704,6 +772,8 @@ header{
 .myEmail{
   width: 50px;
 }
+
+
 /* Dashboard Page */
 .dashboardPage{
   position: relative;
@@ -816,6 +886,7 @@ header{
   gap:4px;
 
 }
+
 .myName, .myEmail, .myAge{
   font-family: 'Montserrat';
   font-size: 1.2rem;
@@ -844,6 +915,7 @@ header{
   font-family: 'Montserrat', sans-serif;
 
 }
+
 .role::first-letter{
   text-transform: capitalize;
 }
@@ -1626,30 +1698,6 @@ header{
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* Footer Styles */
 
 footer{
@@ -1670,3 +1718,175 @@ h1{
 
   height: 500px;
 }
+
+
+/* 
+*
+* Responsive design media queries
+*
+*/
+
+/* Main Navigation Media Query */
+
+/* Medium to Large Screens */
+@media (max-width: 1200px) {
+  header {
+    gap: 10rem;
+  }
+
+  .companyName {
+    font-size: 1.5rem;
+  }
+
+  .navigation ul li {
+    font-size: 1.4rem;
+  }
+}
+
+/* Tablets and Smaller Desktops */
+@media (max-width: 992px) {
+  header {
+    gap: 5rem;
+  }
+
+  .companyName {
+    font-size: 1.4rem;
+  }
+
+  .navigation ul {
+    gap: 10px;
+  }
+
+  .navigation ul li {
+    font-size: 1.2rem;
+    margin-right: 15px;
+  }
+}
+
+/* Mobile Devices */
+@media (max-width: 768px) {
+  header {
+    height: 70px;
+    gap: 3rem;
+  }
+
+  .logo {
+    width: 30px;
+    height: 30px;
+    margin-right: 1.5rem;
+  }
+
+  .companyName {
+    font-size: 1.3rem;
+  }
+
+  .navigation ul {
+    display: none; /* Hide menu by default on mobile */
+    flex-direction: column;
+    align-items: flex-start;
+    position: absolute;
+    top: 80px;
+    left: 0;
+    width: 100%;
+    background-color: rgb(249, 251, 249);
+    padding: 10px;
+    z-index: 999;
+  }
+
+  .navigation ul li {
+    font-size: 1.3rem;
+    margin-right: 0;
+    padding: 10px;
+  }
+
+  .navigation.active ul {
+    display: flex; /* Show menu when active */
+  }
+
+  .userName {
+    max-width: 80px;
+  }
+}
+
+/* Very Small Screens */
+@media (max-width: 576px) {
+  header {
+    height: 60px;
+    gap: 1rem;
+  }
+
+  .companyName {
+    font-size: 1.2rem;
+  }
+
+  .navigation ul li {
+    font-size: 1.1rem;
+    margin-right: 10px;
+  }
+}
+
+
+/* Home page Media Query */
+@media (min-width: 1024px) {
+  .homePage {
+    height: 768px; 
+    padding-top: 80px; 
+  }
+
+  .mainName {
+    font-size: 5rem;
+  }
+
+  .nameSlogan {
+    font-size: 1.7rem; 
+  }
+}
+
+@media (max-width: 768px) {
+  .homePage {
+    height: 650px; 
+    padding-top: 70px; 
+  }
+
+  .mainName {
+    font-size: 4rem; 
+  }
+
+  .nameSlogan {
+    font-size: 1.5rem;
+  }
+}
+
+
+@media (max-width: 480px) {
+  .homePage {
+    height: 620px; 
+    padding-top: 80px; 
+    width: 100%;
+    background-attachment: fixed; 
+    z-index: 1;
+  }
+
+  .mainName {
+    font-size: 2.7rem; 
+  }
+
+  .nameSlogan {
+    font-size: 1rem; 
+  }
+}
+
+
+/* Login Page Media Query */
+
+
+/* Sign Up Page Media Query */
+
+
+/* User dashboard Media Query */
+
+
+/* Petitions Media Query */
+
+
+/* Admin Dashboard  */

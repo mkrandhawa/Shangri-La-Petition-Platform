@@ -38,7 +38,7 @@ export default function AnalysisDashboard(){
 
                 <div className="subContainer signatureChart ">
                     <span className="mainName welcomeText">Welcome to Your Dashboard</span>
-                    <span className="nameSlogan welcomeSlogan">Your data at a glance, insights just a swipe away."</span>
+                    <span className="nameSlogan welcomeSlogan">Your data at a glance, insights just a swipe away.</span>
                    
 
                 </div>

@@ -28,7 +28,7 @@ export default function Dashboard() {
                 <div className="dashboardContent">
 
                     {pathname==='/dashboard' && <UserDetails />}
-                    {pathname==='/petitions' && <Petition />}
+                    {pathname==='/slpp/petitions' && <Petition />}
                     {pathname==='/addPetition' && <AddPetition />}
                     {pathname==='/myPetitions' && <MyPetitions />}
 

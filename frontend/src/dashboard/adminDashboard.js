@@ -29,7 +29,7 @@ export default function AdminDashboard() {
                 <div className="dashboardContent">
 
                     {pathname==='/adminDashboard' && <AnalysisDashboard />}
-                    {pathname==='/petitions' && <Petition />}
+                    {pathname==='/slpp/petitions' && <Petition />}
                     {pathname==='/reply' && <PetitionReply />}
                     {pathname==='/setThreshold' && <AddThreshold />}
 

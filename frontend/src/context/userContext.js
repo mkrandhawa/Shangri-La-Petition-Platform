@@ -20,8 +20,13 @@ export default function UserProvider(props){
 
     const [totPetitionToReply, setTotPetitionToReply] = useState(0);
 
-
     const [loading, setLoading] = useState(true);
+
+    const[isTouched, setIsTouched] = useState(false);
+
+    const handleTouch = () => {
+        setIsTouched(prev => !prev);
+    };
 
 
     const updateUserDetail = (newDetail) => {
@@ -49,7 +54,11 @@ export default function UserProvider(props){
             setLoading, 
             updateUserDetail,
             totPetitionToReply, 
-            setTotPetitionToReply
+            setTotPetitionToReply,
+            isTouched,
+            setIsTouched,
+            handleTouch
+
             }}
             >
             {props.children}

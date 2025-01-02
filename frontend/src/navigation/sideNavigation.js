@@ -86,17 +86,17 @@ export default function SideNavigation (){
                             {showSubmenu && (
                                 <ul className="submenu">
                                     <li>
-                                        <Link to="/petitions?status=open" className="submenu-item">
+                                        <Link to="/slpp/petitions?status=open" className="submenu-item">
                                             Open 
                                         </Link>
                                     </li>
                                     <li>
-                                        <Link to="/petitions?status=closed" className="submenu-item">
+                                        <Link to="/slpp/petitions?status=closed" className="submenu-item">
                                             Closed 
                                         </Link>
                                     </li>
                                     <li>
-                                        <Link to="/petitions" className="submenu-item">
+                                        <Link to="/slpp/petitions" className="submenu-item">
                                             All
                                         </Link>
                                     </li>
@@ -164,17 +164,17 @@ export default function SideNavigation (){
                             {showSubmenu && (
                                 <ul className="submenu">
                                     <li>
-                                        <Link to="/petitions?status=open" className="submenu-item">
+                                        <Link to="/slpp/petitions?status=open" className="submenu-item">
                                             Open 
                                         </Link>
                                     </li>
                                     <li>
-                                        <Link to="/petitions?status=closed" className="submenu-item">
+                                        <Link to="/slpp/petitions?status=closed" className="submenu-item">
                                             Closed 
                                         </Link>
                                     </li>
                                     <li>
-                                        <Link to="/petitions" className="submenu-item">
+                                        <Link to="/slpp/petitions" className="submenu-item">
                                             All
                                         </Link>
                                     </li>
