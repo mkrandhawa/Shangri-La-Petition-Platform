@@ -6,7 +6,7 @@ export default function AddPetition(){
 
 
     return(
-        <div className="myPetitionPage">
+        <div className="myPetitionPage addMyPetitionPage">
             <AddPetitionForm />
         </div>
     )

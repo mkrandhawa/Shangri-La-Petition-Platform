@@ -15,7 +15,6 @@ export default function MobileNavigationHeader() {
     const [isOpen, setIsOpen] = useState(false);
     const [isClicked, setIsClicked] = useState(false);
     const [activeLink, setActiveLink] = useState('');
-    const [showSubmenu, setShowSubmenu] = useState(false);
 
 
     const handleLogout = async () => {
@@ -43,21 +42,18 @@ export default function MobileNavigationHeader() {
     };
 
     const handleLinkClick = (linkName) => {
-
-        setActiveLink(linkName);
-
-        setIsOpen(false); 
-
-        setIsClicked(false); 
         
-        if (linkName === 'petitions' || linkName === 'slpp/petitions') {
-            setShowSubmenu(!showSubmenu); // Toggle submenu visibility
-        } else {
-            setShowSubmenu(false); // Hide submenu if another link is clicked
-        }
+        setActiveLink(linkName);
+    
+        
+       
+        setIsOpen(false);
+        setIsClicked(false);
+        
+    
         localStorage.setItem('activeLink', linkName);
     };
-
+    
     useEffect(() => {
         const savedActiveLink = location.pathname.substring(1); 
 
@@ -84,7 +80,7 @@ export default function MobileNavigationHeader() {
 
             {isOpen && (
 
-                <div className={`menu ${isOpen ? 'open' : ''}`}>
+                <div className={`${isLogged ? 'menu' : 'notLogged open'} ${isOpen ? 'menu open': ''}`}>
                     <ul>
 
                         {!isLogged &&  
@@ -128,35 +124,38 @@ export default function MobileNavigationHeader() {
                                             </div>
                     
                                             {/* Petitions  */}
-                                            <div className="listStyle petitionsDashboard resMobileLink">
+                                            <div className="listStyle petitionsDashboard resMobileLink ">
                                                 <span className="icon petitionsIcon resIcon"></span>
                                                 <Link 
+                                                    to={'/slpp/petitions'}
                                                     className={`link ${activeLink === 'petitions'  || activeLink === 'slpp/petitions' ? 'active' : ''}`}
                                                     onClick={() => handleLinkClick('petitions')}
                                                 >
-                                                    <li>Petitions</li>
+                                                    <li>All Petitions</li>
                                                 </Link>
-                    
-                                                {/* Submenu */}
-                                                {showSubmenu && (
-                                                    <ul className="submenu">
-                                                        <li>
-                                                            <Link to="/slpp/petitions?status=open" className="submenu-item">
-                                                                Open 
-                                                            </Link>
-                                                        </li>
-                                                        <li>
-                                                            <Link to="/slpp/petitions?status=closed" className="submenu-item">
-                                                                Closed 
-                                                            </Link>
-                                                        </li>
-                                                        <li>
-                                                            <Link to="/slpp/petitions" className="submenu-item">
-                                                                All
-                                                            </Link>
-                                                        </li>
-                                                    </ul>
-                                                )}
+                                            </div>
+                                            <div className="listStyle petitionsDashboard resMobileLink ">
+                                                <span className="icon openPetitionsIcon resIcon"></span>
+                                                <Link 
+                                                    to="/slpp/petitions?status=open"
+                                                    className={`link ${activeLink === 'open'  || activeLink === 'open' ? 'active' : ''}`}
+                                                    onClick={() => handleLinkClick('open')}
+                                                >
+                                                    <li>Open Petitions</li>
+                                                </Link>
+                                            </div>
+
+                                            <div className="listStyle petitionsDashboard resMobileLink ">
+                                                <span className="icon closedPetitionIcon resIcon"></span>
+
+                                                <Link 
+                                                    to="/slpp/petitions?status=closed"
+                                                    className={`link ${activeLink === 'closed'  || activeLink === 'closed' ? 'active' : ''}`}
+                                                    onClick={() => handleLinkClick('closed')}
+                                                >
+                                                    <li>Closed Petitions</li>
+                                                </Link>
+                                                
                                             </div>
                     
                                             {/* Add Petitions */}
@@ -187,18 +186,109 @@ export default function MobileNavigationHeader() {
 
                                     
                                 )}
-        
+
+                                {/* Add petition */}
                                 {userDetail.role === 'admin' && (
                                     <>
-                                        <Link to={'/adminDashboard'} className='link' onClick={() => handleMenu('/adminDashboard')}>
-                                            <li>Dashboard</li>
-                                        </Link>
-                                                
-                                        
+                                        <section className='sideSection'>
+                                            <div className="listStyle userDashboard resMobileLink">
+                                                <span className="icon homeIcon resIcon"></span>
+                                                <Link 
+                                                    to={'/'}  
+                                                    className={`link ${activeLink === '' ? 'active' : ''}`}
+                                                    onClick={() => handleLinkClick('')}
+                                                >
+                                                    <li>
+                                                        Home
+                                                    </li>
+                                                </Link>
+                                            </div>
+                                            
+                                            <div className="listStyle  userDashboard resMobileLink">
+                                                <span className="icon userIcon resIcon"></span>
+                                                <Link 
+                                                    to={'/adminDashboard'}  
+                                                    className={`link ${activeLink === 'dashboard' ? 'active' : ''}`}
+                                                    onClick={() => {handleMenu('/adminDashboard'); handleLinkClick('dashboard')}}
+                                                >
+                                                    <li>
+                                                        Dashboard
+                                                    </li>
+                                                </Link>
+                                            </div>
+                    
+                                             {/* Petitions  */}
+                                             <div className="listStyle petitionsDashboard resMobileLink ">
+                                                <span className="icon petitionsIcon resIcon"></span>
+                                                <Link 
+                                                    to={'/slpp/petitions'}
+                                                    className={`link ${activeLink === 'petitions'  || activeLink === 'slpp/petitions' ? 'active' : ''}`}
+                                                    onClick={() => handleLinkClick('petitions')}
+                                                >
+                                                    <li>All Petitions</li>
+                                                </Link>
+                                            </div>
+                                            <div className="listStyle petitionsDashboard resMobileLink ">
+                                                <span className="icon openPetitionsIcon resIcon"></span>
+                                                <Link 
+                                                    to="/slpp/petitions?status=open"
+                                                    className={`link ${activeLink === 'open'  || activeLink === 'open' ? 'active' : ''}`}
+                                                    onClick={() => handleLinkClick('open')}
+                                                >
+                                                    <li>Open Petitions</li>
+                                                </Link>
+                                            </div>
 
+                                            <div className="listStyle petitionsDashboard resMobileLink ">
+                                                <span className="icon closedPetitionIcon resIcon"></span>
+
+                                                <Link 
+                                                    to="/slpp/petitions?status=closed"
+                                                    className={`link ${activeLink === 'closed'  || activeLink === 'closed' ? 'active' : ''}`}
+                                                    onClick={() => handleLinkClick('closed')}
+                                                >
+                                                    <li>Closed Petitions</li>
+                                                </Link>
+                                                
+                                            </div>
+                                            {/* REACH THRESHOLD  */}
+                                            <div className="listStyle replyLink resMobileLink">
+                                                <span className="icon replyIcon resIcon"></span>
+                                                <Link 
+                                                    to={'/reply'}
+                                                    className={`link ${activeLink === 'reply' ? 'active' : ''}`}
+                                                    onClick={() => handleLinkClick('reply')}
+                                                >
+                                                    <li className="linkName">Reply</li>
+                                                </Link>
+                    
+                                                {/* Display the circle with totPetition count */}
+                                                {totPetitionToReply > 0 && (
+                                                    <div className="notificationCircle">
+                                                        <span>{totPetitionToReply}</span>
+                                                    </div>
+                                                )}
+                    
+                    
+                                            </div>
+                                            {/* SET THRESHOLD  */}
+                                                <div className="listStyle addThreshold resMobileLink">
+                                                        <span className="icon thresholdIcon resIcon"></span>
+                                                        <Link 
+                                                            to={'/setThreshold'}
+                                                            className={`link ${activeLink === 'setThreshold' ? 'active' : ''}`}
+                                                            onClick={() => handleLinkClick('setThreshold')}
+                                                        >
+                                                            <li className="linkName">Add Threshold</li>
+                                                        </Link>
+                                                </div>
+
+                                            
+                                        </section>
                                     </>
                                     
                                 )}
+
                                 <div className="listStyle logout resMobileLink">
                                     <span className="icon logoutIcon resIcon"></span>
                                     <Link to={'/'} className='link'>

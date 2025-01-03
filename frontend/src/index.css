@@ -110,6 +110,7 @@ header{
   align-self: center;
   justify-self: end;
   margin-left: 4rem;
+  border: none;
 }
 
 .closedMenu{
@@ -121,6 +122,7 @@ header{
   align-self: center;
   justify-self: end;
   margin-left: 4rem;
+  border: none;
 
 }
 
@@ -160,6 +162,43 @@ header{
   justify-content: space-between;
   height: 100%;
   flex-direction: column;
+
+}
+
+.notLogged{
+  position: absolute;
+  top: 71px;
+  background-color: rgb(249, 251, 249);
+  z-index: 999;
+  height: auto;
+  left: 16rem;
+  font-size: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 0;
+  box-shadow:2px 4px 6px rgba(0,0,0,0.3);
+  transform: translateX(-100%);
+  gap: 10px;
+}
+
+.notLogged ul{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50%;
+  flex-direction: column;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+
+
+}
+
+.notLogged.open{
+  display: block;
+  animation: slide 0.25s ease forwards;
 }
 
 .menu ul li {
@@ -171,6 +210,11 @@ header{
   width: 150px;
 
 
+}
+
+
+.notLogged ul li{
+  font-size: 1.2rem;
 }
 
 @keyframes slide {
@@ -1896,6 +1940,19 @@ h1{
 
   }
 
+  .notificationCircle{
+    right: 20px;
+
+  }
+
+  .closedPetitionIcon{
+    background-image: url('../public/images/closedPetitionsIcon.svg');
+
+  }
+
+  .openPetitionsIcon{
+    background-image: url('../public/images/openPetitionsIcon.svg');
+  }
 
 }
 
@@ -2243,30 +2300,114 @@ h1{
 }
 
 
-/* 
-*
-* Side Menu 
-*
-*/
-
-
-
-
-
 
 /*
 *
 * User dashboard Media Query 
 *
 */
+@media(max-width: 576px){
+  
+  .myPetitionsCard{
+    flex-direction: column;
+    height: 100%;
 
+  }
 
+  .petitionImage{
+    height: 150px;
+    width: 150px;
 
-/* 
-*
-* Petitions Media Query 
-*
-*/
+  }
+
+  .petitionImageContainer{
+    width: 150px;
+    height: 150px;
+
+  }
+
+  .details{
+    margin-left: 20px;
+
+  }
+
+  .myDescription{
+    width: 370px;
+
+  }
+
+  .responseMyPetition{
+    font-size: 1.1rem;
+
+  }
+
+  .response{
+    width: 75%;
+    margin-right: 10px;
+
+  }
+
+  .formWithImageUploader{
+    flex-direction: column;
+
+  }
+
+  .addMyPetitionPage{
+    width: 95%;
+
+  }
+
+  .addPetition{
+    width: 90%;
+    overflow-x: hidden;
+    margin-top: -6.7rem;
+
+  }
+
+  .imageViewWindow{
+    margin-right: 10px;
+
+  }
+
+  .form-section{
+    margin-top: 0rem;
+    height: 330px;
+    width: 330px;
+
+  }
+
+  .addPetitionFormContainer{
+    margin-left: -20px;
+  
+  }
+
+  .addPetitionButton{
+    margin-left: 0px;
+  }
+
+  .signPetitionButton{
+    margin-left: -10px;
+    width: 350px;
+  
+  }
+
+  .userDetailsCard{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 3rem;
+    height: auto;
+    margin-top: 2rem;
+
+  }
+
+  .myPetitionDetailCard{
+    padding: 10px;
+
+  }
+
+}
 
 
 /*
@@ -2274,3 +2415,102 @@ h1{
 * Admin Dashboard  
 *
 */
+
+@media (max-width: 576px) {
+
+  .addThresholdPage{
+    padding-top: 0rem;
+
+  }
+
+  .dashboardContent{
+    width: 98%;
+    left: 0;
+    height: 88vh;
+    margin-top: 0px;
+    position: relative;
+    padding: 0px;
+    overflow-x: hidden;
+
+  }
+  .welcomeText{
+    text-align: center;
+
+  }
+
+  .wordCloud{
+    height: max-content;
+
+  }
+
+  .allPetitionsDetails{
+    width: 85%;
+
+  }
+
+  .petitionTitle{
+    width: 350px;
+    font-size: 1.3rem;
+
+  }
+
+  .replyPetitionDescription{
+    width: 98%;
+
+  }
+
+  .replyForm{
+    padding: 10px;
+    text-align: center;
+
+  }
+
+  .addReply{
+    height: 150px;
+  }
+
+  .addReplyButton{
+    margin-top: -1rem;
+    margin-bottom: 3rem;
+    margin-left: 0px;
+
+  }
+
+  .message{
+    margin-top: 2rem;
+
+  }
+
+  .rightArrow, .leftArrow{
+    background: none;
+    top: 50%;
+
+  }
+
+  .petitionDescription{
+    width: 350px;
+    
+  }
+
+  .petitionTitle{
+    font-size: 1.2rem;
+
+  }
+
+  .onePetitionsCard{
+    height: 88vh;
+    border-radius: 0px;
+
+  }
+
+  .details{
+    height: 200px;
+    justify-content: space-between;
+
+  }
+
+  .setThreshold{
+    height: auto;
+
+  }
+}

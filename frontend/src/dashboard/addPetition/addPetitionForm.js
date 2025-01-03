@@ -244,7 +244,7 @@ export default function AddPetitionForm(){
                             </section>
 
                             {/* Submit button */}
-                            <button className="loginButton signUpButton" type="submit">
+                            <button className="loginButton signUpButton addPetitionButton" type="submit">
                                 Add Petition
                             </button>
 
