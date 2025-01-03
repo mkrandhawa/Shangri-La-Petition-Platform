@@ -22,7 +22,9 @@ export default function SideNavigation (){
 
     const handleLinkClick = (linkName) => {
         setActiveLink(linkName);
-        if (linkName === 'petitions') {
+        console.log(activeLink)
+        console.log(linkName)
+        if (linkName === 'petitions' || linkName === 'slpp/petitions') {
             setShowSubmenu(!showSubmenu); // Toggle submenu visibility
         } else {
             setShowSubmenu(false); // Hide submenu if another link is clicked
@@ -32,7 +34,10 @@ export default function SideNavigation (){
 
     useEffect(() => {
         const savedActiveLink = location.pathname.substring(1); 
+
         setActiveLink(savedActiveLink);
+
+       
     }, [location.pathname]);
 
 
@@ -73,13 +78,13 @@ export default function SideNavigation (){
                         </div>
 
                         {/* Petitions  */}
-                        <div className={`listStyle petitionsDashboard ${activeLink && activeLink !== 'petitions' ? 'blurred' : ''}`}>
+                        <div className={`listStyle petitionsDashboard ${activeLink && activeLink !== 'petitions'  && activeLink !== 'slpp/petitions'? 'blurred' : ''}`}>
                             <span className="icon petitionsIcon"></span>
                             <Link 
-                                className={`link ${activeLink === 'petitions' ? 'active' : ''}`}
+                                className={`link ${activeLink === 'petitions'  || activeLink === 'slpp/petitions' ? 'active' : ''}`}
                                 onClick={() => handleLinkClick('petitions')}
                             >
-                                <li className="linkName">Petitions</li>
+                                <li className="linkName linkNamePetition">Petitions</li>
                             </Link>
 
                             {/* Submenu */}

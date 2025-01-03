@@ -1,11 +1,15 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../context/userContext";
 import { getData } from "../fetchRoutes/getData";  
 
 export default function AuthCheck() {
+
     const url = process.env.REACT_APP_AUTHORIZE_URL;
-    const { setUserDetail, setIsLogged, setLoading, setTotPetitionToReply } = useContext(UserContext); 
     const thresholdUrl = process.env.REACT_APP_REACHED_THRESHOLD;
+    
+    const { userDetail, setUserDetail, setIsLogged, setLoading, setTotPetitionToReply } = useContext(UserContext); 
+    const [isPetitioner, setIsPetitioner] = useState(true);
+
 
     useEffect(() => {
         const checkAuth = async () => {
@@ -25,6 +29,12 @@ export default function AuthCheck() {
                     });
                     
                     setIsLogged(true);
+
+                    if(userDetail.role === 'admin'){
+
+                        setIsPetitioner(false);
+                    }
+                    
                 }
             } catch (err) {
                 console.error('Error checking auth:', err);
@@ -34,13 +44,16 @@ export default function AuthCheck() {
         };
 
         checkAuth();
-    }, [setUserDetail, setIsLogged, setLoading, url]);
+    }, [setUserDetail, setIsLogged, setLoading, url, userDetail.role, isPetitioner]);
 
 
     //Fetch petitions that reached the threshold
     useEffect(() => {
         const fetchPetitions = async () => {
             if (!url) return;
+            
+            if(isPetitioner === true) return;
+
             try {
                 const response = await getData(thresholdUrl);
                 if (response.status === 'Success') {
@@ -55,7 +68,7 @@ export default function AuthCheck() {
             } 
         };
         fetchPetitions();
-    },[thresholdUrl, setTotPetitionToReply]);
+    },[thresholdUrl, setTotPetitionToReply, isPetitioner, url]);
 
     return null; 
 }

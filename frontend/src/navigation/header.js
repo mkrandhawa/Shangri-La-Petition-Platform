@@ -3,7 +3,7 @@ import React, { useContext, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from "../context/userContext";
 import { postData } from "../fetchRoutes/postData";
-import MobileNavigation from './mobileNavigation';
+import MobileNavigationHeader from './mobileNavigationHeader';
 import Navigation from './navigation'; // Import Navigation component
 
 export default function Header() {
@@ -54,7 +54,7 @@ export default function Header() {
                     <span className='companyName'>Shangri-La Petitions</span>
                 </div>
             </div>
-            {isMobile && <MobileNavigation />}  {/* Show mobile navigation if on mobile */}
+            {isMobile && <MobileNavigationHeader />}  {/* Show mobile navigation if on mobile */}
             {/* Main Navigation */}
             <Navigation 
                 isLogged={isLogged} 

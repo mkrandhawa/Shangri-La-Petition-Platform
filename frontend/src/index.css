@@ -127,9 +127,9 @@ header{
 .menu {
   position: absolute;
   top: 71px;
-  left: 19rem;
-  width: 30%;
-  height: 140px;
+  height: 88vh;
+  width: 60%;
+  left: 10rem;
   background-color: rgb(249, 251, 249);
   z-index: 999;
   display: flex;
@@ -137,12 +137,17 @@ header{
   align-items: center;
   justify-content: flex-start;
   padding: 10px 0;
-  box-shadow:2px 4px 6px rgba(0,0,0,0.3)
+  box-shadow:2px 4px 6px rgba(0,0,0,0.3);
+  transform: translateX(-100%);
+  
+
   
 }
 
 .menu.open {
   display: block;
+  animation: slide 0.25s ease forwards;
+  
   
 }
 
@@ -150,13 +155,46 @@ header{
   list-style-type: none;
   margin: 0;
   padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  flex-direction: column;
 }
 
 .menu ul li {
   padding: 10px 20px;
   cursor: pointer;
-  text-align: center;
+  text-align: left;
   font-family: 'MontSerrat';
+  font-size: 1.3rem;
+  width: 150px;
+
+
+}
+
+@keyframes slide {
+
+  0% {
+    transform: translateX(100%);
+  }
+
+  25% {
+    transform: translateX(75%);
+  }
+
+  50%{
+    transform: translateX(50%);
+  }
+
+  75%{
+    transform: translateX(25%);
+  }
+
+  100% {
+    transform: translateX(0%);
+  }
+  
 }
 
 .menu ul li:hover {
@@ -165,6 +203,17 @@ header{
 
 .link li{
   color: black;
+}
+
+
+.resMobileLink{
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
 }
 
 
@@ -308,7 +357,7 @@ header{
   position: relative;
 }
 
-.navigationContent .submenu {
+.petitionsDashboard .submenu {
   position: absolute;
   display: none;
   top: 40%;
@@ -346,7 +395,7 @@ header{
 }
 
 /* Display submenu on hover */
-.navigationContent:hover .submenu {
+.petitionsDashboard:hover .submenu {
   display: block; /* Show submenu when hovering over parent */
 
 }
@@ -1726,22 +1775,11 @@ h1{
 *
 */
 
-/* Main Navigation Media Query */
-
-/* Medium to Large Screens */
-@media (max-width: 1200px) {
-  header {
-    gap: 10rem;
-  }
-
-  .companyName {
-    font-size: 1.5rem;
-  }
-
-  .navigation ul li {
-    font-size: 1.4rem;
-  }
-}
+/*
+*
+* Main Navigation Media Query 
+*
+*/
 
 /* Tablets and Smaller Desktops */
 @media (max-width: 992px) {
@@ -1764,6 +1802,7 @@ h1{
 }
 
 /* Mobile Devices */
+
 @media (max-width: 768px) {
   header {
     height: 70px;
@@ -1800,7 +1839,7 @@ h1{
   }
 
   .navigation.active ul {
-    display: flex; /* Show menu when active */
+    display: flex; 
   }
 
   .userName {
@@ -1809,6 +1848,7 @@ h1{
 }
 
 /* Very Small Screens */
+
 @media (max-width: 576px) {
   header {
     height: 60px;
@@ -1821,26 +1861,46 @@ h1{
 
   .navigation ul li {
     font-size: 1.1rem;
-    margin-right: 10px;
   }
+
+  .resIcon{
+    width: 30px;
+    height: 30px;
+    align-self: center;
+    justify-self: right;
+  }
+
+  .homeIcon{
+    background-image: url('../public/images/homeIcon.svg');
+  
+  }
+
+  .logoutIcon{
+    background-image: url('../public/images/logoutIcon.svg');
+
+  }
+
+  .logout{
+    border-top: 1px solid grey;
+    width: 100%;
+
+  }
+
+  .sideSection{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+
+
+  }
+
+
 }
 
 
 /* Home page Media Query */
-@media (min-width: 1024px) {
-  .homePage {
-    height: 768px; 
-    padding-top: 80px; 
-  }
-
-  .mainName {
-    font-size: 5rem;
-  }
-
-  .nameSlogan {
-    font-size: 1.7rem; 
-  }
-}
 
 @media (max-width: 768px) {
   .homePage {
@@ -1857,10 +1917,9 @@ h1{
   }
 }
 
-
 @media (max-width: 480px) {
   .homePage {
-    height: 620px; 
+    height: 90vh; 
     padding-top: 80px; 
     width: 100%;
     background-attachment: fixed; 
@@ -1876,17 +1935,342 @@ h1{
   }
 }
 
+/* 
+*
+* Login Page Media Query 
+*
+*/
 
-/* Login Page Media Query */
+@media (min-width: 769px) {
+  .loginPage {
+    padding-top: 100px;
+  }
+
+  .login {
+    width: 500px;
+  }
+
+  .addPetition{
+    width: 80%;
+  }
+
+  .formTitle {
+    font-size: 2rem;
+  }
+
+  .email, .password {
+    width: 400px;
+  }
+
+  .loginButton {
+    width: 200px;
+  }
+}
+
+@media (max-width: 768px) {
+  .loginPage {
+    padding-top: 80px;
+  }
+
+  .login {
+    width: 70%;
+  }
+
+  .formTitle {
+    font-size: 1.75rem;
+  }
+
+  .email, .password {
+    width: 90%;
+  }
+
+  .loginButton {
+    width: 90%;
+  }
+
+  .register {
+    flex-direction: row;
+  }
+
+  .registerNow, .signUp {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .loginPage {
+    height: 100vh;
+    padding: 0px;
+    width: 100%;
+  }
+
+  .login {
+    width: 85%;
+    height: auto;
+    box-shadow: none;
+    padding: 15px;
+  }
+
+  .formTitle {
+    font-size: 1.5rem;
+  }
+
+  .inputs {
+    width: 94%;
+    margin-left: -20px;
+  }
+
+  .label {
+    font-size: 1rem;
+  }
+
+  .email, .password {
+    width: 100%;
+    height: 40px;
+    font-size: 14px;
+  }
+
+  .loginButton {
+    width: 94%;
+    font-size: 16px;
+    height: 45px;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .register {
+    flex-direction: row;
+  }
+
+  .registerNow, .signUp {
+    font-size: 12px;
+  }
+
+  .errorMessage {
+    font-size: 14px;
+  }
+
+  .cookie {
+    font-size: 10px;
+  }
+}
+
+/* 
+*
+* Sign Up Page Media Query 
+*
+*/
+
+@media (max-width: 768px) {
+  .signUpContainer {
+    height: auto;
+  }
+
+  .signUpLogoContainer {
+    gap: 10px;
+  }
+
+  .signUpLogo {
+    width: 40px;
+    height: 40px;
+  }
+
+  .signUpName {
+    font-size: 1.1rem;
+  }
+
+  .signUpForm {
+    width: 90%;
+    padding: 15px;
+  }
+
+  .regInputsFullName,
+  .regInputsEmail {
+    width: 100%;
+  }
+
+  .fullName,
+  .emailRegister {
+    width: 100%;
+  }
+
+  .dobBioId {
+    grid-template-columns: 1fr;
+  }
+
+  .dob,
+  .bioID {
+    width: 100%;
+  }
+
+  .passwordRegister,
+  .confirmPassword {
+    width: 100%;
+  }
+
+  .signUpButton {
+    width: 100%;
+  }
+
+  .cameraIcon {
+    width: 18px;
+    height: 18px;
+    margin-left: -20px;
+  }
+
+  .modalContent {
+    width: 90%;
+    padding: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+
+  .registerPage{
+    height: 100vh;
+    width: 100%;
+    padding-top: 7rem;
+
+  }
+
+  .signUpContainer {
+    height: 85vh;
+    width: 85%;
+
+  }
+
+  .signUpLogoContainer {
+    gap: 5px;
+  }
+
+  .signUpLogo {
+    width: 30px;
+    height: 30px;
+  }
+
+  .signUpForm {
+    width: 100%;
+    padding: 10px;
+    margin-top: 2rem;
+
+  }
+
+  .fillNameEmail{
+    width: 100%;
+  }
+
+  .regInputsFullName,
+  .regInputsEmail {
+    width: 100%;
+
+  }
+
+  .regLabel{
+    margin-left: -20px;
+  }
+
+  .fullName,
+  .emailRegister {
+    width:350px;
+    margin-left: -20px;
+  }
+
+  .dobBioId, .passwordConfirmPassword{
+    display: grid;
+    align-items: center;
+    justify-content: flex-start;
+    grid-template-columns: 1fr 1fr;
+    
+  }
+
+  .dobBioId{
+    margin-left: -10px;
+    
+  }
+
+  .dob{
+    width: 160px;
+    margin-right: 0px;
+    height: 45px;
+    
+  }
+
+  .inputAndIcon{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    gap: -10px;
+  }
+
+  .bioID{
+    width: 160px;
+    margin-left: -20px;
+    height: 40px;
+
+  }
+
+  .cameraIcon{
+    width: 16px;
+    height: 16px;
+    margin-right: 10px;
+  }
+
+  .passwordRegister{
+    margin-left: -20px;
+    width: 160px;
+  }
+
+  .confirmPassword{
+    margin-left: -20px;
+    width: 160px;
+  }
+
+  .signUpButton {
+    width: 90%;
+    margin-left: -20px;
+  }
+
+  .cookieMessageRegister{
+    width: 90%;
+    margin-bottom: 10px;
+
+  }
+  .modalContent {
+    width: 100%;
+    padding: 10px;
+  }
+}
 
 
-/* Sign Up Page Media Query */
+/* 
+*
+* Side Menu 
+*
+*/
 
 
-/* User dashboard Media Query */
 
 
-/* Petitions Media Query */
 
 
-/* Admin Dashboard  */
+/*
+*
+* User dashboard Media Query 
+*
+*/
+
+
+
+/* 
+*
+* Petitions Media Query 
+*
+*/
+
+
+/*
+*
+* Admin Dashboard  
+*
+*/

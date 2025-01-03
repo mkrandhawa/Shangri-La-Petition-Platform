@@ -116,7 +116,7 @@ export default function SignUpForm(){
         age = today.getUTCFullYear() - dob.getUTCFullYear();
 
         if(age < 18 ){
-            setMessage('You must be 18 to register');
+            setMessage('You must be 18 or above to register');
             setDisable(true);
         }else{
             setMessage('');
@@ -277,7 +277,7 @@ export default function SignUpForm(){
                                 {/* CONFIRM PASSWORD */}
                                 <div className="regInputs">
                                    
-                                    <label className="regLabel">Confirm Password</label>
+                                    <label className="regLabel regLabelConfirm">Confirm Password</label>
                                     <Input
                                         className={samePassword ? "confirmPassword" : "confirmPassword error"}
                                         type='password'
@@ -305,7 +305,7 @@ export default function SignUpForm(){
                                 Sign Up
                             </button>
 
-                            <div className="cookieMessage">
+                            <div className="cookieMessage cookieMessageRegister">
                                 <span className="cookie">By registering, you agree to our use of cookies to keep you signed in and enhance your experience.</span>
                             </div>
 
