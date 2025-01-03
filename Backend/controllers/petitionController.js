@@ -378,7 +378,7 @@ exports.reachedThreshold = async(req, res)=>{
 
             return res.status(400).json({
                 status: 'Fails',
-                message: 'You do not have permissions to acced this route!'
+                message: 'You do not have permissions to access this route!'
 
             });
         }
