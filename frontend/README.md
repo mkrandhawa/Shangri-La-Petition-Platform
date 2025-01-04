@@ -57,6 +57,7 @@ After installing start the server:
 npm start
 ```
 A similar screen should appear: 
+
 ![alt text](<Screenshot 2025-01-04 at 5.41.15 PM.png>)
 
 #### 5. Access the Website
