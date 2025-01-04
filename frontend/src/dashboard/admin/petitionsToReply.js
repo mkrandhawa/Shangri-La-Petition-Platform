@@ -156,7 +156,7 @@ export default function PetitionReply(){
             } 
         };
         fetchPetitions();
-    },[url]);
+    },[url, setTotPetitionToReply]);
 
 
 

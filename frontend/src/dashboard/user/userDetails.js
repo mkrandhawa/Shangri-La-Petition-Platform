@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from "react";
+import React, {useContext, useEffect, useState, useCallback} from "react";
 import { UserContext } from "../../context/userContext";
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
@@ -15,41 +15,31 @@ export default function UserDetails() {
 
     const [closedPetitions, setClosedPetitions] = useState(0);
 
-
-    //Calculate user Ager
-    const calculateAge = () => {
-
+    // Calculate Age
+    const calculateAge = useCallback(() => {
         const dob = new Date(userDetail.dob);
         const today = new Date();
         const age = today.getUTCFullYear() - dob.getUTCFullYear();
-
         setAge(age);
-    }   
-
-    // Count total petitions
-    const countPetitions = () => {
+    }, [userDetail.dob]);  
+    
+    //Count Petitions
+    const countPetitions = useCallback(() => {
         const open = userDetail.createdPetitions.filter(petition => petition.status === 'open').length;
         const closed = userDetail.createdPetitions.filter(petition => petition.status === 'closed').length;
-    
         setOpenPetitions(open);
-        setClosedPetitions(closed); 
-    }
-
-
+        setClosedPetitions(closed);
+    }, [userDetail.createdPetitions]);  
+    
     useEffect(() => {
-
         if (userDetail?.dob) {
             calculateAge();
-          
         }
-
-        if(userDetail?.createdPetitions){
-
+    
+        if (userDetail?.createdPetitions) {
             countPetitions();
         }
-
-    }, [userDetail]);
-
+    }, [userDetail, calculateAge, countPetitions]);
 
     
     return (
