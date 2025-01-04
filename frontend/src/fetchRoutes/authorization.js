@@ -37,7 +37,8 @@ export default function AuthCheck() {
                     
                 }
             } catch (err) {
-                console.error('Error checking auth:', err);
+                // Uncomment this if you are working in development
+                // console.error('Error checking auth:', err);
             } finally {
                 setLoading(false); // Set loading to false once done
             }
