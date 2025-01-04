@@ -1,6 +1,6 @@
 # Shangri-La Petitions Project
 
-Welcome to the Shangri-La Petitions frontend folder! This project was designed to provide a platform for people from Shangri-La to share create their petitions and themselves noticed.
+Welcome to the Shangri-La Petitions **BACKEND** folder!
 
 ## Website Setup Documentation
 
@@ -11,10 +11,8 @@ Follow these steps to set up the Shangri-La Petitions Project website:
 Before you begin, ensure you have the following software and tools installed:
 
 - **Visual Studio Code**: Latest version available [here](https://code.visualstudio.com/download).
-- **Web Browser**: Any modern web browser will do.
 - **Internet Connection**: A stable connection without restrictions is needed. Please do not use the University connection as it blocks the database.
 - **MongoDB Compass**: For database management, downloadable [here](https://www.mongodb.com/docs/compass/current/install/).
-- **Backend Connection**: To access the functionalities. Please follow the instructions inside the Backend [README](https://github.com/mkrandhawa/Shangri-La-Petition-Platform/blob/main/Backend/README.md) file. 
 
 
 ### Installation Steps
@@ -37,7 +35,7 @@ Navigate to the cloned repository folder and open it with Visual Studio Code.
 Within Visual Studio Code, open a terminal and execute:
 
 ```bash
-cd frontend
+cd Backend
 ```
 
 #### 5. Install Dependencies
@@ -58,76 +56,62 @@ After installing start the server:
 npm start
 ```
 A similar screen should appear: 
-![alt text](<Screenshot 2025-01-04 at 5.41.15 PM.png>)
+
+![alt text](image.png)
 
 #### 5. Access the Website
-Once the process is complete, the system should automatically open the browser and take you to the right page.
-
-However, if in case that does not work, open your web browser and go to:
-
-```
-localhost:3000
-```
+Once the process is complete, please follow the instruction on this [README] (https://github.com/mkrandhawa/Shangri-La-Petition-Platform/tree/main/frontend#readme) file!
 
 #### 8. Login with exsisting credentials
 
 ###### Login as User
 
 ```
-Email: junior@example.com
+Email: charlie@gmail.com
 Password: test1234
 ```
 
 ###### Login as ADMIN
 
 ```
-Email: admin@example.com
-Password: test1234
+Email: admin@petition.parliament.sr
+Password: 2025%shangrila
 ```
 
 # Application Routes Documentation
 
-This document outlines the routes available in the IBM SkillsBuild Project and their functionalities.
+This document outlines the routes available in the Shanri-La-Petitions Project and their functionalities.
 
 ## Public Routes
 
-- `GET /`: Renders the landing page.
+- `GET /`: Renders the landing/home page.
 - `GET /login`: Renders the login form.
 - `GET /signup`: Renders the signup form.
 
 ## User Routes
 
-All the following routes are protected therefore you must be logged in to have access to them.
+All the following routes are protected therefore you must be logged in as USER to have access to them.
 
-- `GET /account`: Renders the user's account page (protected route).
 - `GET /dashboard`: Renders the user's dashboard (protected route).
-- `GET /courses`: Retrieves and renders the list of courses (protected route).
-- `GET /course/:slug`: Retrieves and renders a specific course based on the slug (protected route).
-- `GET /review/:slug`: Submits a review for a course (protected route).
-- `GET /ibmCourse/:slug`: Retrieves and renders the overview of an IBM course (protected route).
-- `GET /top-3-courses`: Retrieves and renders the top 3 courses (protected route).
-- `GET /account/uploadPhoto`: Renders the form to upload a photo (protected route).
-- `PATCH /account/uploadPhoto`: Endpoint to upload a photo (protected route).
-- `GET /account/friendsLeaderboard`: Retrieves and renders the friends leaderboard (protected route).
-- `GET /account/friends`: Retrieves and renders the user's friends list (protected route).
-- `GET /account/level`: Retrieves and renders the user's level (protected route).
-- `GET /account/searchFriend`: Endpoint to search friends and add them into the friends list.(protected route)
+- `GET /slpp/petitions`: Renders the all petitions for the user (protected route).
+- `GET /slpp/petitions?status=open`: Renders the open petitions page for the user (protected route).
+- `GET /slpp/petition?status=closed`: Renders the closed petitions page for the user (protected route).
+- `GET /addPetition`: Renders the form to add a new petition (protected route).
+- `GET /myPetitions`: Renders the user's list of submitted petitions (protected route).
+
 
 ## Admin Routes
 
-The following routes are protected, therefore you must be logged in as ADMIN
+All the following routes are protected therefore you must be logged in as ADMIN to have access to them.
 
-- `GET /admin-dashboard`: Renders the admin dashboard (protected, admin-only route).
-- `GET /admin`: Renders the admin account page (protected, admin-only route).
-- `GET /admin/courses`: Retrieves and renders the list of courses with details for admin (protected, admin-only route).
-- `GET /admin/stats`: Retrieves and renders statistics for all courses (protected, admin-only route).
-- `GET /admin/stats/:slug`: Retrieves and renders statistics for a specific course (protected, admin-only route).
-- `GET /admin/:slug`: Retrieves and renders all reviews for a course (protected, admin-only route).
-- `DELETE /reviews/:id`: Deletes a specific review (protected, admin-only route).
+- `GET /adminDashboard`: Renders the admin's dashboard (protected route).
+- `GET /slpp/petitions`: Renders the all the petitions created by the user (protected route).
+- `GET /slpp/petitions?status=open`: Renders the open petitions created by the user (protected route).
+- `GET /slpp/petition?status=closed`: Renders the closed petitions created by the user (protected route).
+- `GET /reply`: Renders the form to reply to petitions that have reached the threshold (protected route).
+- `GET /setThreshold`: Renders the form to set petition thresholds (protected route).
 
 # Common Errors and Solutions
 
 - **Database Connection Issues**: If you're experiencing connection issues on restricted networks like University Wi-Fi, try using mobile data or a VPN.
-- **JWT Malformed Error**: In developer mode, if you encounter this error, log in again.
 - **Access Denied**: If you're receiving permission errors, make sure you're using the correct routes for your user level; admin routes require admin access.
-- **Can't find /bundle.js.map on this server**: If you get this error, go into public/js/bundle.js file and at the end of the file have this "/# sourceMappingURL=/js/bundle.js.map"
