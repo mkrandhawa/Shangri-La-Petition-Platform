@@ -1,6 +1,6 @@
 # Shangri-La Petitions Project
 
-Welcome to the Shangri-La Petitions frontend folder! This project was designed to provide a platform for people from Shangri-La to share create their petitions and themselves noticed.
+Welcome to the Shangri-La Petitions frontend folder! This project was designed to provide a platform for people from Shangri-La to share, create their petitions.
 
 ## Website Setup Documentation
 
