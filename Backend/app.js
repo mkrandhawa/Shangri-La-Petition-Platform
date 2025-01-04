@@ -17,7 +17,9 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(cors({
-    origin: 'http://localhost:3000',
+    origin: ['http://localhost:3000',
+        'https://shangri-la-petitions-mk747.netlify.app'
+    ],
     credentials: true,
 }));
 
