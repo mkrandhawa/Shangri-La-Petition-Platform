@@ -7,6 +7,7 @@ import SignUpPage from './signUp/signUpPage';
 import AuthCheck from './fetchRoutes/authorization';
 import UserDashboardPage from './dashboard/dashboardPage';
 import AdminDashboardPage from './dashboard/adminDashboardPage';
+import PageNotFound from './notFound/pageNotFound';
 
 
 export default function App() {
@@ -49,6 +50,9 @@ export default function App() {
 
             {/* SignUp Route */}
             <Route exact path='/signUp' element={<SignUpPage />} />
+
+            {/* 404 Page Not Found */}
+            <Route path='*' element={<PageNotFound />} />
 
           
           </Routes>
