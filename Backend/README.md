@@ -60,7 +60,7 @@ A similar screen should appear:
 ![alt text](<Screenshot 2025-01-04 at 6.16.05 PM.png>)
 
 #### 5. Access the Website
-Once the process is complete, please follow the instruction on this [README] (https://github.com/mkrandhawa/Shangri-La-Petition-Platform/tree/main/frontend#readme) file!
+Once the process is complete, please follow the instruction on this [README](https://github.com/mkrandhawa/Shangri-La-Petition-Platform/tree/main/frontend#readme) file!
 
 # Application Routes Documentation
 
