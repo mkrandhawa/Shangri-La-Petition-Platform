@@ -18,7 +18,7 @@ Before you begin, ensure you have the following software and tools installed:
 
 ### Installation Steps
 
-#### 1. Clone the Git Repository
+#### 1. Clone the Git Repository (Ignore if you already have the project files)
 
 To clone the repository to your local machine, use the following command:
 
