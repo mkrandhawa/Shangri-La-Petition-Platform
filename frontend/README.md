@@ -1,70 +1,123 @@
-# Getting Started with Create React App
+# Shangri-La Petitions Project
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Welcome to the Shangri-La Petitions frontend folder! This project was designed to provide a platform for people from Shangri-La to share create their petitions and themselves noticed.
 
-## Available Scripts
+## Website Setup Documentation
 
-In the project directory, you can run:
+Follow these steps to set up the Shangri-La Petitions Project website:
 
-### `npm start`
+## Prerequisites
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Before you begin, ensure you have the following software and tools installed:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- **Visual Studio Code**: Latest version available [here](https://code.visualstudio.com/download).
+- **Web Browser**: Any modern web browser will do.
+- **Internet Connection**: A stable connection without restrictions is needed. Please do not use the University connection as it blocks the database.
+- **Backend Connection**: To access the functionalities. Please follow the instructions inside the Backend [README](https://github.com/mkrandhawa/Shangri-La-Petition-Platform/blob/main/Backend/README.md) file. 
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Installation Steps
 
-### `npm run build`
+#### 1. Clone the Git Repository
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+To clone the repository to your local machine, use the following command:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```bash
+git clone https://github.com/mkrandhawa/Shangri-La-Petition-Platform
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+#### 2. Open the Project in Visual Studio Code
 
-### `npm run eject`
+Navigate to the cloned repository folder and open it with Visual Studio Code.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+#### 3. Get Into the **frontend** folder
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Within Visual Studio Code, open a terminal and execute:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```bash
+cd frontend
+```
 
-## Learn More
+#### 5. Install Dependencies
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Within Visual Studio Code, in the same terminal execute:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```bash
+npm install
+```
 
-### Code Splitting
+Ignore any deprecated warnings.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+#### 4. Start the Server
 
-### Analyzing the Bundle Size
+After installing start the server:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+```bash
+npm start
+```
+A similar screen should appear: 
+![alt text](<Screenshot 2025-01-04 at 5.41.15 PM.png>)
 
-### Making a Progressive Web App
+#### 5. Access the Website
+Once the process is complete, the system should automatically open the browser and take you to the right page.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+However, if in case that does not work, open your web browser and go to:
 
-### Advanced Configuration
+```
+localhost:3000
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+#### 8. Login with exsisting credentials
 
-### Deployment
+###### Login as User
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+```
+Email: charlie@gmail.com
+Password: test1234
+```
 
-### `npm run build` fails to minify
+###### Login as ADMIN
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```
+Email: admin@petition.parliament.sr
+Password: 2025%shangrila
+```
+
+# Application Routes Documentation
+
+This document outlines the routes available in the Shanri-La-Petitions Project and their functionalities.
+
+## Public Routes
+
+- `GET /`: Renders the landing/home page.
+- `GET /login`: Renders the login form.
+- `GET /signup`: Renders the signup form.
+
+## User Routes
+
+All the following routes are protected therefore you must be logged in as USER to have access to them.
+
+- `GET /dashboard`: Renders the user's dashboard (protected route).
+- `GET /slpp/petitions`: Renders the all petitions for the user (protected route).
+- `GET /slpp/petitions?status=open`: Renders the open petitions page for the user (protected route).
+- `GET /slpp/petition?status=closed`: Renders the closed petitions page for the user (protected route).
+- `GET /addPetition`: Renders the form to add a new petition (protected route).
+- `GET /myPetitions`: Renders the user's list of submitted petitions (protected route).
+
+
+## Admin Routes
+
+All the following routes are protected therefore you must be logged in as ADMIN to have access to them.
+
+- `GET /adminDashboard`: Renders the admin's dashboard (protected route).
+- `GET /slpp/petitions`: Renders the all the petitions created by the user (protected route).
+- `GET /slpp/petitions?status=open`: Renders the open petitions created by the user (protected route).
+- `GET /slpp/petition?status=closed`: Renders the closed petitions created by the user (protected route).
+- `GET /reply`: Renders the form to reply to petitions that have reached the threshold (protected route).
+- `GET /setThreshold`: Renders the form to set petition thresholds (protected route).
+
+# Common Errors and Solutions
+
+- **Database Connection Issues**: If you're experiencing connection issues on restricted networks like University Wi-Fi, try using mobile data or a VPN.
+- **Access Denied**: If you're receiving permission errors, make sure you're using the correct routes for your user level; admin routes require admin access.
