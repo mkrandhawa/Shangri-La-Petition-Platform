@@ -131,7 +131,7 @@ header{
   top: 71px;
   height: 88vh;
   width: 60%;
-  left: 10rem;
+  right: 0;
   background-color: rgb(249, 251, 249);
   z-index: 999;
   display: flex;
@@ -1311,7 +1311,7 @@ header{
   padding: 30px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   background: rgba(255, 255, 255, 0.3); 
   backdrop-filter: blur(10px);
   border-radius: 10px 0 0 10px;
@@ -1941,7 +1941,7 @@ h1{
   }
 
   .notificationCircle{
-    right: 20px;
+    right: 50px;
 
   }
 
@@ -1961,8 +1961,10 @@ h1{
 
 @media (max-width: 768px) {
   .homePage {
-    height: 650px; 
+    height: 100vh; 
     padding-top: 70px; 
+    background-position: center;
+
   }
 
   .mainName {
@@ -2306,6 +2308,89 @@ h1{
 * User dashboard Media Query 
 *
 */
+
+@media(max-width: 1024px){
+  .dashboardContent{
+    width: 95%;
+    padding: 0px;
+  }
+
+  .welcomeText{
+    text-align: center;
+  }
+
+  .allPetitionsDetails{
+    width: 90%;
+  }
+
+  .petitionTitle{
+    font-size: 1.5rem;
+  }
+
+  .replyPetitionDescription{
+    width: 95%;
+  }
+
+  .petitionDescription{
+    width: 400px;
+  }
+
+  .onePetitionsCard{
+    height: 100%;
+  }
+
+  .details{
+    height: auto;
+    justify-content: flex-start;
+  }
+}
+
+@media(max-width: 768px){
+  .myPetitionsCard{
+    flex-direction: column;
+    height: auto;
+  }
+
+  .petitionImageContainer, .petitionImage{
+    width: 180px;
+    height: 180px;
+  }
+
+  .myDescription{
+    width: 400px;
+  }
+
+  .response{
+    width: 80%;
+  }
+
+  .formWithImageUploader{
+    flex-direction: column;
+  }
+
+  .addMyPetitionPage{
+    width: 90%;
+  }
+
+  .addPetition{
+    width: 95%;
+    margin-top: -6rem;
+  }
+
+  .form-section{
+    height: 350px;
+    width: 350px;
+  }
+
+  .addPetitionButton{
+    margin-left: 0px;
+  }
+
+  .signPetitionButton{
+    width: 300px;
+  }
+}
+
 @media(max-width: 576px){
   
   .myPetitionsCard{
@@ -2415,6 +2500,32 @@ h1{
 * Admin Dashboard  
 *
 */
+@media (max-width: 768px) {
+  .dashboardContent{
+    width: 100%;
+    padding: 0px;
+  }
+
+  .petitionTitle{
+    font-size: 1.3rem;
+  }
+
+  .replyForm{
+    padding: 5px;
+  }
+
+  .addReply{
+    height: 120px;
+  }
+
+  .addReplyButton{
+    margin-bottom: 2rem;
+  }
+
+  .onePetitionsCard{
+    height: auto;
+  }
+}
 
 @media (max-width: 576px) {
 
@@ -2426,7 +2537,7 @@ h1{
   .dashboardContent{
     width: 98%;
     left: 0;
-    height: 88vh;
+    height: 100%;
     margin-top: 0px;
     position: relative;
     padding: 0px;
@@ -2487,6 +2598,16 @@ h1{
 
   }
 
+  .rightArrow{
+    right: 5px;
+  
+  }
+
+  .leftArrow{
+    left: 5px;
+
+  }
+
   .petitionDescription{
     width: 350px;
     
@@ -2498,19 +2619,54 @@ h1{
   }
 
   .onePetitionsCard{
-    height: 88vh;
+    height: 100vh;
     border-radius: 0px;
 
   }
 
   .details{
-    height: 200px;
+    height: 150px;
     justify-content: space-between;
+    gap: 20px;
 
   }
 
   .setThreshold{
     height: auto;
 
+  }
+}
+
+@media (max-width: 430px){
+
+  .replyform{
+    align-self: center;
+    margin-left: 20px;
+
+  }
+
+  .signButton{
+    height: 100px;
+    margin-bottom: 5px;
+
+  }
+
+  .signPetitionButton{
+    margin-bottom: 5px;
+
+  }
+
+  .time, .progress{
+    margin-top: -5rem;
+
+  }
+
+  .progress{
+    height: 100px;
+
+  }
+
+  .status{
+    height: 100px;
   }
 }

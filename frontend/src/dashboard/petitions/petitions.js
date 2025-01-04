@@ -166,20 +166,20 @@ export default function Petition() {
                                         <div className="details">
                                             <span className="petitionDescription">{petition.text}</span>
                                         </div>
-                                        <div className="details">
+                                        <div className="details status">
                                             <span className={`myPetitonTitle ${petition.status === 'open' ? 'statusIcon' : 'closeIcon'}`}></span>
                                             <span className={petition.status==='closed' ? "petitonStatus isClosed":"petitionStatus"}>{petition.status === 'open' ? 'Open' : 'Closed'}</span>
                                         </div>
 
                                         {petition.status==='open' &&
                                             <>
-                                                <div className="details">
+                                                <div className="details time">
                                                     <span className="myPetitonTitle dateIcon"></span>
                                                     <span className="petitionCreation">
                                                         {formatDate(petition.createdAt)}
                                                     </span>
                                                 </div>
-                                                <div className="details">
+                                                <div className="details progress">
                                                     <span className="myPetitonTitle">Progress: </span>
                                                     <span className="signs">
                                                         <div className="progressBarContainer">
@@ -203,9 +203,11 @@ export default function Petition() {
                                                     <button className='signPetitionButton' onClick={()=>handleClick(petition._id)}>
                                                         Sign Petitions
                                                     </button>
+
                                                     <span className={  successMessage.length>1 ? 'successMessage': 'signMessage'}>
                                                         {successMessage.length > 1 ? successMessage : message}
                                                     </span>
+                                                    
                                                 </div>   
                                             </>
                                         }
