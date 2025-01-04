@@ -11,7 +11,7 @@ Follow these steps to set up the Shangri-La Petitions Project website:
 Before you begin, ensure you have the following software and tools installed:
 
 - **Visual Studio Code**: Latest version available [here](https://code.visualstudio.com/download).
-- **Web Browser**: Any modern web browser will do.
+- **Web Browser**: Any modern web browser will do. It is recommended to use Google Chrome for best experience.
 - **Internet Connection**: A stable connection without restrictions is needed. Please do not use the University connection as it blocks the database.
 - **Backend Connection**: To access the functionalities. Please follow the instructions inside the Backend [README](https://github.com/mkrandhawa/Shangri-La-Petition-Platform/blob/main/Backend/README.md) file. 
 
@@ -122,3 +122,12 @@ All the following routes are protected therefore you must be logged in as ADMIN 
 
 - **Database Connection Issues**: If you're experiencing connection issues on restricted networks like University Wi-Fi, try using mobile data or a VPN.
 - **Access Denied**: If you're receiving permission errors, make sure you're using the correct routes for your user level; admin routes require admin access.
+
+# Testing the responsiveness
+
+Since the website is running on a localhost connection, certain functionalities—such as the QR scanner, and some of the CSS styles —may not work as expected on mobile devices.
+
+To properly test the responsiveness, we recommend using Chrome's Developer Tools. To access it, press Command + Option + I or navigate to the three dots menu, then select More Tools → Developer Tools.
+
+Once open, click the tablet and phone icon and select iPhone 14 Max from the list of predefined devices for the best experience.
+![alt text](intruction.png) 

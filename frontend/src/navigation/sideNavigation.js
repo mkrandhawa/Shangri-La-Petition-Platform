@@ -22,8 +22,7 @@ export default function SideNavigation (){
 
     const handleLinkClick = (linkName) => {
         setActiveLink(linkName);
-        console.log(activeLink)
-        console.log(linkName)
+  
         if (linkName === 'petitions' || linkName === 'slpp/petitions') {
             setShowSubmenu(!showSubmenu); // Toggle submenu visibility
         } else {
