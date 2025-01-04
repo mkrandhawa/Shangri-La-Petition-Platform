@@ -14,3 +14,10 @@ mongoose.connect(DB)
 const server = app.listen(port, 'localhost', ()=>{
     console.log(`Listening on port ${port}`);
 })
+
+// THIS PART IS FOR HEROKU DEPLOYMENT
+// const port = process.env.PORT|| 4000;
+
+// app.listen(port, ()=>{
+//     console.log(`Listening on port ${port}`);
+// })
