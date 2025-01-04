@@ -243,7 +243,7 @@ export default function SignUpForm(){
                                                         delay={200} 
                                                         onError={handleError} 
                                                         onScan={handleScan} 
-                                                        style={{ width: '100%' }} 
+                                                        style={{ width: '100%', height:'80%'}} 
                                                     /> 
                                                 </div> 
                                             </div>
