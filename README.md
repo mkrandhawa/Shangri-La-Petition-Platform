@@ -7,7 +7,7 @@ If you would not like to manually run the servers on you laptop, the live versio
 [SHANGRI-LA PETITIONS](https://shangri-la-petitions-mk747.netlify.app/)
 
 ## Few things to consider if you want to use your phone:
-- The functionality to user JWT or cookies will not work if you have "**Prevent Cross-Site Tracking**" active!
+- The functionality to use JWT or cookies will not work if you have "**Prevent Cross-Site Tracking**" active!
 - As the website length is full screen, you will have to scroll up.
  
 
