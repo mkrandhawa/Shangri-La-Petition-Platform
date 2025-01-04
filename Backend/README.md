@@ -27,7 +27,7 @@ git clone https://github.com/mkrandhawa/Shangri-La-Petition-Platform
 
 #### 2. Open the Project in Visual Studio Code
 
-Navigate to the cloned repository folder and open it with Visual Studio Code.
+Navigate to the cloned repository or the extracted folder and open it with Visual Studio Code.
 
 
 #### 3. Get Into the **frontend** folder
