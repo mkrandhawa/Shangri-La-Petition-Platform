@@ -62,54 +62,45 @@ A similar screen should appear:
 #### 5. Access the Website
 Once the process is complete, please follow the instruction on this [README] (https://github.com/mkrandhawa/Shangri-La-Petition-Platform/tree/main/frontend#readme) file!
 
-#### 8. Login with exsisting credentials
-
-###### Login as User
-
-```
-Email: charlie@gmail.com
-Password: test1234
-```
-
-###### Login as ADMIN
-
-```
-Email: admin@petition.parliament.sr
-Password: 2025%shangrila
-```
-
 # Application Routes Documentation
 
 This document outlines the routes available in the Shanri-La-Petitions Project and their functionalities.
+
+## Authentication Routes
+
+### Public Routes
+
+- `POST /auth/admin/signUp`: Allows an admin user to register, can only be accessed trough **POSTMAN**.
+- `POST /auth/login`: Allows a user to log in.
+- `POST /auth/logout`: Logs out the current user.
+- `POST /auth/signup`: Allows a new user to register.
+
+
+### Protected Routes
+
+- `GET /auth/isLoggedIn`: Checks if the user is logged in. (Protected Route)
 
 ## Public Routes
 
 - `GET /`: Renders the landing/home page.
 - `GET /login`: Renders the login form.
 - `GET /signup`: Renders the signup form.
+- `GET /`: Retrieves all petitions. (Protected Route)
 
 ## User Routes
 
-All the following routes are protected therefore you must be logged in as USER to have access to them.
+All routes listed below are protected and require user authentication.
 
-- `GET /dashboard`: Renders the user's dashboard (protected route).
-- `GET /slpp/petitions`: Renders the all petitions for the user (protected route).
-- `GET /slpp/petitions?status=open`: Renders the open petitions page for the user (protected route).
-- `GET /slpp/petition?status=closed`: Renders the closed petitions page for the user (protected route).
-- `GET /addPetition`: Renders the form to add a new petition (protected route).
-- `GET /myPetitions`: Renders the user's list of submitted petitions (protected route).
-
+- `POST /addPetition`: Allows a user to submit a new petition.
+- `PATCH /:petitionId/sign`: Allows a user to sign a specific petition.
 
 ## Admin Routes
 
-All the following routes are protected therefore you must be logged in as ADMIN to have access to them.
+All routes listed below are protected and require admin authentication.
 
-- `GET /adminDashboard`: Renders the admin's dashboard (protected route).
-- `GET /slpp/petitions`: Renders the all the petitions created by the user (protected route).
-- `GET /slpp/petitions?status=open`: Renders the open petitions created by the user (protected route).
-- `GET /slpp/petition?status=closed`: Renders the closed petitions created by the user (protected route).
-- `GET /reply`: Renders the form to reply to petitions that have reached the threshold (protected route).
-- `GET /setThreshold`: Renders the form to set petition thresholds (protected route).
+- `PATCH /commitee/threshold`: Allows the admin to set a threshold for petitions.
+- `PATCH /admin/:petitionId/respond`: Allows the admin to respond to petitions.
+- `GET /reachedThreshold`: Retrieves petitions that have reached the required threshold.
 
 # Common Errors and Solutions
 
