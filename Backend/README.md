@@ -17,7 +17,7 @@ Before you begin, ensure you have the following software and tools installed:
 
 ### Installation Steps
 
-#### 1. Clone the Git Repository
+#### 1. Clone the Git Repository (Ignore if you already have the project files)
 
 To clone the repository to your local machine, use the following command:
 
@@ -106,3 +106,5 @@ All routes listed below are protected and require admin authentication.
 
 - **Database Connection Issues**: If you're experiencing connection issues on restricted networks like University Wi-Fi, try using mobile data or a VPN.
 - **Access Denied**: If you're receiving permission errors, make sure you're using the correct routes for your user level; admin routes require admin access.
+- **Cannot Clone**: If you're cannot clone the repository please check if you have the correct url.
+
