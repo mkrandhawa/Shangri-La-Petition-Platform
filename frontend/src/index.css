@@ -2552,7 +2552,7 @@ h1{
 
   .myResponse{
     height: 50%;
-    
+
   }
 }
 
@@ -2684,6 +2684,11 @@ h1{
     height: 100vh;
     border-radius: 0px;
 
+  }
+
+  .petitionToReplyOneCard{
+    height: 88vh;
+    
   }
 
   .details{

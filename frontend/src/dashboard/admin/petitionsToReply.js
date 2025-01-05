@@ -184,7 +184,7 @@ export default function PetitionReply(){
                         <div className='petitionsContainer petitionsToReply' ref={containerRef}>
                             {petitions.map((petition, index) => (
                               
-                                <div className="onePetitionsCard"key={index} 
+                                <div className="onePetitionsCard petitionToReplyOneCard"key={index} 
                                     style={{ backgroundImage: `url(https://shangri-la-petitions-mk747-a15915868dc5.herokuapp.com/${petition.image.replace('public', '')})` }}>
                                     
                                     <div className="petitionDetails allPetitionsDetails">
