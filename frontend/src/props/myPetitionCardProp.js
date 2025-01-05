@@ -18,7 +18,7 @@ export default function PetitionCard(props){
                 ></span>
             </div>
 
-            <div className="petitionDetails">
+            <div className="petitionDetails myPetitionsDetails">
                 {/* Title */}
                 <div className="details">
                     <span className="petitionTitle mySinglePetitionTitle">{title}</span>
@@ -69,7 +69,7 @@ export default function PetitionCard(props){
                 {status === 'closed' && 
                     <div className="details">
                         <span className="myPetitonTitle responseMyPetition">Response: </span>
-                        <span className="response">
+                        <span className="response myResponse">
                             {response}
                         </span>
                     </div>

@@ -2542,6 +2542,17 @@ h1{
   .mytitle{
     font-size: 1rem;
     margin-top: 1px;
+
+  }
+
+  .myPetitionsDetails{
+    gap:10px;
+
+  }
+
+  .myResponse{
+    height: 50%;
+    
   }
 }
 
