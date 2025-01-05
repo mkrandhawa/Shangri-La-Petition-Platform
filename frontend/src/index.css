@@ -2496,6 +2496,23 @@ h1{
 
   .image-upload-input{
     width: 80%;
+
+  }
+
+  .userCard{
+    height: 250px;
+    width: 200px;
+
+  }
+
+  .image{
+    height: 100px;
+    width: 100px;
+
+  }
+
+  .roleContainer{
+    margin-top: 0rem;
   }
 
 }
