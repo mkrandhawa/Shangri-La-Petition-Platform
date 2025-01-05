@@ -2505,6 +2505,12 @@ h1{
 
   }
 
+  .userDetails{
+    height: 100px;
+    margin-top: 0px;
+
+  }
+
   .image{
     height: 100px;
     width: 100px;
@@ -2512,9 +2518,31 @@ h1{
   }
 
   .roleContainer{
-    margin-top: 0rem;
+    margin-top: -1rem;
   }
 
+  .title{
+    font-size: 1rem;
+  }
+
+  .myAge, .myEmail, .myName{
+    font-size: 1rem;
+  }
+
+  .role{
+    font-size: 16px;
+  }
+
+  .myPetitionContainer{
+    height: 150px;
+    width: 150px;
+
+  }
+
+  .mytitle{
+    font-size: 1rem;
+    margin-top: 1px;
+  }
 }
 
 
