@@ -45,7 +45,7 @@ export default function Dashboard() {
             
                 {/* Container for the main content */}
                 <div className="dashboardContent">
-                    {userDetail.role == 'petitioner' ? (
+                    {userDetail.role === 'petitioner' ? (
                         <>  
                             {pathname==='/dashboard' && <UserDetails />}
                             {pathname==='/addPetition' && <AddPetition />}

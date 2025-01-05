@@ -48,7 +48,7 @@ export default function AdminDashboard() {
             
                 {/* Container for the main content */}
                 <div className="dashboardContent">
-                    {userDetail.role == 'admin' ? (
+                    {userDetail.role === 'admin' ? (
                         <>  
                             {pathname==='/adminDashboard' && <AnalysisDashboard />}
                             {pathname==='/reply' && <PetitionReply />}
