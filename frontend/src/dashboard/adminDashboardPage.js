@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import Header from "../navigation/header";
 import Footer from "../navigation/footer";
 import AdminDashboard from "./adminDashboard";
