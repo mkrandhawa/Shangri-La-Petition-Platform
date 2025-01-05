@@ -157,7 +157,7 @@ export default function Petition() {
                             {petitions.map((petition, index) => (
                               
                                 <div className="onePetitionsCard"key={index} 
-                                    style={{ backgroundImage: `url(http://localhost:8000/${petition.image.replace('public', '')})` }}>
+                                    style={{ backgroundImage: `url(https://shangri-la-petitions-mk747-a15915868dc5.herokuapp.com/${petition.image.replace('public', '')})` }}>
                                     
                                     <div className="petitionDetails allPetitionsDetails">
                                         <div className="details petitionsDetails">

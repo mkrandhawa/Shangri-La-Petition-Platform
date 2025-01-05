@@ -5,7 +5,7 @@ export default function PetitionCard(props){
 
     const { image, title, description, status, createdAt, countSigns, minSign, formatDate, response } = props;
 
-    const imageUrl = image ? `http://localhost:8000/${image.replace('public', '')}` : '../images/defaultPetition.png';
+    const imageUrl = image ? `https://shangri-la-petitions-mk747-a15915868dc5.herokuapp.com/${image.replace('public', '')}` : '../images/defaultPetition.png';
 
     
     return (
