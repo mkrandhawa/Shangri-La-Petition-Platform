@@ -2234,6 +2234,7 @@ h1{
   .emailRegister {
     width:350px;
     margin-left: -20px;
+    font-size: 14px;
   }
 
   .dobBioId, .passwordConfirmPassword{
@@ -2246,6 +2247,7 @@ h1{
 
   .dobBioId{
     margin-left: -10px;
+    font-size: 14px;
     
   }
 
@@ -2253,6 +2255,7 @@ h1{
     width: 160px;
     margin-right: 0px;
     height: 45px;
+    font-size: 14px;
     
   }
 
@@ -2268,6 +2271,7 @@ h1{
     width: 160px;
     margin-left: -20px;
     height: 40px;
+    font-size: 14px;
 
   }
 
@@ -2280,11 +2284,13 @@ h1{
   .passwordRegister{
     margin-left: -20px;
     width: 160px;
+    font-size: 14px;
   }
 
   .confirmPassword{
     margin-left: -20px;
     width: 160px;
+    font-size: 14px;
   }
 
   .signUpButton {
@@ -2688,7 +2694,7 @@ h1{
 
   .petitionToReplyOneCard{
     height: 88vh;
-    
+
   }
 
   .details{
