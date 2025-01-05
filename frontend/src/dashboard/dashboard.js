@@ -1,13 +1,10 @@
-import React, {useState, useEffect, useContext} from "react";
+import React, {useState, useEffect} from "react";
 import { useLocation } from "react-router-dom";
 import SideNavigation from "../navigation/sideNavigation";
 import UserDetails from "./user/userDetails";
 import MyPetitions from "./petitions/myPetitions";
 import Petition from "./petitions/petitions";
 import AddPetition from "./addPetition/addPetition";
-import { UserContext } from "../context/userContext";
-import AccessDenied from "../notFound/accessDenied";
-
 
 
 export default function Dashboard() {
@@ -16,8 +13,6 @@ export default function Dashboard() {
 
 
     const { pathname } = location;
-
-    const {userDetail} = useContext(UserContext);
 
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
         
@@ -45,19 +40,11 @@ export default function Dashboard() {
             
                 {/* Container for the main content */}
                 <div className="dashboardContent">
-                    {userDetail.role === 'petitioner' ? (
-                        <>  
-                            {pathname==='/dashboard' && <UserDetails />}
-                            {pathname==='/addPetition' && <AddPetition />}
-                            {pathname==='/myPetitions' && <MyPetitions />}          
-                        
-                        </>
-                        ):(
-                            <AccessDenied />
-                    )}
-                    
+
+                    {pathname==='/dashboard' && <UserDetails />}
                     {pathname==='/slpp/petitions' && <Petition />}
-                    
+                    {pathname==='/addPetition' && <AddPetition />}
+                    {pathname==='/myPetitions' && <MyPetitions />}
 
                 </div>
 
