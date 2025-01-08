@@ -73,7 +73,6 @@ export default function PetitionActivityOverTime() {
     // Prepare chart data
     const labels = [];
     const createdData = [];
-    const signedData = [];
 
     Object.keys(activityByDay).forEach((day) => {
       labels.push(day);
@@ -81,17 +80,14 @@ export default function PetitionActivityOverTime() {
         x: parseInt(day, 10),
         y: activityByDay[day].created,
       });
-      signedData.push({
-        x: parseInt(day, 10),
-        y: activityByDay[day].signed,
-      });
+
     });
 
-    return { labels, createdData, signedData };
+    return { labels, createdData };
   };
 
   // Prepare chart data
-  const { createdData, signedData } = getDailyActivityData(petitions);
+  const { createdData } = getDailyActivityData(petitions);
 
   const chartData = {
     datasets: [
@@ -101,14 +97,7 @@ export default function PetitionActivityOverTime() {
         backgroundColor: "rgba(54, 162, 235, 1)",
         borderColor: "rgba(54, 162, 235, 1)",
         pointRadius: 5,
-      },
-      {
-        label: "Petitions Signed",
-        data: signedData,
-        backgroundColor: "rgba(255, 99, 132, 1)",
-        borderColor: "rgba(255, 99, 132, 1)",
-        pointRadius: 5,
-      },
+      }
     ],
   };
 
