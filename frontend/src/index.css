@@ -1935,7 +1935,7 @@ h1{
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    gap: 10px;
+    gap: 1px;
     overflow: visible;
     overflow-y: scroll;
 
@@ -1954,6 +1954,22 @@ h1{
 
   .openPetitionsIcon{
     background-image: url('../public/images/openPetitionsIcon.svg');
+  
+  }
+
+  .menu{
+    height: 70vh;
+
+  }
+
+  .menu ul{
+    height: 100%;
+
+  }
+
+  .menu ul li{
+    font-size: 1rem;
+    
   }
 
 }
