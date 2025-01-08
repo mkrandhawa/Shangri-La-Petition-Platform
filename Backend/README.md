@@ -80,13 +80,6 @@ This document outlines the routes available in the Shanri-La-Petitions Project a
 
 - `GET /auth/isLoggedIn`: Checks if the user is logged in. (Protected Route)
 
-## Public Routes
-
-- `GET /`: Renders the landing/home page.
-- `GET /login`: Renders the login form.
-- `GET /signup`: Renders the signup form.
-- `GET /`: Retrieves all petitions. (Protected Route)
-
 ## User Routes
 
 All routes listed below are protected and require user authentication.
