@@ -958,10 +958,25 @@ header{
   font-size: 16px;
   font-style: italic;
   overflow: visible;
-  overflow-x: scroll;
+  overflow-y: scroll;
   max-height: 100px;
   padding: 10px;
   width: 70%
+}
+
+.response::-webkit-scrollbar{
+  width: 6px;
+  height: 6px;
+}
+
+.response::-webkit-scrollbar-track{
+  background: transparent;
+
+}
+
+.response::-webkit-scrollbar-thumb{
+  background: rgb(216 226 229);
+  border-radius: 10px; 
 }
 
 .title{
@@ -1279,9 +1294,24 @@ header{
 
 .petitionDescription{
   overflow: visible;
-  overflow-x: scroll;
+  overflow-y: scroll;
   max-height: 200px;
-  width: 400px;
+  width: 450px;
+}
+
+.petitionDescription::-webkit-scrollbar{
+  width: 6px;
+  height: 6px;
+}
+
+.petitionDescription::-webkit-scrollbar-track{
+  background: transparent;
+
+}
+
+.petitionDescription::-webkit-scrollbar-thumb{
+  background: rgb(216 226 229);
+  border-radius: 10px; 
 }
 
 .myDescription{
