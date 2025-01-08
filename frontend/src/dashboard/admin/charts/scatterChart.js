@@ -19,6 +19,10 @@ export default function PetitionActivityOverTime() {
   const [petitions, setPetitions] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  // Get current month and year
+  const currentMonth = new Date().getMonth() + 1; // Months are 0-indexed
+  const currentYear = new Date().getFullYear();
+
   // Fetch petitions data
   useEffect(() => {
     const fetchPetitions = async () => {
@@ -38,48 +42,48 @@ export default function PetitionActivityOverTime() {
     fetchPetitions();
   }, [url]);
 
-  // Group petitions by day of the month
+  // Group petitions by day of the current month
   const getDailyActivityData = (petitions) => {
     const activityByDay = {};
 
     petitions.forEach((petition) => {
       const createdAt = new Date(petition.createdAt); 
-      const day = createdAt.getDate(); 
-      const monthYear = `${createdAt.getFullYear()}-${createdAt.getMonth() + 1}`; 
-      if (!activityByDay[monthYear]) {
-        activityByDay[monthYear] = {};
+      const petitionMonth = createdAt.getMonth() + 1; // 0-indexed
+      const petitionYear = createdAt.getFullYear();
+
+      // Filter only petitions for the current month and year
+      if (petitionMonth === currentMonth && petitionYear === currentYear) {
+        const day = createdAt.getDate(); // Get the day of the month
+
+        if (!activityByDay[day]) {
+          activityByDay[day] = { created: 0, signed: 0 };
+        }
+
+        // Count created petitions
+        activityByDay[day].created += 1;
+
+        // Count signed petitions (if any)
+        const signedPetitions = petition.signedPetitions || [];
+        signedPetitions.forEach(() => {
+          activityByDay[day].signed += 1;
+        });
       }
-
-      if (!activityByDay[monthYear][day]) {
-        activityByDay[monthYear][day] = { created: 0, signed: 0 };
-      }
-
-      // Count created petitions
-      activityByDay[monthYear][day].created += 1;
-
-      // Count signed petitions (if any)
-      const signedPetitions = petition.signedPetitions || [];
-      signedPetitions.forEach(() => {
-        activityByDay[monthYear][day].signed += 1;
-      });
     });
 
-    //Chart data prep
+    // Prepare chart data
     const labels = [];
     const createdData = [];
     const signedData = [];
 
-    Object.keys(activityByDay).forEach((monthYear) => {
-      Object.keys(activityByDay[monthYear]).forEach((day) => {
-        labels.push(`${monthYear}-${day}`);
-        createdData.push({
-          x: parseInt(day, 10),
-          y: activityByDay[monthYear][day].created,
-        });
-        signedData.push({
-          x: parseInt(day, 10),
-          y: activityByDay[monthYear][day].signed,
-        });
+    Object.keys(activityByDay).forEach((day) => {
+      labels.push(day);
+      createdData.push({
+        x: parseInt(day, 10),
+        y: activityByDay[day].created,
+      });
+      signedData.push({
+        x: parseInt(day, 10),
+        y: activityByDay[day].signed,
       });
     });
 
@@ -125,7 +129,7 @@ export default function PetitionActivityOverTime() {
       x: {
         title: {
           display: true,
-          text: 'Day of Month',
+          text: `Day of Month (${currentMonth}/${currentYear})`,
         },
         min: 1,
         max: 31,
@@ -157,5 +161,5 @@ export default function PetitionActivityOverTime() {
         <Scatter data={chartData} options={options} />
       )}
     </div>
-  )
+  );
 }
