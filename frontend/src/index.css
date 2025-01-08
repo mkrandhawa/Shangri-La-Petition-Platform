@@ -1935,12 +1935,10 @@ h1{
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    gap: 3px;
+    gap: 1px;
     overflow: visible;
     overflow-y: scroll;
-    margin-top: 20px;
-
-
+    
   }
 
   .notificationCircle{
@@ -1959,7 +1957,7 @@ h1{
   }
 
   .menu{
-    height: 70vh;
+    height: 78vh;
 
   }
 
