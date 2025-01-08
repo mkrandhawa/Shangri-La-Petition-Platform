@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Scatter } from 'react-chartjs-2';
-import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
+import { Scatter } from "react-chartjs-2";
+import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from "chart.js";
 import { getData } from "../../../fetchRoutes/getData";
 
 ChartJS.register(
@@ -14,14 +14,14 @@ ChartJS.register(
 );
 
 export default function PetitionActivityOverTime() {
-  const url = process.env.REACT_APP_GET_PETITIONS; 
+  const url = process.env.REACT_APP_GET_PETITIONS;
 
   const [petitions, setPetitions] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // Get current month and year
-  const currentMonth = new Date().getMonth() + 1; // Months are 0-indexed
-  const currentYear = new Date().getFullYear();
+  // State for selected month and year (Default month and year are set to the current month and year)
+  const [selectedMonth, setSelectedMonth] = useState(new Date().getMonth() + 1); 
+  const [selectedYear, setSelectedYear] = useState(new Date().getFullYear()); 
 
   // Fetch petitions data
   useEffect(() => {
@@ -42,17 +42,17 @@ export default function PetitionActivityOverTime() {
     fetchPetitions();
   }, [url]);
 
-  // Group petitions by day of the current month
+  // Group petitions by day of the selected month and year
   const getDailyActivityData = (petitions) => {
     const activityByDay = {};
 
     petitions.forEach((petition) => {
-      const createdAt = new Date(petition.createdAt); 
-      const petitionMonth = createdAt.getMonth() + 1; // 0-indexed
+      const createdAt = new Date(petition.createdAt);
+      const petitionMonth = createdAt.getMonth() + 1; // Months are 0-indexed
       const petitionYear = createdAt.getFullYear();
 
-      // Filter only petitions for the current month and year
-      if (petitionMonth === currentMonth && petitionYear === currentYear) {
+      // Filter only petitions for the selected month and year
+      if (petitionMonth === selectedMonth && petitionYear === selectedYear) {
         const day = createdAt.getDate(); // Get the day of the month
 
         if (!activityByDay[day]) {
@@ -99,14 +99,14 @@ export default function PetitionActivityOverTime() {
         label: "Petitions Created",
         data: createdData,
         backgroundColor: "rgba(54, 162, 235, 1)",
-        borderColor: "rgba(54, 162, 235, 1)", 
-        pointRadius: 5, 
+        borderColor: "rgba(54, 162, 235, 1)",
+        pointRadius: 5,
       },
       {
         label: "Petitions Signed",
         data: signedData,
         backgroundColor: "rgba(255, 99, 132, 1)",
-        borderColor: "rgba(255, 99, 132, 1)", 
+        borderColor: "rgba(255, 99, 132, 1)",
         pointRadius: 5,
       },
     ],
@@ -129,7 +129,7 @@ export default function PetitionActivityOverTime() {
       x: {
         title: {
           display: true,
-          text: `Day of Month (${currentMonth}/${currentYear})`,
+          text: `Day of Month (${selectedMonth}/${selectedYear})`,
         },
         min: 1,
         max: 31,
@@ -143,11 +143,11 @@ export default function PetitionActivityOverTime() {
       y: {
         title: {
           display: true,
-          text: 'Number of Petitions',
+          text: "Number of Petitions",
         },
         min: 0,
         grid: {
-          display: false, 
+          display: false,
         },
       },
     },
@@ -155,6 +155,29 @@ export default function PetitionActivityOverTime() {
 
   return (
     <div className="scatterPlot">
+      <div className="controls">
+        <label>
+          Month:
+          <select value={selectedMonth} onChange={(e) => setSelectedMonth(Number(e.target.value))}>
+            {Array.from({ length: 12 }, (_, i) => i + 1).map((month) => (
+              <option key={month} value={month}>
+                {new Date(0, month - 1).toLocaleString("default", { month: "long" })}
+              </option>
+            ))}
+          </select>
+        </label>
+        <label>
+          Year:
+          <input
+            type="number"
+            value={selectedYear}
+            onChange={(e) => setSelectedYear(Number(e.target.value))}
+            min="2000"
+            max={new Date().getFullYear()}
+          />
+        </label>
+      </div>
+
       {loading ? (
         <p>Loading...</p>
       ) : (
