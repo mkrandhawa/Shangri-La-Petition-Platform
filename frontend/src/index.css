@@ -1969,7 +1969,11 @@ h1{
 
   .menu ul li{
     font-size: 1rem;
-    
+
+  }
+
+  .notLogged{
+    height: auto;
   }
 
 }
