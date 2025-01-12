@@ -61,13 +61,13 @@ exports.register = async(req, res, next)=>{
 
         return res.status(400).json({
             status: 'Fail',
-            message: 'This is not your email!'
+            message: 'Invalid email. Please try again!'
         });
     }
     if(!isBioId.length==0){
         res.status(400).json({
             status: 'Fail',
-            message: 'This BioID does not belong to you!'
+            message: 'Invalid BioID. Please try again!'
         });
         return;
     }else if ( !data.includes(bioId)){
