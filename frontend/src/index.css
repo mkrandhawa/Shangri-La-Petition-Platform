@@ -1639,14 +1639,16 @@ header{
 
 }
 
-.replyForm{
+
+.replyform{
   display: flex;
   align-items: baseline;
   justify-content: flex-start;
   flex-direction: column;
   width: 100%;
   height: 400px;
-  margin-left: -2rem;
+  margin-top: -1rem;
+  margin-left: -10px;
 
 }
 
