@@ -113,7 +113,7 @@ export default function AddPetitionForm(){
 
                 updateUserDetail(response.data);
 
-                navigate('/petitions');
+                navigate('/slpp/petitions');
             } else {
                 
                 setMessage('Failed to submit petition: ' + response.message || 'Unknown error');
@@ -121,7 +121,7 @@ export default function AddPetitionForm(){
         } catch (err) {
             
             setMessage('Something went wrong');
-            console.error(err);
+            
         }
     }
     
