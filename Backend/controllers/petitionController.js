@@ -384,10 +384,10 @@ exports.reachedThreshold = async(req, res)=>{
         }
 
 
-        //Get petitions that have same have the total sign matching with the minsign and have not been replied yet
+        //Get petitions that have the total sign matching or greater than minsign and have not been replied yet
         const petitions = await Petition.find({
             $expr: {
-              $eq: ["$minSign", "$countSigns"]
+                $gte: ["$countSigns", "$minSign"]
             },
             response: { $exists: false },
             status: 'open'
@@ -409,8 +409,10 @@ exports.reachedThreshold = async(req, res)=>{
         });
 
     }catch(err){
-        console.log('Something went wrong while getting petitions that reached the threshold');
-        console.log(err.message);
+        res.status(400).json({
+            status: 'Fail',
+            message: 'Something went wrong while getting petitions that reached the threshold'
+        });
     }
 
 }
