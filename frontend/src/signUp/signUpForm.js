@@ -4,6 +4,8 @@ import QrReader from 'react-qr-scanner';
 import Input from "../props/inputProp";
 import { postData } from "../fetchRoutes/postData";
 import { UserContext } from "../context/userContext";
+import { emailValidation } from "./validation";
+import { nameValidation } from "./validation";
 
 
 
@@ -31,6 +33,11 @@ export default function SignUpForm(){
     const [message, setMessage] = useState('');
 
     const [disable, setDisable] = useState(false);
+
+    const [isValid, setIsValid] = useState({
+        email: true,
+        fullName: true
+    });
     
     const handleScan = (data) => { 
         if (data) { 
@@ -63,6 +70,7 @@ export default function SignUpForm(){
 
         event.preventDefault();
 
+
         try{
 
             const response = await postData(url, user);
@@ -77,7 +85,7 @@ export default function SignUpForm(){
             }
 
         }catch(err){
-            setMessage(err.message);
+            setMessage('Something went wrong. Please try again!');
             
         }
     }
@@ -123,7 +131,38 @@ export default function SignUpForm(){
             setDisable(false);
         }
 
-    }, [user.dob]);
+
+       const email = emailValidation(user.email);
+       
+       if(!email && user.email.length !== 0){
+        setIsValid(prevIsValid => ({
+            ...prevIsValid,
+            email:false}));
+        setDisable(true);
+       }else{
+        setIsValid(prevIsValid => ({
+            ...prevIsValid,
+            email:true}));
+        setDisable(false);
+
+       }
+
+       const name = nameValidation(user.fullName);
+
+       if(!name && user.fullName.length !== 0){
+        setIsValid(prevIsValid => ({
+            ...prevIsValid,
+            fullName:false}));
+        setDisable(true);
+       }else{
+        setIsValid(prevIsValid => ({
+            ...prevIsValid,
+            fullName:true}));
+        setDisable(false);
+
+       }
+
+    }, [user.dob, user.email, user.fullName]);
 
     return(
         <>
@@ -153,7 +192,7 @@ export default function SignUpForm(){
                                 <div className="regInputsFullName">
                                     <label className="regLabel">Name</label>
                                     <Input
-                                        className="fullName"
+                                        className={isValid.fullName ? "fullName":"fullName error"}
                                         type='text'
                                         name='fullName'
                                         placeholder='John Anderson'
@@ -171,7 +210,7 @@ export default function SignUpForm(){
                                 <div className="regInputsEmail">
                                     <label className="regLabel">Email</label>
                                     <Input
-                                        className="emailRegister"
+                                        className={isValid.email ?"emailRegister":" emailRegister error"}
                                         type='email'
                                         name='email'
                                         placeholder='this@example.com'
