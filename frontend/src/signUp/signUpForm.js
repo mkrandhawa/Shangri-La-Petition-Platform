@@ -34,6 +34,12 @@ export default function SignUpForm(){
 
     const [disable, setDisable] = useState(false);
 
+    const [emailDiasable, setEmailDisable] = useState(false);
+
+    const [nameDiasable, setNameDisable] = useState(false);
+
+    const [dobDisable, setDobDisable] = useState(false);
+
     const [isValid, setIsValid] = useState({
         email: true,
         fullName: true
@@ -85,7 +91,7 @@ export default function SignUpForm(){
             }
 
         }catch(err){
-            setMessage('Something went wrong. Please try again!');
+            setMessage(err.message);
             
         }
     }
@@ -115,6 +121,7 @@ export default function SignUpForm(){
     }, [user.password, user.confirmPassword]);
 
 
+    // Check if user has given valid name, email, and is over 18
     useEffect(()=>{
 
         let age = 0;
@@ -125,10 +132,10 @@ export default function SignUpForm(){
 
         if(age < 18 ){
             setMessage('You must be 18 or above to register');
-            setDisable(true);
+            setDobDisable(true);
         }else{
             setMessage('');
-            setDisable(false);
+            setDobDisable(false);
         }
 
 
@@ -138,12 +145,12 @@ export default function SignUpForm(){
         setIsValid(prevIsValid => ({
             ...prevIsValid,
             email:false}));
-        setDisable(true);
+        setEmailDisable(true);
        }else{
         setIsValid(prevIsValid => ({
             ...prevIsValid,
             email:true}));
-        setDisable(false);
+        setEmailDisable(false);
 
        }
 
@@ -153,12 +160,12 @@ export default function SignUpForm(){
         setIsValid(prevIsValid => ({
             ...prevIsValid,
             fullName:false}));
-        setDisable(true);
+        setNameDisable(true);
        }else{
         setIsValid(prevIsValid => ({
             ...prevIsValid,
             fullName:true}));
-        setDisable(false);
+        setNameDisable(false);
 
        }
 
@@ -340,7 +347,7 @@ export default function SignUpForm(){
                             
 
                             {/* Submit button */}
-                            <button className="loginButton signUpButton" type="submit"  disabled={disable}>
+                            <button className="loginButton signUpButton" type="submit"  disabled={disable || emailDiasable || nameDiasable || dobDisable}>
                                 Sign Up
                             </button>
 
