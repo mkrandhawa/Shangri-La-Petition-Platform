@@ -184,6 +184,14 @@ exports.addPetition = async (req, res, next) => {
             petitionData.image = req.file.path;
         }
 
+         // Check if there are any old petitions with a threshold value (minSign)
+         const oldPetitionsWithThreshold = await Petition.findOne({ minSign: { $exists: true, $ne: null } });
+
+         // If a petition with a threshold exists, set the minSign field in the new petition
+         if (oldPetitionsWithThreshold) {
+             petitionData.minSign = oldPetitionsWithThreshold.minSign;
+         }
+         
         // Create petition
         const petition = await Petition.create(petitionData);
 
@@ -195,6 +203,7 @@ exports.addPetition = async (req, res, next) => {
         });
     });
 };
+
 
 // Sign a Petition --> /api/slpp/petitions/:petitionId/sign
 
