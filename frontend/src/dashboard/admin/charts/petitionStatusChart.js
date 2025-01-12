@@ -56,7 +56,7 @@ export default function PetitionStatusChart() {
           petitions.filter(petition => petition.status === "open").length,
           petitions.filter(petition => petition.status === "closed").length,
         ], 
-        backgroundColor: ["#268d24", "#e44c35"], 
+        backgroundColor: ["#268d24  ", "#e44c35"], 
       },
     ],
   };
