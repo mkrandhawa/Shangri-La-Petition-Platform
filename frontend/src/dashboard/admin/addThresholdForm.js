@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {useNavigate} from 'react-router-dom';
 import Input from '../../props/inputProp';
 import { patchDataForm } from "../../fetchRoutes/patchDataForm";
@@ -15,6 +15,8 @@ export default function AddThresholdForm(){
 
     const [message, setMessage] = useState('');
 
+    const [disable, setDisable] = useState(false);
+
 
     const [threshold, setThreshold] = useState({
         minSign:0
@@ -26,7 +28,19 @@ export default function AddThresholdForm(){
         const {name, value} = event.target;
 
         setThreshold({...threshold, [name]:value});
+
+        
     }
+
+    useEffect(()=>{
+        if(threshold.minSign <=0){
+            setMessage('Please set a threshold above 0!');
+            setDisable(true);
+        }else{
+            setMessage('');
+            setDisable(false);
+        }
+    }, [threshold.minSign]);
 
 
     const handleSubmit = async (event)=>{
@@ -119,7 +133,7 @@ export default function AddThresholdForm(){
                         </div>
 
                         {/* Submit button */}
-                        <button className="loginButton signUpButton" type="submit">
+                        <button className="loginButton signUpButton" type="submit" disabled={disable}>
                             Add Threshold
                         </button>
 
