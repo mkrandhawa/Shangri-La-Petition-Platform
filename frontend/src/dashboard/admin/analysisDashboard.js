@@ -1,6 +1,6 @@
 import React, {useRef} from "react";
 import BarChartSignatures from "./charts/barChart";
-import PetitionStatusChart from "./charts/petionStatusChart";
+import PetitionStatusChart from "./charts/petitionStatusChart";
 import WordCloudAnalysis from "./charts/wordCloud";
 import PetitionActivityOverTime from "./charts/scatterChart";
 
