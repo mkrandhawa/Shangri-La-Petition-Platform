@@ -1316,6 +1316,7 @@ header{
 
 .myDescription{
   width: 80%;
+  overflow-wrap: anywhere;
   
 }
 
