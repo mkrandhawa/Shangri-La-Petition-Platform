@@ -99,16 +99,18 @@ export default function PetitionReply(){
             try{
                 const res = await patchDataForm(patchUrl, { response: reply.response });
 
-
+                console.log(res);
+                console.log('Status: ', res.status);
                 if(res.status==='Success'){
 
                     setSuccessMessage(res.message);
                     setTimeout(() => {
-                        setSuccessMessage("");  
-                    }, 1000); 
+                        navigate('/adminDashboard');
+                    }, 2000); 
                     setTotPetitionToReply((prev)=> prev-1);
+                    setReply({response: ""});
 
-                    navigate('/adminDashboard');
+                    
 
                 }
 
@@ -116,11 +118,10 @@ export default function PetitionReply(){
                     setMessage(res.message);
                     setTimeout(() => {
                         setMessage("");  
-                    }, 1000); 
+                    }, 2000); 
                 }
 
             }catch(error){
-                console.log(error);
 
                 if (error.message) {
                     
@@ -135,6 +136,7 @@ export default function PetitionReply(){
         }
         patchPetition();
     }
+
 
 
     //Fetch petitions that reached the threshold
