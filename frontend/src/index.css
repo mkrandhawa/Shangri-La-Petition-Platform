@@ -1366,6 +1366,7 @@ header{
 
 .allPetitionsDetails .petitionDescription {
   font-size: 1.1rem;
+  overflow-wrap: break-word;
 }
 
 .allPetitionsDetails .petitionStatus,
