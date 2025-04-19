@@ -11,13 +11,13 @@ mongoose.connect(DB)
         .then(()=> console.log('DB connection successful'))
         .catch((err)=> console.log('Error connecting to the database', err));
 
-const server = app.listen(port, 'localhost', ()=>{
-    console.log(`Listening on port ${port}`);
-})
+// const server = app.listen(port, 'localhost', ()=>{
+//     console.log(`Listening on port ${port}`);
+// })
 
 // THIS PART IS FOR HEROKU DEPLOYMENT
 // const port = process.env.PORT|| 4000;
 
-// app.listen(port, ()=>{
-//     console.log(`Listening on port ${port}`);
-// })
+app.listen(port, ()=>{
+    console.log(`Listening on port ${port}`);
+})
