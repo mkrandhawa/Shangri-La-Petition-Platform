@@ -4,7 +4,7 @@ const app = require('./app')
 
 dotenv.config({path: './config.env'});
 
-const port = process.env.PORT;
+const port = process.env.PORT || 8000;
 const DB = process.env.DATABASE;
 
 mongoose.connect(DB)
